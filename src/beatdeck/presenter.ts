@@ -1,9 +1,10 @@
 import { deck } from './engine';
 import { flags } from './flags';
+import type { DeckState } from './types';
 
 /** Stage ⇄ presenter protocol over BroadcastChannel (same origin, no network). */
 export type Msg =
-  | { type: 'state'; scene: number; beat: number; fullscreen: boolean; blackout: boolean; sentAt: number }
+  | ({ type: 'state'; fullscreen: boolean; sentAt: number } & DeckState<unknown>)
   | { type: 'hello' }
   | { type: 'cmd'; cmd: 'next' | 'prev' | 'home' | 'end' | 'blackout' }
   | { type: 'go'; scene: number; beat: number };
@@ -20,16 +21,17 @@ export function openChannel(): BroadcastChannel | null {
 export function startStageSync(): () => void {
   const ch = openChannel();
   if (!ch) return () => {};
-  let last = '';
+  let lastState: DeckState<unknown> | null = null;
+  let lastFullscreen = false;
   const publish = (force = false) => {
     const s = deck.getState();
     const msg: Msg = {
-      type: 'state', scene: s.scene, beat: s.beat,
-      fullscreen: !!document.fullscreenElement, blackout: s.blackout, sentAt: Date.now(),
+      ...s, type: 'state',
+      fullscreen: !!document.fullscreenElement, sentAt: Date.now(),
     };
-    const key = `${msg.scene}.${msg.beat}.${msg.fullscreen}.${msg.blackout}`;
-    if (!force && key === last) return;
-    last = key;
+    if (!force && s === lastState && msg.fullscreen === lastFullscreen) return;
+    lastState = s;
+    lastFullscreen = msg.fullscreen;
     ch.postMessage(msg);
   };
   const unsub = deck.subscribe(() => publish());

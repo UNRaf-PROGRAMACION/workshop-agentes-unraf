@@ -1,10 +1,11 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { deck } from '../engine';
 import { openChannel, type Msg } from '../presenter';
 import { bindKeys, type NavTarget } from '../navigation';
 import { getTimerStart, setTimerStart } from '../persistence';
 import { qrConfigured } from '../components/QR';
 import type { BeatDef, Position } from '../types';
+import { StagePreview } from './StagePreview';
 
 const pad = (n: number) => String(n).padStart(2, '0');
 const fmtTime = (ms: number) => {
@@ -23,7 +24,7 @@ function BeatInfo({ bt }: { bt: BeatDef }) {
 
 /** Separate window (P). Mirrors the stage over BroadcastChannel and sends it commands. Never shown to the audience. */
 export function PresenterView() {
-  const ch = useMemo(() => openChannel(), []);
+  const channel = useRef<BroadcastChannel | null>(null);
   const id = deck.def.id;
   const [pos, setPos] = useState<Position | null>(null);
   const [lastSeen, setLastSeen] = useState(0);
@@ -33,10 +34,14 @@ export function PresenterView() {
   const [t0, setT0] = useState<number | null>(getTimerStart(id));
 
   useEffect(() => {
+    // Each effect setup owns a fresh channel, including StrictMode's replay.
+    const ch = openChannel();
+    channel.current = ch;
     if (!ch) return;
     ch.onmessage = (e: MessageEvent<Msg>) => {
       const m = e.data;
       if (m.type === 'state') {
+        deck.mirror({ scene: m.scene, beat: m.beat, live: m.live, entry: m.entry, from: m.from, blackout: m.blackout });
         setPos({ scene: m.scene, beat: m.beat });
         setFs(m.fullscreen);
         setBlackout(m.blackout);
@@ -44,8 +49,11 @@ export function PresenterView() {
       }
     };
     ch.postMessage({ type: 'hello' } satisfies Msg);
-    return () => ch.close();
-  }, [ch]);
+    return () => {
+      channel.current = null;
+      ch.close();
+    };
+  }, []);
 
   useEffect(() => {
     const i = setInterval(() => { setNow(Date.now()); setT0(getTimerStart(id)); }, 500);
@@ -53,7 +61,7 @@ export function PresenterView() {
   }, [id]);
 
   const target: NavTarget = useMemo(() => {
-    const send = (m: Msg) => ch?.postMessage(m);
+    const send = (m: Msg) => channel.current?.postMessage(m);
     return {
       next: () => send({ type: 'cmd', cmd: 'next' }),
       prev: () => send({ type: 'cmd', cmd: 'prev' }),
@@ -62,7 +70,7 @@ export function PresenterView() {
       blackout: () => send({ type: 'cmd', cmd: 'blackout' }),
       go: (scene, beat) => send({ type: 'go', scene, beat }),
     };
-  }, [ch]);
+  }, []);
 
   useEffect(() => bindKeys(target, null, { presenter: true }), [target]);
 
@@ -87,6 +95,7 @@ export function PresenterView() {
 
       <main className="p-main">
         <section>
+          {pos && <StagePreview />}
           <div className="p-label mono">CURRENT</div>
           {pos && sc && bt ? (
             <>
@@ -120,7 +129,7 @@ export function PresenterView() {
         <button className="mono" onClick={target.prev}>← prev</button>
         <button className="mono p-primary" onClick={target.next}>next →</button>
         <button className="mono" onClick={target.blackout}>blackout (B)</button>
-        <button className="mono" onClick={() => ch?.postMessage({ type: 'hello' } satisfies Msg)}>resync</button>
+        <button className="mono" onClick={() => channel.current?.postMessage({ type: 'hello' } satisfies Msg)}>resync</button>
       </div>
 
       <nav className="p-scenes">

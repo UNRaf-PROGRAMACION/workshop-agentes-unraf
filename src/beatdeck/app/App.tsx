@@ -1,12 +1,12 @@
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
-import { STAGE_H, STAGE_W, StageScale } from './stage';
-import { deck, useDeck } from '../engine';
+import { STAGE_H, STAGE_W } from './stage';
+import { deck } from '../engine';
 import { bindKeys, localTarget, startCursorAutoHide } from '../navigation';
 import { startStageSync } from '../presenter';
 import { parseHash } from '../persistence';
 import { flags } from '../flags';
-import type { DeckDefinition, DeckState } from '../types';
-import { DefaultChrome } from './DefaultChrome';
+import type { DeckDefinition } from '../types';
+import { StageFrame } from './StageFrame';
 import { qrConfigured } from '../components/QR';
 import { gsap } from 'gsap';
 import { Overview } from './Overview';
@@ -35,10 +35,6 @@ function useStageFit() {
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function App({ def }: { def: DeckDefinition<any> }) {
   const fit = useStageFit();
-  const d = useDeck((st: DeckState<unknown>) => ({
-    black: !!def.isBlack?.(st as never) || st.blackout,
-    cut: !!def.isCut?.(st as never) || st.blackout,
-  }));
   const [overview, setOverview] = useState(false);
   const overviewRef = useRef(overview);
   overviewRef.current = overview;
@@ -89,23 +85,9 @@ export function App({ def }: { def: DeckDefinition<any> }) {
     if (!overviewRef.current) deck.next();
   }, []);
 
-  const { Stage, Overlay } = def;
-  const Chrome = def.Chrome === undefined ? DefaultChrome : def.Chrome;
-
   return (
     <div className={`viewport${flags.capture ? ' capture' : ''}`} onClick={onStageClick}>
-      <div
-        className={`stage${d.black ? ' abs-black' : ''}`}
-        style={{ transform: `translate(${fit.ox}px,${fit.oy}px) scale(${fit.scale})` }}
-      >
-        <StageScale.Provider value={fit.scale}>
-          <Stage />
-        </StageScale.Provider>
-        {Chrome && <Chrome black={d.black} />}
-        {/* cut to black (and operator blackout): instant, nothing on top except the Overlay */}
-        <div className="layer" style={{ background: '#000', opacity: d.cut ? 1 : 0 }} />
-        {Overlay && <Overlay />}
-      </div>
+      <StageFrame {...fit} />
       {overview && <Overview onClose={() => setOverview(false)} />}
       {flags.debug && <DebugPanel />}
     </div>

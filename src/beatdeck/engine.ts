@@ -62,6 +62,13 @@ export class DeckEngine<L> {
 
   getState = () => this.state;
 
+  /** Read-only presenter mirror: no persistence, timers, timelines or navigation side effects. */
+  mirror = (state: DeckState<L>) => {
+    if (!flags.presenter) return;
+    this.state = state;
+    this.emit();
+  };
+
   subscribe = (l: Listener) => {
     this.listeners.add(l);
     return () => {
@@ -157,6 +164,7 @@ function engine(): DeckEngine<unknown> {
 /** Imperative handle on the running deck (navigation, state, subscription). */
 export const deck = {
   getState: () => engine().getState(),
+  mirror: (state: DeckState<unknown>) => engine().mirror(state),
   subscribe: (l: Listener) => engine().subscribe(l),
   go: (p: Position) => engine().go(p),
   next: () => engine().next(),

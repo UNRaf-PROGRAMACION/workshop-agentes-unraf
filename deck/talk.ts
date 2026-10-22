@@ -3,7 +3,8 @@ import script from '../docs/guion-parte-1.md?raw';
 export type Layout = 'opening' | 'assistant' | 'agent' | 'compare' | 'repository' | 'equation' |
   'prompt' | 'clues' | 'window' | 'flow' | 'mind' | 'explore' | 'broken' | 'fixes' |
   'sdd' | 'spec' | 'life-compare' | 'lives' | 'parameters' | 'feel' | 'states' |
-  'roles' | 'platform' | 'harness' | 'evidence' | 'safety' | 'cycle' | 'closing';
+  'roles' | 'design' | 'platform' | 'harness' | 'evidence' | 'safety' | 'cycle' | 'closing' |
+  'bonus-tips' | 'bonus-ego' | 'bonus-acceptance';
 
 interface Slide {
   id: string;
@@ -43,12 +44,13 @@ export const SLIDES: Slide[][] = [
     { id: '6.2', title: 'De la regla a la evidencia', layout: 'lives', steps: ['Vidas y derrota', 'Un nuevo daño', 'Qué demuestra cada evidencia'] },
   ],
   [
-    { id: '7.1', title: 'Parámetros explícitos', layout: 'parameters', steps: ['No más valores sin explicación', 'Explícitos y localizables'] },
-    { id: '7.2', title: 'Del game feel a una hipótesis', layout: 'feel', steps: ['Una intención subjetiva', 'Parámetros que podemos probar', 'La experiencia requiere playtest'] },
-    { id: '7.3', title: 'Estados y reglas en todas partes', layout: 'states', steps: ['Estados y transiciones', 'Los casos borde'] },
-    { id: '7.4', title: 'El diseño cambia después del playtest', layout: 'flow', steps: ['Iterar con intención', 'Registrar qué cambia y por qué'] },
-    { id: '7.5', title: 'GDD, spec y plan', layout: 'roles', steps: ['Cada uno cumple un papel', 'Dos sombreros'] },
-    { id: '7.6', title: 'Las restricciones también son diseño', layout: 'platform', steps: ['Dónde tiene que funcionar', 'Reglas y verificación'] },
+    { id: '7.1', title: 'Parámetros de gameplay explícitos', layout: 'parameters', steps: ['No números mágicos', 'Configurar para facilitar el tuning'] },
+    { id: '7.2', title: 'Del game feel a una hipótesis jugable', layout: 'feel', steps: ['La intención y sus reglas', 'Una hipótesis de salto', 'Evaluar el game feel en playtest'] },
+    { id: '7.3', title: 'Estados y transiciones explícitas', layout: 'states', steps: ['Máquinas de estados', 'Interrupciones y prioridades'] },
+    { id: '7.4', title: 'Playtest y balance con cambios trazables', layout: 'flow', steps: ['Del hallazgo al cambio', 'Ajustar y volver a evaluar'] },
+    { id: '7.5', title: 'Del GDD a una feature implementable', layout: 'roles', steps: ['Visión, feature y ruta técnica', 'Ejemplo: sistema de reaparición'] },
+    { id: '7.6', title: 'Separar game design e implementación', layout: 'design', steps: ['Dos roles, incluso en un equipo indie', 'Primero la experiencia del jugador'] },
+    { id: '7.7', title: 'Restricciones de plataforma desde el diseño', layout: 'platform', steps: ['Condiciones de la plataforma', 'Incluirlas y verificarlas'] },
   ],
   [
     { id: '8.1', title: 'El entorno de trabajo también se diseña', layout: 'harness', steps: ['Qué es un harness', 'Reglas, procesos y verificaciones'] },
@@ -59,11 +61,16 @@ export const SLIDES: Slide[][] = [
     { id: '9.1', title: 'El ciclo completo', layout: 'cycle', steps: ['Intención, spec y plan', 'Cambio y evidencia', 'Decisión humana'] },
     { id: '9.2', title: 'Lo importante no es memorizar una herramienta', layout: 'closing', steps: ['Las habilidades transferibles', 'La pregunta que nos llevamos'] },
   ],
+  [
+    { id: '10.1', title: 'BONUS · Tips para trabajar con agentes', layout: 'bonus-tips', steps: ['Un GDD vivo', 'Actualizar las decisiones', 'Assets y referencias explícitas'] },
+    { id: '10.2', title: 'Soltá tu fucking ego de programador', layout: 'bonus-ego', steps: ['¿Saben lo que es?', 'Las objeciones al LLM', 'Nuestro valor no está en escribir código'] },
+    { id: '10.3', title: 'El duelo como metáfora de la adopción de IA.', layout: 'bonus-acceptance', steps: ['Negación', 'Ira', 'Negociación', 'Depresión / desánimo', 'Aceptación'] },
+  ],
 ];
 
 export const SECTION_TITLES = [
   'Apertura', 'Asistente y agente', 'Contexto', 'Vibe coding', 'SDD',
-  'Vidas y derrota', 'SDD en videojuegos', 'Control y seguridad', 'Hacia la práctica',
+  'Vidas y derrota', 'SDD en videojuegos', 'Control y seguridad', 'Hacia la práctica', 'Bonus',
 ];
 
 const sourceSections = new Map(

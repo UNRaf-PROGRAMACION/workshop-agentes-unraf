@@ -6,7 +6,23 @@ import { config } from '../deck.config';
 import opencodeLogo from '../assets/opencode.svg';
 import claudeCodeLogo from '../assets/claude-code.svg';
 import codexLogo from '../assets/codex.svg';
+import chatgptLogo from '../assets/chatgpt.svg';
+import claudeLogo from '../assets/claude.svg';
+import geminiLogo from '../assets/gemini.svg';
+import v0Logo from '../assets/v0.svg';
+import lovableLogo from '../assets/lovable.svg';
+import replitLogo from '../assets/replit.svg';
 import { locateSlide, SECTION_TITLES, type Layout } from '../talk';
+import { BonusContent } from './BonusContent';
+
+const ASSISTANTS = [
+  { name: 'ChatGPT', logo: chatgptLogo, monochrome: true },
+  { name: 'Claude', logo: claudeLogo },
+  { name: 'Gemini', logo: geminiLogo },
+  { name: 'v0', logo: v0Logo },
+  { name: 'Lovable', logo: lovableLogo },
+  { name: 'Replit', logo: replitLogo },
+];
 
 function List({ items }: { items: string[] }) {
   return <ul className="talk-list">{items.map((item) => <li key={item}>{item}</li>)}</ul>;
@@ -31,6 +47,9 @@ function Rows({ items }: { items: [string, string][] }) {
 
 function Content({ layout, step, id }: { layout: Layout; step: number; id: string }) {
   switch (layout) {
+    case 'bonus-tips':
+    case 'bonus-ego':
+    case 'bonus-acceptance': return <BonusContent layout={layout} step={step} />;
     case 'opening': return <>
       <div data-exact className="talk-big" style={{ fontSize: 130 }}>Agregá un sistema <br />de vidas.</div>
       {step >= 1 ? <div style={{ marginTop: 65 }}><Flow items={['¿Cuántas vidas?', '¿Qué cuenta como daño?', '¿Qué pasa con cero?']} /></div> : null}
@@ -38,7 +57,12 @@ function Content({ layout, step, id }: { layout: Layout; step: number; id: strin
     case 'assistant': return <Columns left={<>
       <h2>Un asistente responde.</h2><p>Un chat donde podés hacer preguntas y recibir respuestas.</p>
       <List items={['Explicame esta función.', '¿Qué significa este error?', 'Dame un ejemplo de movimiento.']} />
-    </>} right={<div className="talk-photo">TODO · Foto del asistente</div>} />;
+    </>} right={<div className="talk-assistants" aria-label="Ejemplos de asistentes de chat">
+      {ASSISTANTS.map(({ name, logo, monochrome }) => <div className="talk-assistant" key={name}>
+        <img className={monochrome ? 'talk-tool-monochrome' : undefined} src={logo} width={96} height={96} alt="" />
+        <span>{name}</span>
+      </div>)}
+    </div>} />;
     case 'agent': return <div className="talk-agent-layout">
       <div>{[['Modelo', 'LLM · genera y propone'], ['Instrucciones', 'prompts · orientan y limitan'], ['Herramientas', 'tools · leen, editan, ejecutan']].map(([name, detail], i) => <Fragment key={name}>
         {i > 0 ? <div className="talk-plus">+</div> : null}<div className="talk-formula">{name}<small>{detail}</small></div>
@@ -82,7 +106,10 @@ function Content({ layout, step, id }: { layout: Layout; step: number; id: strin
     </>;
     case 'flow': return <>
       <div style={{ marginTop: 65 }}><Flow items={id === '4.1' ? ['Prompt', 'Generación', 'Prueba', 'Otro prompt'] : ['Playtest', 'Hallazgo', 'Spec', 'Código', 'Verificación']} /></div>
-      <div style={{ marginTop: 100 }} className="talk-big">{id === '4.1' ? 'Hacé que funcione.' : 'Iterar con intención.'}</div>
+      {id === '4.1' ? <div style={{ marginTop: 100 }} className="talk-big">Hacé que funcione.</div> : <div style={{ marginTop: 75 }}>
+        <h2>Una habilidad domina el combate.<br />La curva de dificultad resulta frustrante.</h2>
+        {step >= 1 ? <p className="accent">Revisar daño, cooldowns o spawn.<br />Registrar la intención y volver a evaluar el balance.</p> : null}
+      </div>}
     </>;
     case 'mind': return step === 0 ? <div className="talk-big" style={{ fontSize: 84 }}>Si queremos controlar<br />mejor el cambio,<br /><span className="accent">necesitamos definirlo.</span></div> : <>
       <div className="talk-big" style={{ fontSize: 145 }}>LA IA NO LEE<br />TU MENTE.</div>
@@ -128,30 +155,44 @@ function Content({ layout, step, id }: { layout: Layout; step: number; id: strin
       ]} /> : null}
     </>;
     case 'parameters': return <>
-      <div className="talk-big" style={{ fontSize: 92 }}>NO MÁS VALORES<br />SIN EXPLICACIÓN.</div>
-      <div className="talk-chips" style={{ marginTop: 70 }}>{['Velocidad', 'Gravedad', 'Tiempos', 'Tolerancias', 'Cantidad de enemigos'].map((x) => <span key={x}>{x}</span>)}</div>
-      {step >= 1 ? <p className="accent">Parámetros acordados, configurables y localizables.</p> : null}
+      <div className="talk-big" style={{ fontSize: 92 }}>GAMEPLAY,<br />NO NÚMEROS MÁGICOS.</div>
+      <div className="talk-chips" style={{ marginTop: 55 }}>{['Velocidad', 'Gravedad', 'Cooldowns', 'Daño', 'Spawn de enemigos'].map((x) => <span key={x}>{x}</span>)}</div>
+      {step >= 1 ? <p className="accent">Spec: qué ajustar. Plan: dónde centralizarlo.<br />Ejemplo en Unity: ScriptableObjects para facilitar el tuning.</p> : null}
     </>;
     case 'feel': return <>
-      <h2>Que el salto se sienta bien.</h2>
+      <h2>«Que el salto se sienta responsivo».</h2>
       {step >= 1 ? <><div className="talk-label">HIPÓTESIS ILUSTRATIVA PARA PROBAR</div><div className="talk-numbers">
         <div className="talk-number">0,1 s<small>Coyote time</small></div><div className="talk-number">0,35 s<small>Tiempo hasta el ápice</small></div>
-      </div></> : <p className="muted">Una intención subjetiva.<br />¿Cómo la convertimos en algo comprobable?</p>}
-      {step >= 2 ? <p className="accent" style={{ fontSize: 38 }}>Playtest → ¿produce la sensación buscada?</p> : null}
+      </div></> : <Rows items={[
+        ['Coyote time', 'Margen para saltar tras dejar una plataforma.'],
+        ['Jump buffering', 'Recordar un salto pulsado antes de aterrizar.'],
+        ['Control aéreo', 'Cuánto control conservamos durante el salto.'],
+      ]} />}
+      {step >= 2 ? <p className="accent" style={{ fontSize: 38 }}>Playtest → ¿logramos el game feel buscado?</p> : null}
     </>;
     case 'states': return <>
-      <div style={{ fontSize: 48, lineHeight: 1.5 }}><div>JUGANDO <span className="accent">↔</span> PAUSA</div><div>JUGANDO <span className="accent">→</span> DERROTA</div></div>
+      <div className="talk-label">MÁQUINAS DE ESTADOS</div>
+      <div className="talk-chips">{['Idle', 'Movimiento', 'Ataque', 'Stun', 'Muerte'].map((x) => <span key={x}>{x}</span>)}</div>
+      <p className="muted">Idle: reposo. Stun: aturdimiento.</p>
       {step >= 1 ? <div style={{ marginTop: 40 }}><List items={[
-        '¿Qué pasa al perder el foco?', '¿Qué pasa con dos entradas simultáneas?', '¿Se recibe daño durante la pausa?', '¿Qué ocurre después de perder?',
+        '¿Recibir daño interrumpe un ataque?', '¿Qué input tiene prioridad si llegan dos juntos?', '¿Qué ocurre al pausar o perder el foco?',
       ]} /></div> : null}
     </>;
-    case 'roles': return <Rows items={[
-      ['GDD · Visión del juego', 'Fantasía, pilares, bucle, mecánicas y tono.'],
-      ['SPEC · Una pieza implementable', 'Objetivo, reglas, alcance y aceptación.'],
+    case 'roles': return <><Rows items={[
+      ['GDD · Game Design Document', 'Visión, pilares, core loop, mecánicas y tono.'],
+      ['SPEC · Una feature concreta', 'Comportamiento, alcance y criterios de aceptación.'],
       ['PLAN · La ruta técnica', 'Cómo realizar el cambio en este repositorio.'],
-    ]} />;
+    ]} />{step >= 1 ? <p className="accent" style={{ marginTop: 45 }}>Ejemplo de feature: sistema de reaparición.<br />Core loop: ciclo principal de acciones del jugador.</p> : null}</>;
+    case 'design': return <Columns left={<>
+      <div className="talk-label">GAME DESIGN</div><h2>Qué experiencia<br />buscamos.</h2>
+      <p>Necesidades del jugador.<br />Reglas de gameplay.</p>
+    </>} right={<>
+      <div className="talk-label">IMPLEMENTACIÓN</div><h2>Cómo construirla<br />en este proyecto.</h2>
+      <p>Solución técnica.<br />Integración con el código existente.</p>
+      {step >= 1 ? <p className="accent">Una comodidad técnica no es,<br />por sí sola, una decisión de diseño.</p> : null}
+    </>} />;
     case 'platform': return <>
-      <h2>¿Dónde tiene que funcionar?</h2><div className="talk-chips">{['Móvil', 'Escritorio', 'Táctil', 'Orientación', 'Rendimiento', 'Tamaño de build'].map((x) => <span key={x}>{x}</span>)}</div>
+      <h2>¿Dónde tiene que funcionar?</h2><div className="talk-chips">{['Input táctil', 'Resolución', 'Orientación', 'Presupuesto de rendimiento', 'Tamaño de build'].map((x) => <span key={x}>{x}</span>)}</div>
       {step >= 1 ? <div style={{ marginTop: 85 }}><Flow items={['Reglas estables del proyecto', 'Specs de cada cambio', 'Verificaciones']} /></div> : null}
     </>;
     case 'harness': return <>
@@ -190,6 +231,9 @@ function Content({ layout, step, id }: { layout: Layout; step: number; id: strin
 }
 
 function Foot({ layout, step, id }: { layout: Layout; step: number; id: string }): ReactNode {
+  if (layout === 'bonus-tips') return 'El GDD conserva las decisiones; las specs concretan cada cambio.';
+  if (layout === 'bonus-ego') return <a className="talk-reference" href={config.references.programmerEgo} target="_blank" rel="noopener noreferrer" onClick={(event) => event.stopPropagation()}>Lectura recomendada: «El ego del programador» · LinkedIn ↗</a>;
+  if (layout === 'bonus-acceptance') return <>Es una metáfora: no son etapas obligatorias ni lineales.<br /><a className="talk-reference" href={config.references.grief} target="_blank" rel="noopener noreferrer" onClick={(event) => event.stopPropagation()}>Fuente de la infografía: Psicopedia · psicopedia.org/7691/ ↗</a></>;
   if (layout === 'opening' && step >= 2) return 'Pedir código no es lo mismo que definir un cambio.';
   if (layout === 'agent') return 'Agente de desarrollo ≠ NPC o IA de gameplay. Las acciones dependen de sus permisos.';
   if (layout === 'repository' && step >= 1) return 'Tener acceso a la carpeta no significa haber leído todo.';
@@ -203,11 +247,12 @@ function Foot({ layout, step, id }: { layout: Layout; step: number; id: string }
   if (layout === 'spec') return step >= 1 ? 'Pequeña. Concreta. Revisable. Supuestos y preguntas abiertas: visibles, no escondidos.' : 'Un contrato revisable para un cambio pequeño.';
   if (layout === 'life-compare') return 'Valores ilustrativos para este ejemplo; deben acordarse para el juego real.';
   if (layout === 'lives' && step >= 2) return 'Cumplir la regla ≠ garantizar una buena experiencia. Balance y claridad requieren playtest.';
-  if (layout === 'parameters' && step >= 1) return 'Si un valor importa para el diseño, hagámoslo explícito y localizable.';
+  if (layout === 'parameters' && step >= 1) return 'Tuning: ajustar parámetros, probar el resultado y volver a iterar.';
   if (layout === 'feel' && step >= 2) return 'Los parámetros se verifican; la experiencia se evalúa jugando.';
-  if (layout === 'states' && step >= 1) return 'Definir casos borde ayuda a prevenir errores. No elimina todos los bugs.';
-  if (layout === 'flow' && id === '7.4' && step >= 1) return 'Registrar qué cambia y por qué. La spec acompaña la iteración, no congela el diseño.';
-  if (layout === 'roles' && step >= 1) return 'Dos sombreros: primero decidís como diseñador; después planificás la implementación.';
+  if (layout === 'states' && step >= 1) return 'La spec define transiciones, interrupciones y prioridades. No elimina todos los bugs.';
+  if (layout === 'flow' && id === '7.4' && step >= 1) return 'Cada cambio de balance responde a un hallazgo. La spec acompaña la iteración, no congela el diseño.';
+  if (layout === 'roles' && step >= 1) return 'El GDD conserva la visión; la spec no lo reemplaza ni lo convierte automáticamente en código.';
+  if (layout === 'design' && step >= 1) return 'En un equipo indie podés cumplir ambos roles: separar las decisiones sigue siendo útil.';
   if (layout === 'platform' && step >= 1) return 'Escribir restricciones no garantiza su cumplimiento: también hay que verificarlas.';
   if (layout === 'harness') return 'No acumular archivos: resolver ambigüedades reales y facilitar la verificación.';
   if (layout === 'evidence' && step >= 1) return 'Revisar el diff y la evidencia antes de aceptar el cambio.';

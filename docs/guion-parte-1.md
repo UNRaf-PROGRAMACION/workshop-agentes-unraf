@@ -402,119 +402,137 @@ Ninguna de esas evidencias demuestra, por sí sola, que la dificultad esté bala
 
 ## 7. ¿Por qué SDD ayuda en videojuegos?
 
-### 7.1 — Parámetros explícitos, no números escondidos
+### 7.1 — Parámetros de gameplay explícitos
 
 **En pantalla:**
 
-NO MÁS VALORES SIN EXPLICACIÓN.
+PARÁMETROS DE GAMEPLAY, NO NÚMEROS MÁGICOS.
 
-Velocidad · Gravedad · Tiempos · Tolerancias · Cantidad de enemigos.
+Velocidad · Gravedad · Cooldowns · Daño · Spawn de enemigos.
 
-Si un valor importa para el diseño, hagámoslo explícito y localizable.
+Valores localizables y configurables para facilitar el tuning.
 
 **Narración:**
 
-En videojuegos trabajamos con muchos números que afectan directamente la experiencia.
+La velocidad de movimiento, la gravedad, el daño, los cooldowns —tiempos de espera entre usos— y el spawn de enemigos afectan cómo se juega.
 
-Si no los definimos, el agente puede elegir valores que parecen razonables y dispersarlos por el código.
+Si no los definimos, el agente puede elegir valores por su cuenta y dejarlos dispersos por el código como números mágicos: valores sin una intención de diseño visible.
 
-La spec puede fijar los valores relevantes o indicar qué debe quedar configurable. El plan técnico define dónde vivirán esos parámetros.
+La spec define qué parámetros importan y cuáles deben quedar configurables. El plan técnico decide dónde centralizarlos, por ejemplo en ScriptableObjects si trabajamos en Unity.
 
-Eso facilita entenderlos, probarlos y modificarlos.
+Esto facilita el tuning: ajustar los parámetros, probar el resultado y volver a modificarlos sin perseguir valores por todo el proyecto.
 
-### 7.2 — Del game feel a una hipótesis comprobable
+### 7.2 — Del game feel a una hipótesis jugable
 
 **En pantalla:**
 
-«Que el salto se sienta bien».
+«Que el salto se sienta responsivo».
 
-Parámetros ilustrativos para probar: coyote time de 0,1 s y tiempo hasta el ápice de 0,35 s.
+Coyote time · Jump buffering · Control aéreo · Tiempo hasta el ápice.
 
-Playtest: ¿produce la sensación buscada?
+Hipótesis ilustrativa: coyote time de 0,1 s y tiempo hasta el ápice de 0,35 s.
+
+Playtest: ¿produce el game feel buscado?
 
 Los parámetros se verifican; la experiencia se evalúa jugando.
 
 **Narración:**
 
-El game feel tiene una dimensión subjetiva. Escribir números no elimina esa subjetividad.
+El game feel es cómo se siente controlar y jugar: la agilidad del movimiento, el peso del personaje o el impacto de una acción. Pedir que un salto se sienta responsivo comunica una intención, pero admite muchas implementaciones.
 
-Lo que sí podemos hacer es convertir una intención en una hipótesis concreta.
+Podemos concretarla con coyote time —un margen para saltar después de abandonar una plataforma—, jump buffering —recordar brevemente un salto pulsado antes de tocar el suelo—, control aéreo y tiempo hasta el ápice, el punto más alto del salto.
 
-Podemos verificar que el margen para saltar después de abandonar una plataforma sea de una décima de segundo. Después necesitamos comprobar si eso produce la sensación que buscamos.
+Por ejemplo, podemos proponer un coyote time de 0,1 segundos y un tiempo hasta el ápice de 0,35 segundos. Son valores ilustrativos para probar, no una receta universal para un buen salto.
 
-Los parámetros se verifican; la experiencia se evalúa jugando.
+Verificar esas reglas confirma que implementamos lo acordado. El playtest permite evaluar si logramos el game feel buscado: escribir números no elimina la dimensión subjetiva de la experiencia.
 
-### 7.3 — Estados y reglas en todas partes
+### 7.3 — Estados y transiciones sin comportamientos accidentales
 
 **En pantalla:**
 
-JUGANDO ↔ PAUSA. JUGANDO → DERROTA.
+MÁQUINAS DE ESTADOS: IDLE · MOVIMIENTO · ATAQUE · STUN · MUERTE.
 
-¿Qué pasa al perder el foco? ¿Qué pasa con dos entradas simultáneas? ¿Se recibe daño durante la pausa? ¿Qué ocurre después de perder?
+¿Qué interrumpe un ataque? ¿Qué input tiene prioridad? ¿Qué ocurre al pausar o perder el foco?
 
 **Narración:**
 
-Los juegos están llenos de estados y transiciones.
+Las máquinas de estados organizan comportamientos como idle —reposo—, movimiento, ataque, stun —aturdimiento— y muerte. La spec aclara qué transiciones están permitidas y cuáles no.
 
-Muchos errores aparecen en sus límites: pausamos durante una acción, recibimos dos eventos juntos o llega daño después de perder.
+Los casos límite aparecen cuando las reglas se cruzan: recibimos daño durante un ataque, llegan dos inputs simultáneos o activamos la pausa justo antes de morir. También hay que decidir qué sucede si la aplicación pierde el foco.
 
-Escribir estos casos antes de programar ayuda a prevenir errores y a preparar pruebas. No elimina todos los bugs, pero hace visibles situaciones que de otro modo podríamos descubrir tarde.
+Definir interrupciones y prioridades evita que el resultado dependa accidentalmente del orden del código. No elimina todos los bugs, pero permite preparar pruebas para situaciones que de otro modo descubriríamos tarde.
 
-### 7.4 — El diseño cambia después del playtest
+### 7.4 — Playtest y balance con cambios trazables
 
 **En pantalla:**
 
 Playtest → Hallazgo → Spec → Código → Verificación.
 
-Registrar qué cambia y por qué.
+Cada ajuste de balance responde a un hallazgo y una intención.
 
 **Narración:**
 
-En un juego, iterar es obligatorio. Una spec no busca congelar el diseño.
+Si una habilidad domina el combate o la curva de dificultad resulta frustrante, el playtest nos da un motivo para revisar el balance. Una spec no busca congelar el diseño.
 
-Si el playtest muestra que algo no funciona, actualizamos la intención y las reglas afectadas antes de pedir el cambio.
+Antes de tocar el código, registramos qué observamos, qué queremos mejorar y qué reglas vamos a cambiar: daño, cooldowns, frecuencia de spawn u otros parámetros afectados.
 
-Así podemos distinguir una decisión deliberada de un parche que contradice lo anterior.
+Actualizamos la spec, implementamos el ajuste y volvemos a verificar y jugar. Así cada cambio puede evaluarse contra su intención, en lugar de acumular parches contradictorios.
 
-### 7.5 — GDD, spec y plan: cada uno cumple un papel
+### 7.5 — Del GDD a una feature implementable
 
 **En pantalla:**
 
-GDD: la visión del juego. Fantasía, pilares, bucle, mecánicas y tono.
+GDD: visión, pilares, core loop, mecánicas y tono.
 
-SPEC: una pieza implementable. Objetivo, reglas, alcance y aceptación.
+SPEC: una feature concreta. Comportamiento, alcance y criterios de aceptación.
 
 PLAN: la ruta técnica. Cómo realizar el cambio en este repositorio.
 
-Primero diseñás. Después planificás la implementación.
+GDD → Spec de una feature → Plan técnico.
 
 **Narración:**
 
-En videojuegos ya existe la cultura de documentar el diseño.
+El GDD, o Game Design Document, conserva la visión del juego, sus pilares y el core loop: el ciclo principal de acciones que repite el jugador.
 
-El GDD conserva la visión general. La spec no lo reemplaza ni lo convierte automáticamente en código: toma una pieza concreta y la vuelve accionable.
+La spec recorta una feature concreta —por ejemplo, el sistema de reaparición— y define su comportamiento, alcance y criterios de aceptación. No reemplaza al GDD ni lo convierte automáticamente en código.
 
-El plan se construye después de inspeccionar cómo está hecho el proyecto.
+El plan técnico explica cómo integrar esa feature después de inspeccionar el proyecto real. Los tres documentos se complementan: no son tres versiones del mismo contenido.
 
-Si trabajamos solos, esto también separa dos sombreros: primero decidimos como diseñadores; después resolvemos cómo implementarlo.
+### 7.6 — Separar game design e implementación
 
-### 7.6 — Las restricciones también son diseño
+**En pantalla:**
+
+PRIMERO LA EXPERIENCIA. DESPUÉS LA SOLUCIÓN TÉCNICA.
+
+Game design: qué necesita el jugador y cuáles son las reglas.
+
+Implementación: cómo construirlo en este proyecto.
+
+**Narración:**
+
+En un equipo indie, una misma persona puede ocuparse del game design y de la programación. Cambiar de rol todo el tiempo hace fácil elegir una mecánica porque resulta cómoda de implementar.
+
+La spec ayuda a separar esas decisiones: primero definimos qué experiencia buscamos y sus reglas; después resolvemos cómo construirla.
+
+Si una limitación técnica obliga a revisar el diseño, lo hacemos explícito. Así distinguimos una decisión deliberada de una solución que terminó definiendo el gameplay sin que lo notáramos.
+
+### 7.7 — Restricciones de plataforma desde el diseño
 
 **En pantalla:**
 
 ¿DÓNDE TIENE QUE FUNCIONAR?
 
-Móvil · Escritorio · Táctil · Orientación · Rendimiento · Tamaño de build.
+Input táctil · Resolución · Orientación · Presupuesto de rendimiento · Tamaño de build.
 
 Reglas estables del proyecto → Specs de cada cambio → Verificaciones.
 
 **Narración:**
 
-Un cambio puede funcionar en nuestra computadora y no cumplir las condiciones de la plataforma de destino.
+Una interacción pensada para teclado puede no funcionar bien con input táctil. Una feature puede correr en nuestra computadora y exceder el presupuesto de rendimiento de la plataforma de destino.
 
-Las restricciones compartidas pueden quedar en las reglas del proyecto, o constitución si usamos ese nombre.
+Los controles, la resolución, la orientación, el rendimiento y el tamaño de build condicionan las soluciones desde el diseño. Las restricciones compartidas pueden quedar en las reglas del proyecto, o constitución si usamos ese nombre.
 
-Tenerlas escritas ayuda a que estén disponibles en cada tarea, pero no garantiza que se respeten: también hay que verificarlas.
+Dejarlas explícitas permite incorporarlas a las specs y a la implementación de cada cambio. No alcanza con escribirlas: también hay que comprobarlas en la plataforma de destino.
 
 ## 8. Control, seguridad y responsabilidad
 
@@ -626,3 +644,93 @@ La habilidad transferible es saber definir una tarea, darle el contexto necesari
 En la parte práctica vamos a tomar una intención, convertirla en una spec pequeña, revisar un plan e implementar un cambio verificable.
 
 La pregunta no va a ser solamente “¿la IA escribió código?”. Va a ser: “¿podemos explicar qué cambió y con qué evidencia lo aceptamos?”.
+
+## 10. BONUS · Preguntas comunes, criterios y tips
+
+### 10.1 — BONUS · Tips para trabajar con agentes
+
+**En pantalla:**
+
+PREGUNTAS COMUNES · CRITERIOS · TIPS
+
+- ¿Dónde guardo el diseño? En un GDD vivo. Recomendamos Markdown o un formato editable.
+- ¿Quién lo actualiza? Pedile al agente que registre las decisiones a medida que se aclaran las specs.
+- ¿Qué assets debe usar? Incluí un anexo en el GDD: referencias, archivos, rutas y para qué usar cada asset.
+
+Decisiones claras → el agente puede implementar sin adivinar.
+
+El GDD conserva las decisiones; las specs concretan cada cambio.
+
+**Narración:**
+
+Este bonus reúne preguntas comunes, criterios y tips para trabajar con agentes.
+
+Podés tener un Game Design Document en Markdown o en un formato editable, y pedirle al agente que lo mantenga actualizado cuando se aclaren las specs. Las decisiones importantes no deberían quedar solamente en el chat.
+
+En el mismo GDD, o en un anexo referenciado desde él, indicá qué assets usar, dónde están y qué función cumplen. Así el agente puede pasar a implementar lo acordado sin adivinar las referencias. Eso no reemplaza revisar el resultado ni amplía sus permisos.
+
+### 10.2 — Soltá tu fucking ego de programador
+
+**En pantalla:**
+
+¿Saben lo que es?
+
+El ego del programador es creer que su valor está en cuánto código sabe escribir, en lugar de cuánto es capaz de resolver, aprender y construir.
+
+CUANDO HABLAMOS DE UN LLM…
+
+- «Se equivocan».
+- «Generan código mediocre».
+- «Nosotros lo haríamos mejor».
+
+NUESTRO VALOR NO ESTÁ EN ESCRIBIR CÓDIGO.
+
+Está en saber qué construir, cuándo, por qué y con qué nivel de calidad.
+
+En cuestionar, revisar, decidir y asumir responsabilidad.
+
+Lectura recomendada: «El ego del programador» · LinkedIn.
+
+**Narración:**
+
+La regla clave: soltar el ego de programador. ¿Saben lo que es? Es confundir nuestro valor con cuánto código sabemos escribir, en lugar de cuánto podemos resolver, aprender y construir.
+
+Cuando hablamos de un LLM aparecen estas objeciones: se equivocan, generan código mediocre y nosotros lo haríamos mejor. Reconocer limitaciones es necesario; usarlas para defender nuestra identidad no reemplaza evaluar qué herramienta sirve para cada tarea.
+
+Nuestro valor no está en escribir código: está en decidir qué construir, cuándo, por qué y con qué nivel de calidad. En cuestionar, revisar, decidir y asumir responsabilidad. Aceptar ayuda no significa aceptar cualquier resultado.
+
+El enlace de lectura recomendado es el artículo compartido por el expositor: https://www.linkedin.com/posts/quiquefdezguerra_%F0%9D%97%98%F0%9D%97%B9-%F0%9D%97%B2%F0%9D%97%B4%F0%9D%97%BC-%F0%9D%97%B1%F0%9D%97%B2%F0%9D%97%B9-%F0%9D%97%BD%F0%9D%97%BF%F0%9D%97%BC%F0%9D%97%B4%F0%9D%97%BF%F0%9D%97%AE%F0%9D%97%BA%F0%9D%97%AE%F0%9D%97%B1%F0%9D%97%BC%F0%9D%97%BF-share-7418698695203835904-BWHa/
+
+La definición en pantalla es el texto aportado por el expositor, no una cita textual verificada del artículo.
+
+### 10.3 — El duelo como metáfora de la adopción de IA.
+
+**En pantalla:**
+
+1. Negación: «Esto no puede hacer mi trabajo».
+2. Ira: «Se equivoca; yo lo haría mejor».
+3. Negociación: «Bueno, que haga solamente lo repetitivo».
+4. Depresión / desánimo: «Entonces, ¿dónde queda mi valor?».
+5. Aceptación: «Mi criterio sigue siendo clave; puedo construir con estas herramientas».
+
+Infografía: etapas del proceso de pérdida según E. Kübler-Ross.
+
+Es una metáfora: no son etapas obligatorias ni lineales.
+
+Fuente de la infografía: Psicopedia · https://psicopedia.org/7691/
+
+**Narración:**
+
+Usamos el duelo como metáfora de nuestra relación con la adopción de IA, no como diagnóstico ni como una explicación clínica de esa adopción. Las frases son ejemplos ilustrativos adaptados a la charla, no citas de Psicopedia.
+
+Negación: rechazar de entrada que la herramienta pueda participar de nuestro trabajo.
+
+Ira: reaccionar con enojo ante sus errores y compararla constantemente con lo que haríamos nosotros.
+
+Negociación: empezar a darle un lugar, aunque sea limitado a tareas repetitivas.
+
+Depresión o desánimo: preguntarnos dónde queda nuestro valor cuando cambia la forma de trabajar. Aquí hablamos de una reacción ilustrativa de desánimo, no de un diagnóstico de depresión.
+
+Aceptación: integrar las herramientas con criterio, revisión y responsabilidad. No significa creer que nunca se equivocan.
+
+La fuente aclara que las fases no son una secuencia obligatoria ni lineal. La infografía original se conserva completa a la derecha; las explicaciones adaptadas aparecen a la izquierda, una por clic.
