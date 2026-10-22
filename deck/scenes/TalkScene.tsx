@@ -14,6 +14,7 @@ import lovableLogo from '../assets/lovable.svg';
 import replitLogo from '../assets/replit.svg';
 import { locateSlide, SECTION_TITLES, type Layout } from '../talk';
 import { BonusContent } from './BonusContent';
+import { AsciiBackground } from '../components/AsciiBackground';
 
 const ASSISTANTS = [
   { name: 'ChatGPT', logo: chatgptLogo, monochrome: true },
@@ -51,8 +52,8 @@ function Content({ layout, step, id }: { layout: Layout; step: number; id: strin
     case 'bonus-ego':
     case 'bonus-acceptance': return <BonusContent layout={layout} step={step} />;
     case 'opening': return <>
-      <div data-exact className="talk-big" style={{ fontSize: 130 }}>Agregá un sistema <br />de vidas.</div>
-      {step >= 1 ? <div style={{ marginTop: 65 }}><Flow items={['¿Cuántas vidas?', '¿Qué cuenta como daño?', '¿Qué pasa con cero?']} /></div> : null}
+      <div data-exact className="talk-big">Agregá un sistema<br /><span className="accent">de vidas.</span></div>
+      {step >= 1 ? <div className="talk-opening-questions"><Flow items={['¿Cuántas vidas?', '¿Qué cuenta como daño?', '¿Qué pasa con cero?']} /></div> : null}
     </>;
     case 'assistant': return <Columns left={<>
       <h2>Un asistente responde.</h2><p>Un chat donde podés hacer preguntas y recibir respuestas.</p>
@@ -79,14 +80,14 @@ function Content({ layout, step, id }: { layout: Layout; step: number; id: strin
       </>}
     </>} />;
     case 'repository': return <>
-      <p style={{ fontSize: 43 }}>La información disponible para trabajar sobre una tarea.</p>
-      <div className="talk-clues" style={{ marginTop: 55 }}><div className="talk-repo">/ nuestro-videojuego<br /><span className="muted">codebase / repositorio</span></div>
+      <p>La información disponible para trabajar sobre una tarea.</p>
+      <div className="talk-clues"><div className="talk-repo">/ nuestro-videojuego<br /><span className="muted">codebase / repositorio</span></div>
         <div className="talk-chips">{['Documentación', 'Código', 'Escenas', 'Reglas', 'Pruebas'].map((x) => <span key={x}>{x}</span>)}</div>
       </div>
     </>;
     case 'equation': return <>
-      <div className="talk-equation">ASISTENTE = CHAT</div>
-      {step >= 1 ? <div className="talk-equation accent">AGENTE = CHAT,<br />PERO QUE ACCIONA</div> : null}
+      <div className="talk-equation">Asistente = chat.</div>
+      {step >= 1 ? <div className="talk-equation accent">Agente = chat,<br />pero que acciona.</div> : null}
     </>;
     case 'prompt': return <Columns left={<>
       <div className="talk-label">LO QUE PEDÍS</div><h2>Agregá enemigos<br />que persigan<br />al jugador.</h2>
@@ -105,14 +106,14 @@ function Content({ layout, step, id }: { layout: Layout; step: number; id: strin
       {step >= 1 ? <p style={{ marginTop: 35 }}><span className="accent">Tokens</span> → capacidad de contexto, latencia y costo.</p> : null}
     </>;
     case 'flow': return <>
-      <div style={{ marginTop: 65 }}><Flow items={id === '4.1' ? ['Prompt', 'Generación', 'Prueba', 'Otro prompt'] : ['Playtest', 'Hallazgo', 'Spec', 'Código', 'Verificación']} /></div>
-      {id === '4.1' ? <div style={{ marginTop: 100 }} className="talk-big">Hacé que funcione.</div> : <div style={{ marginTop: 75 }}>
+      <Flow items={id === '4.1' ? ['Prompt', 'Generación', 'Prueba', 'Otro prompt'] : ['Playtest', 'Hallazgo', 'Spec', 'Código', 'Verificación']} />
+      {id === '4.1' ? <div className="talk-big talk-flow-summary">Hacé que funcione.</div> : <div className="talk-flow-summary">
         <h2>Una habilidad domina el combate.<br />La curva de dificultad resulta frustrante.</h2>
         {step >= 1 ? <p className="accent">Revisar daño, cooldowns o spawn.<br />Registrar la intención y volver a evaluar el balance.</p> : null}
       </div>}
     </>;
-    case 'mind': return step === 0 ? <div className="talk-big" style={{ fontSize: 84 }}>Si queremos controlar<br />mejor el cambio,<br /><span className="accent">necesitamos definirlo.</span></div> : <>
-      <div className="talk-big" style={{ fontSize: 145 }}>LA IA NO LEE<br />TU MENTE.</div>
+    case 'mind': return step === 0 ? <div className="talk-big">Si queremos controlar<br />mejor el cambio,<br /><span className="accent">necesitamos definirlo.</span></div> : <>
+      <div className="talk-big talk-mind-statement">La IA no lee<br /><span className="accent">tu mente.</span></div>
     </>;
     case 'explore': return <Columns left={<><div className="talk-label">PARA EXPLORAR</div><List items={[
       'Un prototipo de una tarde.', 'Explorar una mecánica.', 'Aprender con ejemplos.', 'Probar una idea descartable.',
@@ -120,7 +121,7 @@ function Content({ layout, step, id }: { layout: Layout; step: number; id: strin
       'Requisitos contradictorios.', 'Decisiones fuera del contexto.', 'Cambios más difíciles de revisar.',
     ]} /></> : <h2>Probar rápido.<br />Aprender.<br />Descartar.</h2>} />;
     case 'broken': return step === 0 ? <List items={['El personaje se mueve raro.', 'El nivel pierde consistencia.', 'Los enemigos no hacen lo esperado.']} /> : <>
-      <div className="talk-big" style={{ fontSize: 98 }}>PEDÍS UN ARREGLO.<br /><span className="accent">ARREGLA UNA COSA<br />Y ROMPE OTRA.</span></div>
+      <div className="talk-big">Pedís un arreglo.<br /><span className="accent">Arregla una cosa<br />y rompe otra.</span></div>
     </>;
     case 'fixes': return <div className="talk-stack">
       <div className="talk-fix" style={{ width: 320 }}>FIX</div>
@@ -128,10 +129,10 @@ function Content({ layout, step, id }: { layout: Layout; step: number; id: strin
       {step >= 2 ? <><div className="talk-fix" style={{ width: 820 }}>OTRO FIX MÁS</div><div className="talk-fix base">¿QUÉ QUERÍAMOS HACER?</div></> : null}
     </div>;
     case 'sdd': return <>
-      <div style={{ display: 'grid', gridTemplateColumns: '360px 1fr', gap: 60 }}><div className="talk-big accent" style={{ fontSize: 155 }}>SDD</div><div>
+      <div className="talk-sdd-intro"><div className="talk-big accent">SDD</div><div>
         <h2>Spec-Driven Development</h2><p className="muted">Desarrollo guiado por especificaciones.</p></div></div>
-      <p style={{ fontSize: 39, marginTop: 45 }}>Definir el cambio esperado antes de implementarlo<br />y comprobar el resultado contra esa definición.</p>
-      {step >= 1 ? <div style={{ marginTop: 55 }}><Flow items={['Intención', 'Spec', 'Plan', 'Código', 'Evidencia']} /></div> : null}
+      <p>Definir el cambio esperado antes de implementarlo<br />y comprobar el resultado contra esa definición.</p>
+      {step >= 1 ? <div className="talk-sdd-flow"><Flow items={['Intención', 'Spec', 'Plan', 'Código', 'Evidencia']} /></div> : null}
     </>;
     case 'spec': return <Rows items={[
       ['Objetivo', 'Qué problema resuelve.'], ['Alcance', 'Qué cambia y qué queda afuera.'], ['Reglas y restricciones', 'Qué debe cumplirse.'],
@@ -155,8 +156,8 @@ function Content({ layout, step, id }: { layout: Layout; step: number; id: strin
       ]} /> : null}
     </>;
     case 'parameters': return <>
-      <div className="talk-big" style={{ fontSize: 92 }}>GAMEPLAY,<br />NO NÚMEROS MÁGICOS.</div>
-      <div className="talk-chips" style={{ marginTop: 55 }}>{['Velocidad', 'Gravedad', 'Cooldowns', 'Daño', 'Spawn de enemigos'].map((x) => <span key={x}>{x}</span>)}</div>
+      <div className="talk-big">Gameplay,<br /><span className="accent">no números mágicos.</span></div>
+      <div className="talk-chips">{['Velocidad', 'Gravedad', 'Cooldowns', 'Daño', 'Spawn de enemigos'].map((x) => <span key={x}>{x}</span>)}</div>
       {step >= 1 ? <p className="accent">Spec: qué ajustar. Plan: dónde centralizarlo.<br />Ejemplo en Unity: ScriptableObjects para facilitar el tuning.</p> : null}
     </>;
     case 'feel': return <>
@@ -193,16 +194,16 @@ function Content({ layout, step, id }: { layout: Layout; step: number; id: strin
     </>} />;
     case 'platform': return <>
       <h2>¿Dónde tiene que funcionar?</h2><div className="talk-chips">{['Input táctil', 'Resolución', 'Orientación', 'Presupuesto de rendimiento', 'Tamaño de build'].map((x) => <span key={x}>{x}</span>)}</div>
-      {step >= 1 ? <div style={{ marginTop: 85 }}><Flow items={['Reglas estables del proyecto', 'Specs de cada cambio', 'Verificaciones']} /></div> : null}
+      {step >= 1 ? <div className="talk-platform-flow"><Flow items={['Reglas estables del proyecto', 'Specs de cada cambio', 'Verificaciones']} /></div> : null}
     </>;
     case 'harness': return <>
-      <div className="talk-label">HARNESS</div><p style={{ fontSize: 38 }}>Reglas, instrucciones, herramientas y verificaciones<br />que encuadran el trabajo del agente.</p>
-      {step >= 1 ? <div style={{ marginTop: 40 }}><Rows items={[
+      <div className="talk-label">HARNESS</div><p>Reglas, instrucciones, herramientas y verificaciones<br />que encuadran el trabajo del agente.</p>
+      {step >= 1 ? <div><Rows items={[
         ['AGENTS.md', 'Cómo trabajar en este repositorio.'], ['Skills', 'Procesos para tareas concretas.'], ['Specs y planes', 'Qué cambio estamos realizando.'], ['Pruebas y comandos', 'Cómo comprobarlo.'],
       ]} /></div> : null}
     </>;
     case 'evidence': return <>
-      <div className="talk-big" style={{ fontSize: 94 }}>{step === 0 ? 'YA ESTÁ ARREGLADO.' : '¿QUÉ LO DEMUESTRA?'}</div>
+      <div className="talk-big">{step === 0 ? 'Ya está arreglado.' : '¿Qué lo demuestra?'}</div>
       {step >= 1 ? <div className="talk-chips" style={{ marginTop: 60 }}>{['Diff', 'Pruebas', 'Build', 'Ejecución', 'Capturas', 'Playtest'].map((x) => <span key={x}>{x}</span>)}</div> : null}
       {step >= 2 ? <div style={{ marginTop: 55 }}><p className="accent">Prueba manual reproducible</p><p>Pasos · Esperado · Observado · Limitaciones</p></div> : null}
     </>;
@@ -218,9 +219,9 @@ function Content({ layout, step, id }: { layout: Layout; step: number; id: strin
       {step >= 2 ? <div><h2 className="accent">DECISIÓN HUMANA</h2><p>Aceptar, ajustar o detener.</p></div> : null}
     </>;
     case 'closing': return <div className="talk-closing-layout"><div>{step === 0 ? <>
-      <div className="talk-big" style={{ fontSize: 86 }}>CONTEXTO<br />LÍMITES<br />EVIDENCIA<br /><span className="accent">DECISIÓN HUMANA</span></div>
+      <div className="talk-big talk-closing-statement">Contexto.<br />Límites.<br />Evidencia.<br /><span className="accent">Decisión humana.</span></div>
     </> : <>
-      <p className="muted">No solamente: ¿la IA escribió código?</p><div className="talk-big" style={{ fontSize: 82 }}>¿Podemos explicar<br />qué cambió y con qué<br /><span className="accent">evidencia lo aceptamos?</span></div>
+      <p className="muted">No solamente: ¿la IA escribió código?</p><div className="talk-big talk-closing-question">¿Podemos explicar<br />qué cambió y con qué<br /><span className="accent">evidencia lo aceptamos?</span></div>
     </>}</div><aside className="talk-tools" aria-label="Herramientas de programación con IA">
       <div className="talk-tool talk-tool-featured"><img className="talk-tool-monochrome" src={opencodeLogo} width={88} height={88} alt="" /><span>OpenCode</span></div>
       <div className="talk-tool"><img src={claudeCodeLogo} width={64} height={64} alt="" /><span>Claude Code</span></div>
@@ -266,16 +267,22 @@ function TalkSceneBody({ index }: { index: number }) {
   const { here, b } = useScene();
   if (index === 0 && b <= 0) return null;
   if (index === 0 && b === 1) return <div className="talk-page talk-cover" style={{ visibility: here ? 'visible' : 'hidden' }}>
-    <h1>Workshop:<br /><span>Programación Agéntica</span></h1>
-    <p>{config.author}</p>
-    <img src={unrafLogo} width={1200} height={188} alt="UNRaf · Licenciatura en Producción de Videojuegos y Entretenimiento Digital" />
+    <AsciiBackground active={here && b === 1} />
+    <div className="talk-cover-content">
+      <div className="talk-kicker">Workshop</div>
+      <h1>Programación <span>Agéntica</span></h1>
+      <p>{config.author}</p>
+      <div className="talk-cover-rule" aria-hidden="true" />
+      <img src={unrafLogo} width={1200} height={188} alt="UNRaf · Licenciatura en Producción de Videojuegos y Entretenimiento Digital" />
+    </div>
   </div>;
   const { slide, step } = locateSlide(index, Math.max(0, b - (index === 0 ? 2 : 0)));
   // Every scene layer remains mounted. Each slide is a pure function of scene + beat.
-  return <div className="talk-page" style={{ visibility: here ? 'visible' : 'hidden' }}>
-    <header className="talk-heading"><div className="talk-kicker">PARTE 1 / {slide.id} / {SECTION_TITLES[index]}</div><h1>{slide.title}</h1></header>
+  const foot = Foot({ layout: slide.layout, id: slide.id, step });
+  return <div className={`talk-page talk-layout-${slide.layout}`} style={{ visibility: here ? 'visible' : 'hidden' }}>
+    <header className="talk-heading"><div className="talk-kicker">{SECTION_TITLES[index]}</div><h1>{slide.title}</h1></header>
     <main className="talk-body"><Content layout={slide.layout} id={slide.id} step={step} /></main>
-    <footer className="talk-foot"><Foot layout={slide.layout} id={slide.id} step={step} /></footer>
+    {foot ? <footer className="talk-foot">{foot}</footer> : null}
   </div>;
 }
 

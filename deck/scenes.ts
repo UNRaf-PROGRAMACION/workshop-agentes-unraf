@@ -8,7 +8,7 @@ export const SCENES: SceneDef[] = SLIDES.map((slides, scene) => ({
   beats: [
     ...(scene === 0 ? [
       { name: 'En espera', note: 'Un clic muestra la portada.', ref: 'docs/guion-parte-1.md' },
-      { name: 'Portada', source: `${config.title}\n${config.author}`, note: 'Presentar el workshop y a sus expositores. Un clic inicia la parte 1.', ref: 'Pedido de portada · docs/media/logounraf.png' },
+      { name: 'Portada', auto: true, source: `${config.title}\n${config.author}`, note: 'Presentar el workshop y a sus expositores. Fondo ambiental autónomo; un clic inicia la parte 1.', ref: 'Pedido de portada · docs/media/logounraf.png' },
     ] : []),
     ...slides.flatMap((slide) => {
       const { screen, narration } = slideSource(slide.id);

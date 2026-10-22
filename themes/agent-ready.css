@@ -1,0 +1,23 @@
+/* create-agent-ready's night / mint / amber identity, with bundled offline fonts. */
+@import '@fontsource-variable/roboto-condensed';
+
+:root {
+  --bg: #080d1b;
+  --surface: #0c1425;
+  --ink: #e7edf9;
+  --ink-2: #c4cedf;
+  --ink-3: #96a3bb;
+  --hair: rgba(231, 237, 249, .1);
+  --hair-strong: rgba(125, 249, 209, .25);
+  --accent: #7df9d1;
+  --accent-strong: #48cfa7;
+  --amber: #ffbe5c;
+  --ok: #7df9d1;
+  --warning: #ffbe5c;
+  --fault: #fca5a5;
+  --font-display: 'Roboto Condensed Variable', 'Arial Narrow', sans-serif;
+}
+
+.t-statement, .t-editorial, .t-numeral { font-family: var(--font-display); }
+.t-statement { font-weight: 800; letter-spacing: -.035em; line-height: .98; }
+.t-eyebrow { font-family: var(--font-sans); font-weight: 700; letter-spacing: .18em; }

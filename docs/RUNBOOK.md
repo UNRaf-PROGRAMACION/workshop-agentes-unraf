@@ -7,7 +7,7 @@ npm install
 npm run dev
 ```
 
-Abrir `http://127.0.0.1:5173/#1.1`. La primera pantalla es una espera negra; el primer clic inicia el guion.
+Abrir `http://127.0.0.1:5173/#1.1`. La primera pantalla es una espera negra; el primer clic muestra la portada `#1.2` y el siguiente inicia el guion.
 
 Para presentar el build offline:
 
@@ -24,7 +24,9 @@ npm run present
 - B: ocultar pantalla. Home / End: inicio / final.
 - `?reduced=1`: movimiento reducido. Cada estado se reconstruye desde `#escena.beat`.
 
-Las notas se extraen de `guion-parte-1.md`; `deck/talk.ts` define el orden y las apariciones. Las slides de una misma sección son beats de una escena; el número del encabezado corresponde al guion, no al hash.
+Las notas se extraen de `guion-parte-1.md`; `deck/talk.ts` define el orden y las apariciones. Las slides de una misma sección son beats de una escena. La audiencia ve solo el nombre de la sección, no el encabezado fijo del workshop ni la numeración técnica; el presentador conserva la navegación y las notas.
+
+El tema vive en `themes/agent-ready.css` y las composiciones en `deck/deck.css`. La portada tiene un fondo de cuadrados ámbar que se mueve sin mouse y se detiene al salir de ella. `?reduced=1` y `?capture=1` lo muestran estático. Las fuentes se incluyen en el build y no necesitan conexión.
 
 ## Mapa rápido
 
@@ -51,7 +53,7 @@ npm run build
 npm run verify -- --source=docs/guion-parte-1.md
 ```
 
-Revisar `artifacts/verify/contact.png` y las capturas grandes del ejemplo 6.1 y la imagen 2.2. No se usan fuentes ni imágenes remotas. No hay secuencias automáticas: cada avance depende del presentador.
+Revisar `artifacts/verify/contact.png` y las capturas grandes del ejemplo 6.1 y la imagen 2.2. No se usan fuentes ni imágenes remotas. Solo la portada tiene movimiento ambiental automático: cada avance depende del presentador. El rediseño se revisó con capturas puntuales en `artifacts/theme-review/` y `artifacts/theme-details/`, sin ejecutar la suite completa por pedido del usuario.
 
 ## Pendientes explícitos
 

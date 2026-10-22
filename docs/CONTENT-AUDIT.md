@@ -20,7 +20,7 @@ Fuente conceptual: `01-marco-conceptual.md`. Guion aprobado y ampliado: `guion-p
 ## Decisiones de presentación
 
 - Nueve escenas correspondientes a los nueve bloques originales del guion y una décima escena BONUS. Cada subsección tiene uno o más beats por clic. BONUS se alcanza continuando después del cierre, desde el overview o por URL `#10.1`; los atajos numéricos directos cubren solo las primeras nueve escenas.
-- Tema neutral existente, tipografías locales, escenario fijo 1920×1080. Sin servicios externos.
+- Tema `agent-ready` sobre la base neutral: azul noche, menta y ámbar de la referencia `../create-agent-ready`; Inter y Roboto Condensed empaquetadas localmente. Escenario fijo 1920×1080, sin servicios externos.
 - Se conserva la demo original en sus archivos sin montarla; no se modifica el motor ni `examples/`.
 - El guion Markdown alimenta directamente las notas del presentador para evitar duplicar la narración.
 - `docs/media/2.2.png` es la imagen solicitada; se conserva su proporción y se incluye en el bundle.
@@ -31,6 +31,18 @@ Fuente conceptual: `01-marco-conceptual.md`. Guion aprobado y ampliado: `guion-p
 - “Evita la mayoría de bugs” y “la IA respeta siempre las reglas” no se presentan como garantías: definir ayuda a prevenir y siempre requiere comprobar.
 
 ## Verificación
+
+### Rediseño visual con referencia create-agent-ready
+
+- Se elimina el chrome predeterminado (título del workshop, número de escena y ticks) mediante `Chrome: null`, sin modificar el motor ni el presentador. El rótulo de cada slide conserva solo su sección.
+- Títulos abreviados y jerarquías diferenciadas; se conservan las ideas, ejemplos, notas del guion, logos, BONUS y pasos por clic. La apertura evita repetir el pedido como título y como contenido principal.
+- Composiciones específicas para definiciones, comparaciones, procesos, parámetros, documentos y cierre; no se traslada la maquetación responsive del sitio al escenario.
+- Portada `#1.2`: trama de cuadrados ámbar basada en el fallback Canvas 2D de la referencia. Ondas y atractor autónomos sin mouse, solo mientras está visible; se pausa al ocultar la pestaña. No avanza la presentación. `?capture=1` y movimiento reducido muestran un fotograma fijo.
+- `npm run build`: aprobado, incluyendo TypeScript y comprobación offline. La nueva fuente es una dependencia local; no requiere red al presentar.
+- Revisión visual puntual de 24 estados: `artifacts/theme-review/contact.png` y `artifacts/theme-details/contact.png`. Capturas y auditoría de layout sin errores reportados. Comprobada la variación del canvas sin mouse y su inmovilidad con `?reduced=1`.
+- No se ejecutó la suite completa `npm run verify`, siguiendo el pedido de no hacer tests. Los resultados históricos siguientes corresponden a versiones previas y no validan el rediseño completo.
+
+### Historial anterior al rediseño
 
 - BONUS 10.1–10.3: no se ejecutaron build ni tests/verificación automática por indicación del usuario. Pendiente revisar el layout y la navegación en pantalla; los resultados históricos de abajo no validan este agregado.
 - Cambio de iconos en 2.1: `npm run build` aprobado (incluido offline). Revisados `artifacts/verify/contact.png` y `direct-02-01.png`: los seis iconos y nombres se ven correctamente. La verificación completa recorrió 67 beats; texto y layout correctos, sin peticiones remotas. No pasó globalmente: cuatro diferencias de imagen en 9.4/9.5 y tres errores `ERR_CONNECTION_REFUSED`; 2.1 sin diferencias reportadas. No se modifican el cierre ni los umbrales para resolverlo dentro de este pedido.

@@ -14,57 +14,57 @@ interface Slide {
 }
 
 export const SLIDES: Slide[][] = [
-  [{ id: '1.1', title: 'Agregá un sistema de vidas.', layout: 'opening', steps: ['El pedido', 'Las decisiones pendientes', 'Definir antes de pedir'] }],
+  [{ id: '1.1', title: 'Un pedido. Muchas decisiones.', layout: 'opening', steps: ['El pedido', 'Las decisiones pendientes', 'Definir antes de pedir'] }],
   [
     { id: '2.1', title: '¿Qué es un asistente?', layout: 'assistant', steps: ['Un asistente responde'] },
-    { id: '2.2', title: '¿Qué es un agente de programación?', layout: 'agent', steps: ['Modelo + instrucciones + herramientas'] },
+    { id: '2.2', title: 'Un agente puede actuar.', layout: 'agent', steps: ['Modelo + instrucciones + herramientas'] },
     { id: '2.3', title: 'Asistente vs. agente', layout: 'compare', steps: ['Antes: ¿qué cambia?'] },
     { id: '2.4', title: '¿Qué es el contexto?', layout: 'repository', steps: ['La información disponible', 'Acceso no significa lectura'] },
-    { id: '2.5', title: 'Asistente vs. agente: ahora sí', layout: 'compare', steps: ['Responder vs. actuar', 'Herramientas y permisos'] },
+    { id: '2.5', title: 'De responder a actuar.', layout: 'compare', steps: ['Responder vs. actuar', 'Herramientas y permisos'] },
     { id: '2.6', title: 'La diferencia, en una frase', layout: 'equation', steps: ['Asistente = chat', 'Agente = chat que acciona'] },
   ],
   [
     { id: '3.1', title: 'El prompt no es todo el contexto', layout: 'prompt', steps: ['Lo que pedís', 'Lo que necesita saber'] },
-    { id: '3.2', title: 'Nuestro proyecto tiene las pistas', layout: 'clues', steps: ['Las pistas del repositorio', 'Relevante, no todo'] },
+    { id: '3.2', title: 'Las pistas están en el proyecto.', layout: 'clues', steps: ['Las pistas del repositorio', 'Relevante, no todo'] },
     { id: '3.3', title: 'El contexto tiene un límite', layout: 'window', steps: ['Ventana de contexto', 'Tokens y decisiones persistentes'] },
   ],
   [
-    { id: '4.1', title: 'Vibe coding: explorar una idea', layout: 'flow', steps: ['Pedir, probar, ajustar'] },
+    { id: '4.1', title: 'Vibe coding: pedir, probar, ajustar.', layout: 'flow', steps: ['Pedir, probar, ajustar'] },
     { id: '4.2', title: 'Definir antes de implementar', layout: 'mind', steps: ['Controlar mejor el cambio', 'La IA no lee tu mente'] },
     { id: '4.3', title: 'Rápido para explorar', layout: 'explore', steps: ['Dónde ayuda', 'Cuando el proyecto crece'] },
     { id: '4.4', title: '¿Les pasó?', layout: 'broken', steps: ['Síntomas conocidos', 'Arregla una cosa y rompe otra'] },
     { id: '4.5', title: 'Un fix sobre otro fix', layout: 'fixes', steps: ['Fix', 'Otro fix', '¿Qué queríamos hacer?'] },
   ],
   [
-    { id: '5.1', title: 'SDD: hacer explícito el cambio', layout: 'sdd', steps: ['Qué es SDD', 'De la intención a la evidencia'] },
+    { id: '5.1', title: 'Definir el cambio. Después, construir.', layout: 'sdd', steps: ['Qué es SDD', 'De la intención a la evidencia'] },
     { id: '5.2', title: '¿Qué contiene una spec?', layout: 'spec', steps: ['Un contrato de cambio', 'Pequeña, concreta, revisable'] },
   ],
   [
-    { id: '6.1', title: 'La misma intención. Dos formas de pedirla.', layout: 'life-compare', steps: ['Antes: el prompt vago', 'Las decisiones abiertas', 'Después: con SDD'] },
+    { id: '6.1', title: 'Misma intención. Distinta precisión.', layout: 'life-compare', steps: ['Antes: el prompt vago', 'Las decisiones abiertas', 'Después: con SDD'] },
     { id: '6.2', title: 'De la regla a la evidencia', layout: 'lives', steps: ['Vidas y derrota', 'Un nuevo daño', 'Qué demuestra cada evidencia'] },
   ],
   [
-    { id: '7.1', title: 'Parámetros de gameplay explícitos', layout: 'parameters', steps: ['No números mágicos', 'Configurar para facilitar el tuning'] },
-    { id: '7.2', title: 'Del game feel a una hipótesis jugable', layout: 'feel', steps: ['La intención y sus reglas', 'Una hipótesis de salto', 'Evaluar el game feel en playtest'] },
-    { id: '7.3', title: 'Estados y transiciones explícitas', layout: 'states', steps: ['Máquinas de estados', 'Interrupciones y prioridades'] },
-    { id: '7.4', title: 'Playtest y balance con cambios trazables', layout: 'flow', steps: ['Del hallazgo al cambio', 'Ajustar y volver a evaluar'] },
-    { id: '7.5', title: 'Del GDD a una feature implementable', layout: 'roles', steps: ['Visión, feature y ruta técnica', 'Ejemplo: sistema de reaparición'] },
-    { id: '7.6', title: 'Separar game design e implementación', layout: 'design', steps: ['Dos roles, incluso en un equipo indie', 'Primero la experiencia del jugador'] },
-    { id: '7.7', title: 'Restricciones de plataforma desde el diseño', layout: 'platform', steps: ['Condiciones de la plataforma', 'Incluirlas y verificarlas'] },
+    { id: '7.1', title: 'Parámetros con intención.', layout: 'parameters', steps: ['No números mágicos', 'Configurar para facilitar el tuning'] },
+    { id: '7.2', title: 'Del game feel a una hipótesis.', layout: 'feel', steps: ['La intención y sus reglas', 'Una hipótesis de salto', 'Evaluar el game feel en playtest'] },
+    { id: '7.3', title: 'Estados claros. Transiciones explícitas.', layout: 'states', steps: ['Máquinas de estados', 'Interrupciones y prioridades'] },
+    { id: '7.4', title: 'Del playtest al cambio trazable.', layout: 'flow', steps: ['Del hallazgo al cambio', 'Ajustar y volver a evaluar'] },
+    { id: '7.5', title: 'Visión, feature y ruta técnica.', layout: 'roles', steps: ['Visión, feature y ruta técnica', 'Ejemplo: sistema de reaparición'] },
+    { id: '7.6', title: 'Diseñar no es implementar.', layout: 'design', steps: ['Dos roles, incluso en un equipo indie', 'Primero la experiencia del jugador'] },
+    { id: '7.7', title: 'La plataforma también define las reglas.', layout: 'platform', steps: ['Condiciones de la plataforma', 'Incluirlas y verificarlas'] },
   ],
   [
-    { id: '8.1', title: 'El entorno de trabajo también se diseña', layout: 'harness', steps: ['Qué es un harness', 'Reglas, procesos y verificaciones'] },
-    { id: '8.2', title: 'Una respuesta convincente no es evidencia', layout: 'evidence', steps: ['Ya está arreglado', '¿Qué lo demuestra?', 'Prueba manual reproducible'] },
+    { id: '8.1', title: 'Diseñar el entorno del agente.', layout: 'harness', steps: ['Qué es un harness', 'Reglas, procesos y verificaciones'] },
+    { id: '8.2', title: 'Convencer no es demostrar.', layout: 'evidence', steps: ['Ya está arreglado', '¿Qué lo demuestra?', 'Prueba manual reproducible'] },
     { id: '8.3', title: 'Más autonomía exige más control', layout: 'safety', steps: ['Límites y observabilidad', 'Comprender lo que entregamos'] },
   ],
   [
     { id: '9.1', title: 'El ciclo completo', layout: 'cycle', steps: ['Intención, spec y plan', 'Cambio y evidencia', 'Decisión humana'] },
-    { id: '9.2', title: 'Lo importante no es memorizar una herramienta', layout: 'closing', steps: ['Las habilidades transferibles', 'La pregunta que nos llevamos'] },
+    { id: '9.2', title: 'El criterio va más allá de la herramienta.', layout: 'closing', steps: ['Las habilidades transferibles', 'La pregunta que nos llevamos'] },
   ],
   [
-    { id: '10.1', title: 'BONUS · Tips para trabajar con agentes', layout: 'bonus-tips', steps: ['Un GDD vivo', 'Actualizar las decisiones', 'Assets y referencias explícitas'] },
+    { id: '10.1', title: 'Tips para trabajar con agentes.', layout: 'bonus-tips', steps: ['Un GDD vivo', 'Actualizar las decisiones', 'Assets y referencias explícitas'] },
     { id: '10.2', title: 'Soltá tu fucking ego de programador', layout: 'bonus-ego', steps: ['¿Saben lo que es?', 'Las objeciones al LLM', 'Nuestro valor no está en escribir código'] },
-    { id: '10.3', title: 'El duelo como metáfora de la adopción de IA.', layout: 'bonus-acceptance', steps: ['Negación', 'Ira', 'Negociación', 'Depresión / desánimo', 'Aceptación'] },
+    { id: '10.3', title: 'Adoptar IA: la metáfora del duelo.', layout: 'bonus-acceptance', steps: ['Negación', 'Ira', 'Negociación', 'Depresión / desánimo', 'Aceptación'] },
   ],
 ];
 
