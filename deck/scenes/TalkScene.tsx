@@ -309,7 +309,9 @@ function Foot({ layout, step, id }: { layout: Layout; step: number; id: string }
 function TalkSceneBody({ index }: { index: number }) {
   const { here, b } = useScene();
   const motionRef = useTalkMotion();
-  if (index === 0 && b <= 0) return null;
+  if (index === 0 && b <= 0) return <div className="talk-page talk-standby" style={{ visibility: here ? 'visible' : 'hidden' }}>
+    <AsciiBackground active={here && b === 0} />
+  </div>;
   if (index === 0 && b === 1) return <div ref={motionRef} className="talk-page talk-cover" style={{ visibility: here ? 'visible' : 'hidden' }}>
     <AsciiBackground active={here && b === 1} />
     <div className="talk-cover-content">

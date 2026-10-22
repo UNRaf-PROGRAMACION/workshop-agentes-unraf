@@ -113,6 +113,7 @@
 .talk-closing-question { font-size: 90px; line-height: 1.08; }
 
 /* Cover: autonomous amber field, protected text, original institutional logo. */
+.talk-standby { isolation: isolate; }
 .talk-cover { isolation: isolate; text-align: center; }
 .talk-ascii { position: absolute; inset: 0; width: 1920px; height: 1080px; z-index: -2; pointer-events: none; image-rendering: crisp-edges; }
 .talk-cover::before { content: ''; position: absolute; inset: 0; z-index: -1; background: radial-gradient(ellipse at 50% 44%, rgba(8,13,27,.97) 0%, rgba(8,13,27,.84) 29%, rgba(8,13,27,.25) 72%, rgba(8,13,27,.12)), linear-gradient(0deg, #080d1b 0%, transparent 24%); }
