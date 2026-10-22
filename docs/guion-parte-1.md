@@ -739,4 +739,22 @@ Depresión o desánimo: preguntarnos dónde queda nuestro valor cuando cambia la
 
 Aceptación: integrar las herramientas con criterio, revisión y responsabilidad. No significa creer que nunca se equivocan.
 
-La fuente aclara que las fases no son una secuencia obligatoria ni lineal. Cada clic enfoca una frase ilustrativa, sin flechas de progresión. La aclaración de la metáfora permanece visible; la infografía original completa se conserva como referencia opcional mediante un enlace al archivo local.
+La fuente aclara que las fases no son una secuencia obligatoria ni lineal. Cada clic enfoca una frase ilustrativa, sin flechas de progresión. La aclaración de la metáfora permanece visible; la infografía original completa aparece en la diapositiva siguiente y también está disponible mediante un enlace al archivo local.
+
+### 10.4 — La referencia de la metáfora.
+
+**En pantalla:**
+
+Infografía original completa: `deck/assets/duelo-kubler-ross.jpg`.
+
+Una metáfora. No un recorrido obligatorio.
+
+Las etapas no son obligatorias ni lineales.
+
+La imagen trata sobre el proceso de pérdida. Las frases sobre adopción de IA son adaptaciones ilustrativas de esta charla, no citas de la infografía ni un diagnóstico.
+
+Fuente de la infografía original: Psicopedia · https://psicopedia.org/7691/
+
+**Narración:**
+
+Mostrar la imagen original completa como referencia aparte, después de las cinco frases sobre adopción de IA. Distinguir el contenido de la fuente de las adaptaciones de la charla. No presentar las etapas como obligatorias, lineales ni como diagnóstico de la adopción de IA.

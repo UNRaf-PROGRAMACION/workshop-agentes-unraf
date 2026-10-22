@@ -32,6 +32,12 @@ Fuente conceptual: `01-marco-conceptual.md`. Guion aprobado y ampliado: `guion-p
 
 ## Verificación
 
+### Infografía original en una diapositiva aparte
+
+- A pedido del usuario, se agrega 10.4 (`#10.12`), después de las cinco frases de 10.3: imagen original completa, sin recorte ni deformación, con crédito visible y aclaración de la metáfora.
+- Se conserva el archivo local, el enlace complementario de 10.3 y todos los beats anteriores. La imagen ya no queda disponible solamente mediante un enlace.
+- Sin tests, build ni capturas, siguiendo la indicación vigente. Layout pendiente de validación visual.
+
 ### Aplicación de la auditoría de layout y decisiones de presentación
 
 - Cambios aplicados en `deck/`, sin modificar el motor. Se conserva la identidad visual, la portada, los hechos del guion, los valores ilustrativos y el tono del expositor en 10.2.

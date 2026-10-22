@@ -1,6 +1,6 @@
 import griefImage from '../assets/duelo-kubler-ross.jpg';
 
-export type BonusLayout = 'bonus-tips' | 'bonus-ego' | 'bonus-acceptance';
+export type BonusLayout = 'bonus-tips' | 'bonus-ego' | 'bonus-acceptance' | 'bonus-reference';
 
 const TIPS = [
   ['¿Dónde guardo el diseño?', 'En un GDD vivo. Recomendamos Markdown o un formato editable.'],
@@ -18,6 +18,10 @@ const ACCEPTANCE = [
 
 export function BonusContent({ layout, step }: { layout: BonusLayout; step: number }) {
   switch (layout) {
+    case 'bonus-reference': return <div className="talk-infographic-layout">
+      <img className="talk-infographic-original" src={griefImage} width={896} height={1200} alt="Infografía original de Psicopedia: etapas del proceso de pérdida según E. Kübler-Ross; negación, ira, negociación, depresión y aceptación." />
+      <div className="talk-infographic-note"><div className="talk-label">REFERENCIA COMPLEMENTARIA · PSICOPEDIA</div><h2>Una metáfora.<br /><span className="accent">No un recorrido obligatorio.</span></h2><p>Las etapas no son obligatorias ni lineales.</p><p className="muted">La imagen trata sobre el proceso de pérdida.<br />Las frases sobre adopción de IA son<br />adaptaciones ilustrativas de esta charla,<br />no citas de la infografía ni un diagnóstico.</p></div>
+    </div>;
     case 'bonus-tips': return <>
       <div className="talk-tips-layout"><div className="talk-document talk-gdd-example">
         <div className="talk-label">GDD VIVO · ESTRUCTURA ILUSTRATIVA</div>

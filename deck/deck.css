@@ -341,3 +341,10 @@
 .talk-metaphor-note { position: absolute; top: 495px; }
 .talk-metaphor-note p { font-size: 29px; }
 .talk-metaphor-note a { font-size: 24px; }
+
+/* The original reference gets its own frame, intact and separate from the IA analogy. */
+.talk-layout-bonus-reference .talk-body { top: 270px; height: 660px; }
+.talk-infographic-layout { display: grid; grid-template-columns: 600px 960px; gap: 80px; align-items: center; height: 660px; }
+.talk-infographic-original { display: block; width: auto; height: 660px; max-width: 600px; object-fit: contain; justify-self: center; }
+.talk-infographic-note h2 { font-size: 78px; line-height: 1.08; margin-bottom: 36px; }
+.talk-infographic-note p { font-size: 30px; line-height: 1.4; }

@@ -52,6 +52,7 @@ function Content({ layout, step, id }: { layout: Layout; step: number; id: strin
   switch (layout) {
     case 'bonus-tips':
     case 'bonus-ego':
+    case 'bonus-reference':
     case 'bonus-acceptance': return <BonusContent layout={layout} step={step} />;
     case 'opening': return <>
       <div data-exact className="talk-big">Agregá un sistema<br /><span className="accent">de vidas.</span></div>
@@ -251,6 +252,7 @@ function Foot({ layout, step, id }: { layout: Layout; step: number; id: string }
   if (layout === 'bonus-tips') return 'El GDD conserva las decisiones; las specs concretan cada cambio.';
   if (layout === 'bonus-ego') return <a className="talk-reference" href={config.references.programmerEgo} target="_blank" rel="noopener noreferrer" onClick={(event) => event.stopPropagation()}>Lectura recomendada: «El ego del programador» · LinkedIn ↗</a>;
   if (layout === 'bonus-acceptance') return <a className="talk-reference" href={config.references.grief} target="_blank" rel="noopener noreferrer" onClick={(event) => event.stopPropagation()}>Referencia de la metáfora: Psicopedia · psicopedia.org/7691/ ↗</a>;
+  if (layout === 'bonus-reference') return <a className="talk-reference" href={config.references.grief} target="_blank" rel="noopener noreferrer" onClick={(event) => event.stopPropagation()}>Fuente de la infografía original: Psicopedia · psicopedia.org/7691/ ↗</a>;
   if (layout === 'agent') return 'Agente de desarrollo ≠ NPC o IA de gameplay. Las acciones dependen de sus permisos.';
   if (layout === 'compare' && id === '2.5' && step >= 1) return 'Las acciones dependen de las herramientas y los permisos disponibles.';
   if (layout === 'clues' && step >= 1) return 'Excluir secretos e información irrelevante. Usar información actualizada y confiable.';

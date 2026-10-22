@@ -4,7 +4,7 @@ export type Layout = 'opening' | 'assistant' | 'agent' | 'compare' | 'repository
   'prompt' | 'clues' | 'window' | 'flow' | 'mind' | 'explore' | 'broken' | 'fixes' |
   'sdd' | 'spec' | 'life-compare' | 'lives' | 'parameters' | 'feel' | 'states' |
   'roles' | 'design' | 'platform' | 'harness' | 'evidence' | 'safety' | 'cycle' | 'closing' |
-  'bonus-tips' | 'bonus-ego' | 'bonus-acceptance';
+  'bonus-tips' | 'bonus-ego' | 'bonus-acceptance' | 'bonus-reference';
 
 interface Slide {
   id: string;
@@ -65,6 +65,7 @@ export const SLIDES: Slide[][] = [
     { id: '10.1', title: 'Tips para trabajar con agentes.', layout: 'bonus-tips', steps: ['Un GDD vivo', 'Actualizar las decisiones', 'Assets y referencias explícitas'] },
     { id: '10.2', title: 'Soltá tu fucking ego de programador', layout: 'bonus-ego', steps: ['¿Saben lo que es?', 'Las objeciones al LLM', 'Nuestro valor no está en escribir código'] },
     { id: '10.3', title: 'Adoptar IA: la metáfora del duelo.', layout: 'bonus-acceptance', steps: ['Negación', 'Ira', 'Negociación', 'Depresión / desánimo', 'Aceptación'] },
+    { id: '10.4', title: 'La referencia de la metáfora.', layout: 'bonus-reference', steps: ['Infografía original'] },
   ],
 ];
 
