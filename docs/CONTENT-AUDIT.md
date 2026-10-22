@@ -32,6 +32,18 @@ Fuente conceptual: `01-marco-conceptual.md`. Guion aprobado y ampliado: `guion-p
 
 ## Verificación
 
+### Refinamiento de jerarquía y dirección de atención
+
+- Se mantienen el tema, la portada, el tono del expositor, los valores del guion y todos los beats, incluida la diapositiva independiente de la infografía original. No se modifica el motor.
+- 2.1 prioriza el ejemplo conversacional y reduce el peso de los logos. La definición extensa sigue en las notas del guion. 2.2 amplía el panel de contexto de la imagen original, sin recrearlo ni presentarlo como prueba de una acción.
+- 2.5 alinea conversación, contexto y cambios en una comparación por filas. 3.3 separa la ventana finita de la conclusión práctica y sus conceptos auxiliares entre los dos beats existentes.
+- 6.1 conserva antes/después y VS; en el tercer beat reemplaza los bloques independientes por preguntas y reglas alineadas A–D. Se preservan todas las reglas, el alcance y la evidencia a obtener. No se agregan reglas de gameplay.
+- 7.2 vincula los valores ilustrativos al esquema mediante rótulos y colores. 7.4 da prioridad al hallazgo de playtest. 7.6 saca la conclusión de la columna técnica para darle un cierre común.
+- 8.1 distingue las fuentes que orientan al agente de las comprobaciones que salen de su trabajo. 8.2 muestra un registro ilustrativo para el ejemplo de vidas: pasos y esperado definidos; observado explícitamente pendiente, sin resultados ficticios. 9.1 usa un recorrido continuo en dos filas, decisión humana y retorno al plan.
+- Apertura, contexto, fixes, parámetros, evidencias y diseño atenúan información previa cuando cambia el foco. El GDD del bonus destaca solo la sección del paso actual. La conclusión positiva del bonus de ego gana jerarquía sin cambiar el tono del título.
+- 10.3 reemplaza la tira de fases por «Reacciones posibles · sin orden obligatorio»; se conservan las cinco frases por clic, la aclaración no lineal y el acceso a la imagen original.
+- Por indicación del usuario, **no se ejecutaron tests, build, typecheck, capturas ni verificaciones automáticas**. Pendiente validación visual de estos cambios; las capturas y resultados históricos no los validan.
+
 ### Infografía original en una diapositiva aparte
 
 - A pedido del usuario, se agrega 10.4 (`#10.12`), después de las cinco frases de 10.3: imagen original completa, sin recorte ni deformación, con crédito visible y aclaración de la metáfora.

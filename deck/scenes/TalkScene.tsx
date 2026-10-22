@@ -60,7 +60,7 @@ function Content({ layout, step, id }: { layout: Layout; step: number; id: strin
       {step >= 2 ? <p className="talk-takeaway">Pedir código no es lo mismo que <span className="accent">definir un cambio.</span></p> : null}
     </>;
     case 'assistant': return <Columns left={<>
-      <h2>Un asistente responde.</h2><p>Un chat donde podés hacer preguntas y recibir respuestas.</p>
+      <h2>Un asistente responde.</h2>
       <div className="talk-chat-example"><div className="talk-label">PREGUNTÁS</div><h2>¿Qué significa<br />este error?</h2><div className="talk-label">RECIBÍS UNA RESPUESTA</div><p>Vos trasladás la propuesta al proyecto.</p></div>
       <p className="talk-small muted">También: «Explicame esta función».<br />«Dame un ejemplo de movimiento».</p>
     </>} right={<><div className="talk-label">INTERFACES CONOCIDAS</div><div className="talk-assistants" aria-label="Herramientas conocidas con interfaces de conversación">
@@ -73,19 +73,20 @@ function Content({ layout, step, id }: { layout: Layout; step: number; id: strin
       <div>{[['Modelo', 'LLM · genera y propone'], ['Instrucciones', 'prompts · orientan y limitan'], ['Herramientas', 'tools · leen, editan, ejecutan']].map(([name, detail], i) => <Fragment key={name}>
         {i > 0 ? <div className="talk-plus">+</div> : null}<div className="talk-formula">{name}<small>{detail}</small></div>
       </Fragment>)}</div>
-      <div className="talk-agent-evidence"><div className="talk-label">OpenCode · INTERFAZ REAL</div><div className="talk-agent-crop"><img className="talk-agent-image" src={agentImage} width={1913} height={1040} alt="Detalle de la captura original de OpenCode: conversación y panel de contexto con herramientas conectadas. No muestra una edición ejecutada." /></div><p className="talk-small muted">Conversación + contexto + herramientas conectadas.<br />La captura muestra la interfaz, no una acción ejecutada.</p></div>
+       <div className="talk-agent-evidence"><div className="talk-label">OpenCode · DETALLE DEL PANEL DE CONTEXTO</div><div className="talk-agent-crop"><img className="talk-agent-image" src={agentImage} width={1913} height={1040} alt="Detalle ampliado del panel de contexto original de OpenCode, con herramientas conectadas. No muestra una edición ejecutada." /></div><p className="talk-small muted">Herramientas conectadas, a la derecha de la conversación.<br />La interfaz no demuestra una acción ejecutada.</p></div>
     </div>;
     case 'compare': return id === '2.3' ? <div className="talk-audience-question">
       <p>Ambos pueden conversar.<br />Al asistente le compartís el contexto del proyecto.</p>
       <div className="talk-big">Un agente…<br /><span className="accent">¿qué cambia?</span></div>
     </div> : <>
-      <Columns left={<>
-      <div className="talk-label">ASISTENTE</div><h2>Preguntás.<br />Recibís respuestas.</h2>
-      <List items={['Le compartís información.', 'Aplicás sus propuestas.']} />
-    </>} right={<>
-      <div className="talk-label">AGENTE</div>
-      <h2>Conversás.<br />Puede actuar.</h2><List items={['Busca y lee archivos.', 'Crea, edita, mueve o elimina archivos.']} />
-    </>} />
+      <div className="talk-comparison" role="table" aria-label="Asistente y agente: contexto y acciones">
+        <div className="talk-comparison-head" role="row"><span role="columnheader">EN LA TAREA</span><span role="columnheader">ASISTENTE</span><span role="columnheader">AGENTE</span></div>
+        {[
+          ['Conversación', 'Preguntás. Recibís respuestas.', 'Conversás. Puede actuar.'],
+          ['Contexto', 'Le compartís información.', 'Busca y lee archivos.'],
+          ['Cambios', 'Aplicás sus propuestas.', 'Crea, edita, mueve o elimina archivos.'],
+        ].map(([label, assistant, agent]) => <div className="talk-comparison-row" role="row" key={label}><span role="rowheader">{label}</span><span role="cell">{assistant}</span><span role="cell">{agent}</span></div>)}
+      </div>
       {step >= 1 ? <p className="talk-takeaway">Poder hacerlo <span className="accent">no significa estar autorizado.</span></p> : null}
     </>;
     case 'repository': return <>
@@ -111,13 +112,15 @@ function Content({ layout, step, id }: { layout: Layout; step: number; id: strin
       ['GDD y documentación', 'Qué queremos construir.'], ['Código y escenas', 'Cómo funciona hoy.'],
       ['Reglas del proyecto', 'Cómo debemos trabajar.'], ['Pruebas', 'Cómo comprobamos los cambios.'], ['Decisiones previas', 'Qué acordamos y por qué.'],
     ]} />{step >= 1 ? <p className="talk-takeaway">Más contexto no siempre es <span className="accent">mejor contexto.</span></p> : null}</>;
-    case 'window': return <>
+    case 'window': return step === 0 ? <>
       <p>Cantidad limitada de información que el modelo<br />puede considerar durante una interacción.</p>
       <div className="talk-window"><div className="talk-label">VENTANA DE CONTEXTO · CAPACIDAD FINITA</div><div className="talk-window-items">
         {['Instrucciones', 'Archivos leídos', 'Conversación', 'Resultados'].map((x) => <span key={x}>{x}</span>)}
       </div></div>
       <p className="talk-window-caption">Todos comparten la misma ventana. Esquema sin proporciones cuantitativas.</p>
-      {step >= 1 ? <><div className="talk-token-notes"><div><strong>Tokens</strong><span>Unidades de texto que procesa el modelo.</span></div><div><strong>Capacidad</strong><span>Información que puede considerar.</span></div><div><strong>Latencia y costo</strong><span>También importan al trabajar.</span></div></div><p className="talk-takeaway">Decisiones en archivos. <span className="accent">Tareas pequeñas.</span></p></> : null}
+    </> : <>
+      <div className="talk-big">Decisiones en archivos.<br /><span className="accent">Tareas pequeñas.</span></div>
+      <div className="talk-token-notes"><div><strong>Tokens</strong><span>Unidades de texto que procesa el modelo.</span></div><div><strong>Capacidad</strong><span>Información que puede considerar.</span></div><div><strong>Latencia y costo</strong><span>También importan al trabajar.</span></div></div>
     </>;
     case 'flow': return <>
       <Flow items={id === '4.1' ? ['Prompt', 'Generación', 'Prueba', 'Otro prompt'] : ['Playtest', 'Hallazgo', 'Spec', 'Código', 'Verificación']} focus={id === '4.1' ? undefined : step === 0 ? 1 : 2} />
@@ -161,20 +164,20 @@ function Content({ layout, step, id }: { layout: Layout; step: number; id: strin
       ['Criterios de aceptación', 'Vidas no negativas. Una única derrota.'],
       ['Evidencia', '3 → 2 → 1 → 0 → 0 + comprobación visual.'],
     ]} />{step >= 1 ? <p className="talk-takeaway">Pequeña. Concreta. <span className="accent">Revisable.</span></p> : null}</>;
-    case 'life-compare': return <div className="talk-vs-layout">
+    case 'life-compare': return step >= 2 ? <>
+      <div className="talk-decision-pairs"><div className="talk-decision-pairs-head"><span>ANTES · DECISIÓN ABIERTA</span><span>DESPUÉS · REGLA ACORDADA</span></div>{[
+        ['¿Cuántas vidas?', 'Inicio: 3 vidas.'],
+        ['¿Cuánto daño?', 'Cada daño válido resta 1.'],
+        ['¿Puede quedar en negativo?', 'Las vidas nunca bajan de 0.'],
+        ['¿Qué pasa después de perder?', 'Con 0, activar derrota una sola vez. Tras la derrota, ignorar nuevo daño.'],
+      ].map(([question, rule], index) => <div className="talk-decision-pair" key={question}><div><span className="talk-decision-key">{String.fromCharCode(65 + index)}</span>{question}</div><div><span className="talk-decision-key">{String.fromCharCode(65 + index)}</span>{rule}</div></div>)}</div>
+      <div className="talk-decision-summary"><div><div className="talk-label">ALCANCE · VIDAS Y DERROTA</div><p>Fuera: animaciones y balance.</p></div><div><div className="talk-label">EVIDENCIA A OBTENER</div><p>3 → 2 → 1 → 0 → 0.<br />Una derrota + comprobación visual.</p></div></div>
+    </> : <div className="talk-vs-layout">
       <div><div className="talk-label">ANTES · VIBE CODING</div><p className="talk-vague">Agregá un sistema de vidas y que el jugador pierda cuando se quede sin vidas.</p>
         {step >= 1 ? <div className="talk-open-decisions">{['¿Cuántas vidas?', '¿Cuánto daño?', '¿Puede quedar en negativo?', '¿Qué pasa después de perder?'].map((x, index) => <p className="talk-question" key={x}><span className="talk-decision-key">{String.fromCharCode(65 + index)}</span>{x}</p>)}</div> : null}
       </div>
-      <div className="talk-vs">VS</div>
-      <div><div className="talk-label">DESPUÉS · AGENTE CON SDD</div>{step >= 2 ? <div className="talk-document">
-        <p><strong>Feature: vidas y derrota</strong></p>
-        <div className="talk-spec-rules">{[
-          ['A', 'Inicio: 3 vidas.'], ['B', 'Cada daño válido resta 1.'], ['C', 'Las vidas nunca bajan de 0.'],
-          ['D', 'Con 0, activar derrota una sola vez.'], ['D', 'Tras la derrota, ignorar nuevo daño.'],
-        ].map(([key, rule]) => <div className="talk-spec-line" key={rule}><span className="talk-decision-key">{key}</span>{rule}</div>)}</div>
-        <div className="talk-spec-scope"><strong>ALCANCE</strong><span>Fuera: animaciones y balance.</span></div>
-        <div className="talk-spec-scope"><strong>EVIDENCIA</strong><span>3 → 2 → 1 → 0 → 0.<br />Una derrota + comprobación visual.</span></div>
-      </div> : <div style={{ paddingTop: 120 }} className="muted"><p>La misma intención.</p><p>¿Qué falta definir?</p></div>}</div>
+       <div className="talk-vs">VS</div>
+       <div><div className="talk-label">DESPUÉS · AGENTE CON SDD</div><div className="talk-decisions-pending muted"><p>La misma intención.</p><h2>¿Qué falta<br />definir?</h2></div></div>
     </div>;
     case 'lives': return <>
       <div className="talk-lives">{['3 ♥', '2 ♥', '1 ♥', '0 ♥', 'DERROTA'].map((x, i) => <Fragment key={x}>{i ? <span className="arrow">→</span> : null}<span className={i === 4 ? 'accent' : ''}>{x}</span></Fragment>)}</div>
@@ -212,8 +215,7 @@ function Content({ layout, step, id }: { layout: Layout; step: number; id: strin
     </>} right={<>
       <div className="talk-label">IMPLEMENTACIÓN</div><h2>Cómo construirla<br />en este proyecto.</h2>
       <p>Solución técnica.<br />Integración con el código existente.</p>
-      {step >= 1 ? <p className="accent">Una comodidad técnica no es,<br />por sí sola, una decisión de diseño.</p> : null}
-    </>} /></>;
+    </>} />{step >= 1 ? <p className="talk-takeaway">Una comodidad técnica <span className="accent">no es, por sí sola, una decisión de diseño.</span></p> : null}</>;
     case 'platform': return <>
       <h2>¿Dónde tiene que funcionar?</h2><div className="talk-chips">{['Input táctil', 'Resolución', 'Orientación', 'Presupuesto de rendimiento', 'Tamaño de build'].map((x) => <span key={x}>{x}</span>)}</div>
       {step >= 1 ? <><div className="talk-platform-flow"><Flow items={['Reglas estables del proyecto', 'Specs de cada cambio', 'Verificaciones']} focus={2} /></div><p className="talk-takeaway">Comprobarlo <span className="accent">en la plataforma de destino.</span></p></> : null}
@@ -221,10 +223,18 @@ function Content({ layout, step, id }: { layout: Layout; step: number; id: strin
     case 'harness': return <>
       {step === 0 ? <><div className="talk-label">HARNESS</div><div className="talk-big">El agente no trabaja<br /><span className="accent">en el vacío.</span></div><p className="talk-harness-definition">Reglas, instrucciones, herramientas y verificaciones<br />que encuadran su trabajo.</p></> : <HarnessMap />}
     </>;
-    case 'evidence': return <>
+    case 'evidence': return step >= 2 ? <div className="talk-evidence-record">
+      <div className="talk-label">REGISTRO ILUSTRATIVO · VIDAS Y DERROTA</div>
+      <Rows items={[
+        ['Pasos', 'Iniciar con 3 vidas. Aplicar daño hasta 0 y una vez más.'],
+        ['Esperado', '3 → 2 → 1 → 0 → 0. Una única derrota visible.'],
+        ['Observado', 'Pendiente de ejecutar y registrar.'],
+        ['Limitaciones', 'Esta comprobación no demuestra balance ni game feel.'],
+      ]} />
+      <p className="talk-takeaway">Registrar lo que pasó.<br /><span className="accent">No solamente lo que esperábamos.</span></p>
+    </div> : <>
       <div className="talk-big">{step === 0 ? 'Ya está arreglado.' : '¿Qué lo demuestra?'}</div>
       {step >= 1 ? <div className="talk-chips" style={{ marginTop: 60 }}>{['Diff', 'Pruebas', 'Build', 'Ejecución', 'Capturas', 'Playtest'].map((x) => <span key={x}>{x}</span>)}</div> : null}
-      {step >= 2 ? <div className="talk-manual-evidence"><div className="talk-label">PRUEBA MANUAL REPRODUCIBLE · QUÉ REGISTRAR</div><div className="talk-evidence-fields">{['Pasos', 'Esperado', 'Observado', 'Limitaciones'].map((label) => <div key={label}>{label}</div>)}</div><p className="talk-small muted">Es una estructura de registro, no un resultado de prueba.</p></div> : null}
     </>;
     case 'safety': return <>
       {step === 0 ? <div className="talk-safety-groups">{[
@@ -256,7 +266,7 @@ function Foot({ layout, step, id }: { layout: Layout; step: number; id: string }
   if (layout === 'agent') return 'Agente de desarrollo ≠ NPC o IA de gameplay. Las acciones dependen de sus permisos.';
   if (layout === 'compare' && id === '2.5' && step >= 1) return 'Las acciones dependen de las herramientas y los permisos disponibles.';
   if (layout === 'clues' && step >= 1) return 'Excluir secretos e información irrelevante. Usar información actualizada y confiable.';
-  if (layout === 'window' && step >= 1) return 'Conservar decisiones en archivos y trabajar con tareas pequeñas, no depender de un chat interminable.';
+   if (layout === 'window' && step >= 1) return 'No depender de un chat interminable: conservar lo acordado en el proyecto.';
   if (layout === 'mind' && step >= 1) return 'Lo que no definís queda abierto a interpretación.';
   if (layout === 'explore' && step >= 1) return 'Son riesgos, no resultados inevitables. La revisión y el alcance importan.';
   if (layout === 'fixes' && step >= 2) return 'Más prompts no reemplazan una definición compartida.';
@@ -295,7 +305,7 @@ function TalkSceneBody({ index }: { index: number }) {
   const { slide, step } = locateSlide(index, Math.max(0, b - (index === 0 ? 2 : 0)));
   // Every scene layer remains mounted. Each slide is a pure function of scene + beat.
   const foot = Foot({ layout: slide.layout, id: slide.id, step });
-  return <div ref={motionRef} className={`talk-page talk-layout-${slide.layout} talk-step-${step}`} style={{ visibility: here ? 'visible' : 'hidden' }}>
+   return <div ref={motionRef} data-slide={slide.id} className={`talk-page talk-layout-${slide.layout} talk-step-${step}`} style={{ visibility: here ? 'visible' : 'hidden' }}>
     <header key={`heading-${slide.id}`} className="talk-heading"><div className="talk-kicker">{SECTION_TITLES[index]}</div><h1>{slide.title}</h1></header>
     <main key={slide.id} className="talk-body"><Content layout={slide.layout} id={slide.id} step={step} /></main>
     {foot ? <footer className="talk-foot">{foot}</footer> : null}

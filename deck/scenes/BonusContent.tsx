@@ -26,9 +26,9 @@ export function BonusContent({ layout, step }: { layout: BonusLayout; step: numb
       <div className="talk-tips-layout"><div className="talk-document talk-gdd-example">
         <div className="talk-label">GDD VIVO · ESTRUCTURA ILUSTRATIVA</div>
         <h2>Diseño del juego</h2>
-        <div className="talk-gdd-section">Visión y reglas<span>Markdown o un formato editable.</span></div>
-        {step >= 1 ? <div className="talk-gdd-section">Decisiones acordadas<span>Actualizar al aclarar las specs.</span></div> : null}
-        {step >= 2 ? <div className="talk-gdd-section">Anexo de assets<span>Referencias · archivos · rutas · usos.</span></div> : null}
+        <div className={`talk-gdd-section${step === 0 ? ' is-current' : ''}`}>Visión y reglas<span>Markdown o un formato editable.</span></div>
+        {step >= 1 ? <div className={`talk-gdd-section${step === 1 ? ' is-current' : ''}`}>Decisiones acordadas<span>Actualizar al aclarar las specs.</span></div> : null}
+        {step >= 2 ? <div className="talk-gdd-section is-current">Anexo de assets<span>Referencias · archivos · rutas · usos.</span></div> : null}
       </div><div className="talk-tip-explanation" key={step}><div className="talk-label">PREGUNTAS COMUNES · CRITERIOS · TIPS</div><h2>{TIPS[step][0]}</h2><p>{TIPS[step][1]}</p></div></div>
       {step >= 2 ? <p className="talk-takeaway">Decisiones claras → <span className="accent">implementar sin adivinar.</span></p> : null}
     </>;
@@ -48,7 +48,7 @@ export function BonusContent({ layout, step }: { layout: BonusLayout; step: numb
       <p>En cuestionar, revisar, decidir y asumir responsabilidad.</p>
     </>;
     case 'bonus-acceptance': return <>
-      <div className="talk-acceptance-phases" aria-label="Reacciones ilustrativas, sin orden obligatorio">{ACCEPTANCE.map(([phase], index) => <span className={index === step ? 'is-current' : undefined} key={phase} aria-current={index === step ? 'step' : undefined}>{phase}</span>)}</div>
+      <div className="talk-label">REACCIONES POSIBLES · SIN ORDEN OBLIGATORIO</div>
       <div className="talk-acceptance-focus" key={step}><div className="talk-label">{ACCEPTANCE[step][0]}</div><div className="talk-big">{ACCEPTANCE[step][1]}</div></div>
       <div className="talk-metaphor-note"><p>Es una metáfora: <span className="accent">no son etapas obligatorias ni lineales.</span></p><a className="talk-reference" href={griefImage} target="_blank" rel="noopener noreferrer" onClick={(event) => event.stopPropagation()}>Ver infografía original · referencia complementaria ↗</a></div>
     </>;
