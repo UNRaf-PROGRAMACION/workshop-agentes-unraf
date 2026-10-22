@@ -8,7 +8,7 @@ function collect(parent: Element): HTMLElement[] {
   return Array.from(parent.children).flatMap((child) => {
     if (!(child instanceof HTMLElement)) return [];
     // NodeBox / Arrow own their beat visibility and motion, including hidden nodes.
-    if (child.matches('.talk-diagram')) return [];
+    if (child.matches('.talk-diagram, .game-visual')) return [];
     if (child.matches(GROUPS) || (child.tagName === 'DIV' && !child.className)) return collect(child);
     return [child];
   });

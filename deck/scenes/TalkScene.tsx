@@ -17,6 +17,8 @@ import { BonusContent } from './BonusContent';
 import { AsciiBackground } from '../components/AsciiBackground';
 import { useTalkMotion } from '../components/useTalkMotion';
 import { HarnessMap, JumpSketch, StateQuestions, WorkCycle } from '../components/TalkDiagrams';
+import { ContextInventory, GamePanel, LivesDemo, OpeningGame } from '../components/GameVisuals';
+import { useDiagramMotion } from '../components/useDiagramMotion';
 
 const ASSISTANTS = [
   { name: 'ChatGPT', logo: chatgptLogo, monochrome: true },
@@ -32,9 +34,11 @@ function List({ items }: { items: string[] }) {
 }
 
 function Flow({ items, focus }: { items: string[]; focus?: number }) {
-  return <div className="talk-flow">{items.map((item, i) => <Fragment key={item}>
+  const motionRef = useDiagramMotion();
+  const progress = (focus ?? items.length - 1) / Math.max(1, items.length - 1);
+  return <div ref={motionRef} className="talk-flow game-visual game-flow"><span className="game-flow-token" style={{ left: 12 + progress * 1510 }} data-motion="route" data-distance={progress * 1510} aria-hidden="true" />{items.map((item, i) => <Fragment key={item}>
     {i > 0 ? <span className="talk-flow-arrow" aria-hidden="true">→</span> : null}
-    <div className={`talk-flow-node${i === focus ? ' is-focus' : ''}`}>{item}</div>
+    <div className={`talk-flow-node${i === focus ? ' is-focus' : ''}`} data-motion="arrive" data-delay={i * 140}>{item}</div>
   </Fragment>)}</div>;
 }
 
@@ -55,6 +59,7 @@ function Content({ layout, step, id }: { layout: Layout; step: number; id: strin
     case 'bonus-reference':
     case 'bonus-acceptance': return <BonusContent layout={layout} step={step} />;
     case 'opening': return <>
+      <OpeningGame step={step} />
       <div data-exact className="talk-big">Agregá un sistema<br /><span className="accent">de vidas.</span></div>
       {step >= 1 ? <div className="talk-opening-questions">{['¿Cuántas vidas?', '¿Qué cuenta como daño?', '¿Qué pasa con cero?'].map((question) => <div key={question}>{question}</div>)}</div> : null}
       {step >= 2 ? <p className="talk-takeaway">Pedir código no es lo mismo que <span className="accent">definir un cambio.</span></p> : null}
@@ -79,14 +84,14 @@ function Content({ layout, step, id }: { layout: Layout; step: number; id: strin
       <p>Ambos pueden conversar.<br />Al asistente le compartís el contexto del proyecto.</p>
       <div className="talk-big">Un agente…<br /><span className="accent">¿qué cambia?</span></div>
     </div> : <>
-      <div className="talk-comparison" role="table" aria-label="Asistente y agente: contexto y acciones">
+      <GamePanel className="game-comparison"><div className="talk-comparison" role="table" aria-label="Asistente y agente: contexto y acciones">
         <div className="talk-comparison-head" role="row"><span role="columnheader">EN LA TAREA</span><span role="columnheader">ASISTENTE</span><span role="columnheader">AGENTE</span></div>
         {[
           ['Conversación', 'Preguntás. Recibís respuestas.', 'Conversás. Puede actuar.'],
           ['Contexto', 'Le compartís información.', 'Busca y lee archivos.'],
           ['Cambios', 'Aplicás sus propuestas.', 'Crea, edita, mueve o elimina archivos.'],
-        ].map(([label, assistant, agent]) => <div className="talk-comparison-row" role="row" key={label}><span role="rowheader">{label}</span><span role="cell">{assistant}</span><span role="cell">{agent}</span></div>)}
-      </div>
+        ].map(([label, assistant, agent], index) => <div className="talk-comparison-row" role="row" key={label}><span role="rowheader">{label}</span><span role="cell" data-motion="arrive" data-delay={index * 250}>{assistant}</span><span role="cell" data-motion="select" data-delay={300 + index * 250}>{agent}</span></div>)}
+      </div></GamePanel>
       {step >= 1 ? <p className="talk-takeaway">Poder hacerlo <span className="accent">no significa estar autorizado.</span></p> : null}
     </>;
     case 'repository': return <>
@@ -114,10 +119,7 @@ function Content({ layout, step, id }: { layout: Layout; step: number; id: strin
     ]} />{step >= 1 ? <p className="talk-takeaway">Más contexto no siempre es <span className="accent">mejor contexto.</span></p> : null}</>;
     case 'window': return step === 0 ? <>
       <p>Cantidad limitada de información que el modelo<br />puede considerar durante una interacción.</p>
-      <div className="talk-window"><div className="talk-label">VENTANA DE CONTEXTO · CAPACIDAD FINITA</div><div className="talk-window-items">
-        {['Instrucciones', 'Archivos leídos', 'Conversación', 'Resultados'].map((x) => <span key={x}>{x}</span>)}
-      </div></div>
-      <p className="talk-window-caption">Todos comparten la misma ventana. Esquema sin proporciones cuantitativas.</p>
+      <ContextInventory />
     </> : <>
       <div className="talk-big">Decisiones en archivos.<br /><span className="accent">Tareas pequeñas.</span></div>
       <div className="talk-token-notes"><div><strong>Tokens</strong><span>Unidades de texto que procesa el modelo.</span></div><div><strong>Capacidad</strong><span>Información que puede considerar.</span></div><div><strong>Latencia y costo</strong><span>También importan al trabajar.</span></div></div>
@@ -141,11 +143,11 @@ function Content({ layout, step, id }: { layout: Layout; step: number; id: strin
     case 'broken': return step === 0 ? <List items={['El personaje se mueve raro.', 'El nivel pierde consistencia.', 'Los enemigos no hacen lo esperado.']} /> : <>
       <div className="talk-big">Pedís un arreglo.<br /><span className="accent">Arregla una cosa<br />y rompe otra.</span></div>
     </>;
-    case 'fixes': return <div className="talk-stack">
-      <div className="talk-fix" style={{ width: 320 }}>FIX</div>
-      {step >= 1 ? <div className="talk-fix" style={{ width: 590 }}>OTRO FIX</div> : null}
-      {step >= 2 ? <><div className="talk-fix" style={{ width: 820 }}>OTRO FIX MÁS</div><div className="talk-fix base">¿QUÉ QUERÍAMOS HACER?</div></> : null}
-    </div>;
+    case 'fixes': return <GamePanel className="talk-stack">
+      <div className="talk-fix" style={{ width: 320 }} data-motion={step === 0 ? 'arrive' : undefined}>FIX</div>
+      {step >= 1 ? <div className="talk-fix" style={{ width: 590 }} data-motion={step === 1 ? 'arrive' : undefined}>OTRO FIX</div> : null}
+      {step >= 2 ? <><div className="talk-fix" style={{ width: 820 }} data-motion="arrive">OTRO FIX MÁS</div><div className="talk-fix base" data-motion="arrive" data-delay="500">¿QUÉ QUERÍAMOS HACER?</div></> : null}
+    </GamePanel>;
     case 'sdd': return <>
       {step === 0 ? <><div className="talk-sdd-intro"><div className="talk-big accent">SDD</div><div>
         <h2>Spec-Driven Development</h2><p className="muted">Desarrollo guiado por especificaciones.</p></div></div>
@@ -165,12 +167,12 @@ function Content({ layout, step, id }: { layout: Layout; step: number; id: strin
       ['Evidencia', '3 → 2 → 1 → 0 → 0 + comprobación visual.'],
     ]} />{step >= 1 ? <p className="talk-takeaway">Pequeña. Concreta. <span className="accent">Revisable.</span></p> : null}</>;
     case 'life-compare': return step >= 2 ? <>
-      <div className="talk-decision-pairs"><div className="talk-decision-pairs-head"><span>ANTES · DECISIÓN ABIERTA</span><span>DESPUÉS · REGLA ACORDADA</span></div>{[
+      <GamePanel className="talk-decision-pairs"><div className="talk-decision-pairs-head"><span>ANTES · DECISIÓN ABIERTA</span><span>DESPUÉS · REGLA ACORDADA</span></div>{[
         ['¿Cuántas vidas?', 'Inicio: 3 vidas.'],
         ['¿Cuánto daño?', 'Cada daño válido resta 1.'],
         ['¿Puede quedar en negativo?', 'Las vidas nunca bajan de 0.'],
         ['¿Qué pasa después de perder?', 'Con 0, activar derrota una sola vez. Tras la derrota, ignorar nuevo daño.'],
-      ].map(([question, rule], index) => <div className="talk-decision-pair" key={question}><div><span className="talk-decision-key">{String.fromCharCode(65 + index)}</span>{question}</div><div><span className="talk-decision-key">{String.fromCharCode(65 + index)}</span>{rule}</div></div>)}</div>
+      ].map(([question, rule], index) => <div className="talk-decision-pair" key={question}><div><span className="talk-decision-key">{String.fromCharCode(65 + index)}</span>{question}</div><div data-motion="select" data-delay={index * 220}><span className="talk-decision-key">{String.fromCharCode(65 + index)}</span>{rule}</div></div>)}</GamePanel>
       <div className="talk-decision-summary"><div><div className="talk-label">ALCANCE · VIDAS Y DERROTA</div><p>Fuera: animaciones y balance.</p></div><div><div className="talk-label">EVIDENCIA A OBTENER</div><p>3 → 2 → 1 → 0 → 0.<br />Una derrota + comprobación visual.</p></div></div>
     </> : <div className="talk-vs-layout">
       <div><div className="talk-label">ANTES · VIBE CODING</div><p className="talk-vague">Agregá un sistema de vidas y que el jugador pierda cuando se quede sin vidas.</p>
@@ -180,8 +182,7 @@ function Content({ layout, step, id }: { layout: Layout; step: number; id: strin
        <div><div className="talk-label">DESPUÉS · AGENTE CON SDD</div><div className="talk-decisions-pending muted"><p>La misma intención.</p><h2>¿Qué falta<br />definir?</h2></div></div>
     </div>;
     case 'lives': return <>
-      <div className="talk-lives">{['3 ♥', '2 ♥', '1 ♥', '0 ♥', 'DERROTA'].map((x, i) => <Fragment key={x}>{i ? <span className="arrow">→</span> : null}<span className={i === 4 ? 'accent' : ''}>{x}</span></Fragment>)}</div>
-      {step >= 1 ? <div className="talk-damage-boundary"><span>Nuevo daño</span><span aria-hidden="true">→</span><strong>0 ♥</strong><span>Sin repetir derrota</span></div> : null}
+      <LivesDemo step={step} />
       {step >= 2 ? <Rows items={[
         ['Vidas no negativas', 'Prueba de lógica.'], ['Una única derrota', 'Prueba de eventos o integración.'], ['Señal de derrota visible', 'Comprobación visual.'],
       ]} /> : null}

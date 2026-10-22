@@ -28,6 +28,15 @@ Las notas se extraen de `guion-parte-1.md`; `deck/talk.ts` define el orden y las
 
 El tema vive en `themes/agent-ready.css` y las composiciones en `deck/deck.css`. La portada tiene un fondo de cuadrados ámbar que se mueve sin mouse y se detiene al salir de ella. `?reduced=1` y `?capture=1` lo muestran estático. Las fuentes se incluyen en el build y no necesitan conexión.
 
+### Ilustraciones animadas
+
+- Los gráficos de gameplay y procesos usan `deck/game-visuals.css`, `GameVisuals.tsx` y `TalkDiagrams.tsx`. Son esquemas didácticos, no grabaciones ni pruebas de un proyecto real.
+- Al avanzar, dejar terminar la secuencia breve (aproximadamente dos segundos). No hay avance automático: el siguiente clic sigue siendo del expositor. Un clic rápido cancela la animación y muestra el siguiente estado.
+- En 6.2, el primer paso muestra las vidas hasta cero y una derrota; el segundo muestra daño adicional ignorado; el tercero relaciona las reglas con tipos de evidencia.
+- El salto está ralentizado para explicarlo: no mide ni reproduce los tiempos ilustrativos que aparecen en pantalla. La transición Ataque/Stun se mantiene como pregunta, no como regla resuelta.
+- Recargar, abrir por URL, retroceder o usar `?reduced=1` muestra el estado final sin repetir la secuencia. `?capture=1` también desactiva estas animaciones.
+- Esta incorporación no se validó con tests, build ni capturas, por indicación del usuario. Las capturas históricas no representan el estado actual.
+
 ## Mapa rápido
 
 30 slides, nueve secciones y 64 estados de navegación, incluida la espera inicial.

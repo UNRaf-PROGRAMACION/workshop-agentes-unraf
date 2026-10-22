@@ -32,6 +32,18 @@ Fuente conceptual: `01-marco-conceptual.md`. Guion aprobado y ampliado: `guion-p
 
 ## Verificación
 
+### Gráficos animados y gamificación visual
+
+- Se incorpora un lenguaje esquemático de videojuego sin puntos, recompensas, barras cuantitativas inventadas ni servicios externos. Los personajes son formas geométricas originales, no assets atribuidos a un juego real.
+- 1.1: personaje y vidas por definir, sin anticipar un número que todavía no se acordó. 2.5: entradas diferenciadas para comparar contexto y acciones. 3.3: piezas de información que entran en una ventana compartida, explícitamente sin proporciones cuantitativas.
+- 4.5: parches escalonados y desalineados; cada clic agrega un parche y el último recupera la pregunta original. 6.1: correspondencia animada entre preguntas y reglas, conservando los valores, alcance y evidencia del guion.
+- 6.2: simulación didáctica rotulada como tal. Primer beat: contador 3 → 2 → 1 → 0, corazones atenuados y una sola derrota. Segundo beat: daño adicional detenido, contador en cero y sin repetir derrota. Tercero: secuencia compacta y tipos de evidencia; la simulación no se usa como prueba de una implementación real.
+- 7.2: personaje recorre el margen posterior al borde y la curva del salto. Se conserva la aclaración «sin escala»; la duración de la animación es didáctica y no representa físicamente los valores ilustrativos de 0,1 s / 0,35 s.
+- 7.3: marcador avanza desde ataque y se detiene antes de la transición todavía no acordada. No se inventa una regla Ataque → Stun. 8.1 distingue orientación y comprobación. 9.1 numera estaciones y escalona la aparición de conexiones, conservando el control humano y el retorno al plan.
+- Animaciones locales con Web Animations API y `CountUp`, sin estado narrativo adicional, bucles infinitos, avance automático ni timers. Solo se ejecutan al entrar hacia adelante en una escena visible; se cancelan al cambiar de beat. Carga por URL, retroceso, captura y movimiento reducido muestran el estado final. Las ilustraciones con duración apreciable se marcan `auto` y tienen una indicación para el expositor.
+- No se modifican el motor, el número de beats ni las coordenadas de navegación. Se conserva la infografía original en su diapositiva independiente.
+- Por indicación del usuario, **no se ejecutaron tests, build, typecheck, capturas ni verificaciones automáticas**. Pendiente revisión visual y de navegación de las animaciones; no hay resultados de validación nuevos.
+
 ### Refinamiento de jerarquía y dirección de atención
 
 - Se mantienen el tema, la portada, el tono del expositor, los valores del guion y todos los beats, incluida la diapositiva independiente de la infografía original. No se modifica el motor.

@@ -2,6 +2,7 @@ import { defineDeck } from 'beatdeck';
 import '../themes/neutral.css';
 import '../themes/agent-ready.css';
 import './deck.css';
+import './game-visuals.css';
 import { config } from './deck.config';
 import { SCENES } from './scenes';
 import { TalkScene } from './scenes/TalkScene';

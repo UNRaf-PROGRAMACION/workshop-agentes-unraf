@@ -1,16 +1,20 @@
 import { Fragment } from 'react';
 import { Arrow, NodeBox } from 'beatdeck';
+import { useDiagramMotion } from './useDiagramMotion';
 
 /** Diagram coordinates are local to the fixed-size talk body. */
 export function StateQuestions({ expanded }: { expanded: boolean }) {
+  const motionRef = useDiagramMotion();
   const attack = { x: 0, y: 125, w: 430, h: 140 };
   const stun = { x: 850, y: 125, w: 430, h: 140 };
-  return <div className={`talk-diagram talk-state-map${expanded ? ' is-expanded' : ''}`}>
+  return <div ref={motionRef} className={`talk-diagram talk-state-map${expanded ? ' is-expanded' : ''}`}>
     <div className="talk-label">ESTADOS · TRANSICIONES POR DEFINIR</div>
     <div className="talk-state-context">Idle · Movimiento · Muerte</div>
     <NodeBox rect={attack} on value="Ataque" />
     <Arrow from={attack} to={stun} on tone="ghost" label="¿El daño interrumpe?" ly={-24} />
     <NodeBox rect={stun} on tone="ghost" kind="Stun · aturdimiento" value="¿Transición permitida?" />
+    <span className="game-state-token" data-motion="state" aria-hidden="true" />
+    <span className="game-state-gate" data-motion="arrive" data-delay="1200" aria-hidden="true">?</span>
     <p className="talk-state-gloss">Idle: reposo. La conexión es una pregunta, no una regla acordada.</p>
     {expanded ? <div className="talk-state-decisions">
       <div><span className="talk-label">PRIORIDADES</span><p>¿Qué input tiene prioridad<br />si llegan dos juntos?</p></div>
@@ -22,23 +26,25 @@ export function StateQuestions({ expanded }: { expanded: boolean }) {
 const CYCLE = ['Intención', 'Spec', 'Plan', 'Cambio pequeño', 'Verificación', 'Evidencia'];
 
 export function WorkCycle({ step }: { step: number }) {
+  const motionRef = useDiagramMotion();
   const decision = { x: 500, y: 380, w: 640, h: 140 };
   const positions = [
-    { x: 0, y: 0, w: 480, h: 110 }, { x: 540, y: 0, w: 480, h: 110 },
-    { x: 1080, y: 0, w: 480, h: 110 }, { x: 1080, y: 190, w: 480, h: 110 },
-    { x: 540, y: 190, w: 480, h: 110 }, { x: 0, y: 190, w: 480, h: 110 },
+    { x: 0, y: 0, w: 480, h: 130 }, { x: 540, y: 0, w: 480, h: 130 },
+    { x: 1080, y: 0, w: 480, h: 130 }, { x: 1080, y: 190, w: 480, h: 130 },
+    { x: 540, y: 190, w: 480, h: 130 }, { x: 0, y: 190, w: 480, h: 130 },
   ];
-  return <div className="talk-diagram talk-work-cycle">
+  return <div ref={motionRef} className="talk-diagram talk-work-cycle">
     {CYCLE.map((name, index) => {
       const rect = positions[index];
       const visible = index < 3 || step >= 1;
       return <Fragment key={name}>
-        {index > 0 ? <Arrow from={positions[index - 1]} to={rect} on={visible} /> : null}
-        <NodeBox rect={rect} on={visible} value={name} tone={index === 5 ? 'hot' : 'normal'} />
+        {index > 0 ? <Arrow from={positions[index - 1]} to={rect} on={visible} delay={index * 180} /> : null}
+        <NodeBox rect={rect} on={visible} kind={`0${index + 1}`} value={name} tone={index === (step === 0 ? 2 : 5) ? 'hot' : 'normal'} delay={index * 180} />
+        {visible ? <span className="game-cycle-station" style={{ left: rect.x + rect.w - 30, top: rect.y + 16 }} data-motion="arrive" data-delay={step === 0 ? index * 220 : Math.max(0, index - 3) * 220} aria-hidden="true">◆</span> : null}
       </Fragment>;
     })}
     {step >= 2 ? <>
-      <Arrow from={{ x: 240, y: 300 }} to={{ x: 240, y: 450 }} on head={false} tone="hot" />
+      <Arrow from={{ x: 240, y: 320 }} to={{ x: 240, y: 450 }} on head={false} tone="hot" />
       <Arrow from={{ x: 240, y: 450 }} to={{ x: 500, y: 450 }} on tone="hot" />
     </> : null}
     <NodeBox rect={decision} on={step >= 2} tone="hot" kind="Decisión humana" value="Aceptar, ajustar o detener." />
@@ -52,6 +58,7 @@ export function WorkCycle({ step }: { step: number }) {
 }
 
 export function HarnessMap() {
+  const motionRef = useDiagramMotion();
   const agent = { x: 610, y: 140, w: 420, h: 150 };
   const sources = [
     { name: 'AGENTS.md', detail: 'Cómo trabajar en este repositorio.', rect: { x: 0, y: 0, w: 480, h: 150 } },
@@ -59,27 +66,30 @@ export function HarnessMap() {
     { name: 'Specs y planes', detail: 'Qué cambio estamos realizando.', rect: { x: 0, y: 280, w: 480, h: 150 } },
     { name: 'Pruebas y comandos', detail: 'Cómo comprobarlo.', rect: { x: 1160, y: 280, w: 480, h: 150 } },
   ];
-  return <div className="talk-diagram talk-harness-map">
+  return <div ref={motionRef} className="talk-diagram talk-harness-map">
     {sources.map(({ name, detail, rect }) => <Fragment key={name}>
       <Arrow from={name === 'Pruebas y comandos' ? agent : rect} to={name === 'Pruebas y comandos' ? rect : agent} on tone={name === 'Pruebas y comandos' ? 'hot' : 'ghost'} />
       <NodeBox rect={rect} on kind={name} value={detail} />
     </Fragment>)}
     <NodeBox rect={agent} on tone="hot" kind="Harness" value="Trabajo del agente" />
+    <div className="game-harness-caption" data-motion="arrive" data-delay="800"><span>Orientar el trabajo.</span><span className="accent">Comprobar el resultado.</span></div>
   </div>;
 }
 
 /** Schematic, not a measured trajectory or an additional gameplay rule. */
 export function JumpSketch() {
-  return <figure className="talk-jump-sketch">
+  const motionRef = useDiagramMotion();
+  return <div ref={motionRef} className="game-visual game-jump"><figure className="talk-jump-sketch">
     <svg width="720" height="290" viewBox="0 0 720 290" role="img" aria-label="Esquema de salto: margen después del borde y ascenso hasta el ápice. Sin escala.">
       <path d="M20 230 H220 V270 M560 230 H700" fill="none" stroke="var(--ink-3)" strokeWidth="3" />
       <path d="M220 230 H300" fill="none" stroke="var(--amber)" strokeWidth="5" strokeDasharray="8 8" />
-      <path d="M300 230 Q405 -90 560 230" fill="none" stroke="var(--accent)" strokeWidth="4" />
+      <path d="M300 230 Q405 -90 560 230" fill="none" stroke="var(--accent)" strokeWidth="4" pathLength="1" strokeDasharray="1" strokeDashoffset="0" data-motion="draw" />
       <circle cx="418" cy="70" r="8" fill="var(--accent)" />
       <path d="M418 88 V230" stroke="var(--hair-strong)" strokeWidth="2" strokeDasharray="6 8" />
       <text x="50" y="180" fill="var(--amber)" fontSize="25" fontFamily="var(--font-sans)">Coyote time · 0,1 s</text>
       <text x="450" y="50" fill="var(--accent)" fontSize="25" fontFamily="var(--font-sans)">Ápice · 0,35 s</text>
+      <g className="game-jump-player" data-motion="jump" aria-hidden="true"><path d="M-10 -28H10V-10H16V0H-16V-10H-10Z" fill="var(--ink)" /><path d="M2 -22H7V-17H2Z" fill="var(--bg)" /></g>
     </svg>
     <figcaption>Del borde al salto · del despegue al ápice.<br />Esquema sin escala; valores ilustrativos para probar.</figcaption>
-  </figure>;
+  </figure></div>;
 }
