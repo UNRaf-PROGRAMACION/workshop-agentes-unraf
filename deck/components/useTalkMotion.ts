@@ -2,11 +2,13 @@ import { useLayoutEffect, useRef, useSyncExternalStore } from 'react';
 import { flags, reducedMotion, useScene } from 'beatdeck';
 
 // These containers arrange content; animate their children, not the whole layout.
-const GROUPS = '.talk-columns, .talk-column, .talk-clues, .talk-agent-layout, .talk-assistants, .talk-flow, .talk-rows, .talk-stack, .talk-vs-layout, .talk-window-items, .talk-numbers, .talk-chips, .talk-closing-layout, .talk-tools, .talk-acceptance-layout, .talk-acceptance-list, .talk-bonus-tips, .talk-ego-objections, .talk-lives';
+const GROUPS = '.talk-columns, .talk-column, .talk-clues, .talk-agent-layout, .talk-assistants, .talk-flow, .talk-rows, .talk-stack, .talk-vs-layout, .talk-window-items, .talk-numbers, .talk-chips, .talk-closing-layout, .talk-tools, .talk-acceptance-layout, .talk-acceptance-list, .talk-bonus-tips, .talk-ego-objections, .talk-lives, .talk-opening-questions, .talk-context-selection, .talk-token-notes, .talk-document-levels, .talk-tips-layout, .talk-practice-transition, .talk-safety-groups, .talk-prompt-context';
 
 function collect(parent: Element): HTMLElement[] {
   return Array.from(parent.children).flatMap((child) => {
     if (!(child instanceof HTMLElement)) return [];
+    // NodeBox / Arrow own their beat visibility and motion, including hidden nodes.
+    if (child.matches('.talk-diagram')) return [];
     if (child.matches(GROUPS) || (child.tagName === 'DIV' && !child.className)) return collect(child);
     return [child];
   });

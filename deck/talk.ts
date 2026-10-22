@@ -59,7 +59,7 @@ export const SLIDES: Slide[][] = [
   ],
   [
     { id: '9.1', title: 'El ciclo completo', layout: 'cycle', steps: ['Intención, spec y plan', 'Cambio y evidencia', 'Decisión humana'] },
-    { id: '9.2', title: 'El criterio va más allá de la herramienta.', layout: 'closing', steps: ['Las habilidades transferibles', 'La pregunta que nos llevamos'] },
+    { id: '9.2', title: 'El criterio va más allá de la herramienta.', layout: 'closing', steps: ['Las habilidades transferibles', 'La pregunta que nos llevamos', 'La herramienta del workshop'] },
   ],
   [
     { id: '10.1', title: 'Tips para trabajar con agentes.', layout: 'bonus-tips', steps: ['Un GDD vivo', 'Actualizar las decisiones', 'Assets y referencias explícitas'] },

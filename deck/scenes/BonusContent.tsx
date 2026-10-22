@@ -19,11 +19,14 @@ const ACCEPTANCE = [
 export function BonusContent({ layout, step }: { layout: BonusLayout; step: number }) {
   switch (layout) {
     case 'bonus-tips': return <>
-      <div className="talk-label">PREGUNTAS COMUNES · CRITERIOS · TIPS</div>
-      <div className="talk-bonus-tips">{TIPS.slice(0, step + 1).map(([question, answer]) =>
-        <div className="talk-row" key={question}><span>{question}</span><span className="muted">{answer}</span></div>,
-      )}</div>
-      {step >= 2 ? <p className="accent talk-bonus-tip-result">Decisiones claras → el agente puede implementar sin adivinar.</p> : null}
+      <div className="talk-tips-layout"><div className="talk-document talk-gdd-example">
+        <div className="talk-label">GDD VIVO · ESTRUCTURA ILUSTRATIVA</div>
+        <h2>Diseño del juego</h2>
+        <div className="talk-gdd-section">Visión y reglas<span>Markdown o un formato editable.</span></div>
+        {step >= 1 ? <div className="talk-gdd-section">Decisiones acordadas<span>Actualizar al aclarar las specs.</span></div> : null}
+        {step >= 2 ? <div className="talk-gdd-section">Anexo de assets<span>Referencias · archivos · rutas · usos.</span></div> : null}
+      </div><div className="talk-tip-explanation" key={step}><div className="talk-label">PREGUNTAS COMUNES · CRITERIOS · TIPS</div><h2>{TIPS[step][0]}</h2><p>{TIPS[step][1]}</p></div></div>
+      {step >= 2 ? <p className="talk-takeaway">Decisiones claras → <span className="accent">implementar sin adivinar.</span></p> : null}
     </>;
     case 'bonus-ego': return step === 0 ? <>
       <h2 className="accent">¿Saben lo que es?</h2>
@@ -40,11 +43,10 @@ export function BonusContent({ layout, step }: { layout: BonusLayout; step: numb
       <p className="talk-ego-responsibility">Está en saber <span className="accent">qué construir, cuándo, por qué<br />y con qué nivel de calidad.</span></p>
       <p>En cuestionar, revisar, decidir y asumir responsabilidad.</p>
     </>;
-    case 'bonus-acceptance': return <div className="talk-acceptance-layout">
-      <ol className="talk-acceptance-list">{ACCEPTANCE.slice(0, step + 1).map(([phase, explanation]) =>
-        <li key={phase}><strong>{phase}</strong><span>{explanation}</span></li>,
-      )}</ol>
-      <img className="talk-grief-image" src={griefImage} width={896} height={1200} alt="Infografía de Psicopedia: etapas del proceso de pérdida según E. Kübler-Ross; negación, ira, negociación, depresión y aceptación." />
-    </div>;
+    case 'bonus-acceptance': return <>
+      <div className="talk-acceptance-phases" aria-label="Reacciones ilustrativas, sin orden obligatorio">{ACCEPTANCE.map(([phase], index) => <span className={index === step ? 'is-current' : undefined} key={phase} aria-current={index === step ? 'step' : undefined}>{phase}</span>)}</div>
+      <div className="talk-acceptance-focus" key={step}><div className="talk-label">{ACCEPTANCE[step][0]}</div><div className="talk-big">{ACCEPTANCE[step][1]}</div></div>
+      <div className="talk-metaphor-note"><p>Es una metáfora: <span className="accent">no son etapas obligatorias ni lineales.</span></p><a className="talk-reference" href={griefImage} target="_blank" rel="noopener noreferrer" onClick={(event) => event.stopPropagation()}>Ver infografía original · referencia complementaria ↗</a></div>
+    </>;
   }
 }

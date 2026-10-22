@@ -14,8 +14,8 @@ Fuente conceptual: `01-marco-conceptual.md`. Guion aprobado y ampliado: `guion-p
 | Verificación en videojuegos | 6–8 | Lógica, integración, visual y playtest; límites de cada evidencia en notas. |
 | SDD en videojuegos · guion 7.1–7.7 | 7 | Siete slides: parámetros de gameplay y tuning; game feel con coyote time y jump buffering; máquinas de estados; playtest y balance; GDD/spec/plan; game design separado de implementación; restricciones de plataforma. Ejemplos desarrollados en notas, síntesis por clic en pantalla. |
 | Seguridad y uso académico | 8 | Secretos, permisos, revisión, comprensión y declaración de asistencia. |
-| Panorama actual | 9 | OpenCode destacado como herramienta del workshop; Claude Code, Codex e «y muchos más…» en una columna lateral de 9.2, sin comparativa de productos. |
-| BONUS solicitado por el expositor | 10 · después de 9.2 | Tres slides: GDD vivo y anexo de assets; ego de programador con lectura recomendada; duelo como metáfora de la adopción de IA, con cinco explicaciones ilustrativas y la infografía original. Se conserva el cierre previo sin cambios. |
+| Panorama actual | 9 | OpenCode destacado como herramienta del workshop; Claude Code, Codex e «y muchos más…» en un tercer beat de transición de 9.2, separado de la pregunta final, sin comparativa de productos. |
+| BONUS solicitado por el expositor | 10 · después de 9.2 | Tres slides: GDD vivo y anexo de assets; ego de programador con lectura recomendada; duelo como metáfora de la adopción de IA, con una frase enfocada por clic. La infografía original se conserva como referencia local opcional. |
 
 ## Decisiones de presentación
 
@@ -23,14 +23,28 @@ Fuente conceptual: `01-marco-conceptual.md`. Guion aprobado y ampliado: `guion-p
 - Tema `agent-ready` sobre la base neutral: azul noche, menta y ámbar de la referencia `../create-agent-ready`; Inter y Roboto Condensed empaquetadas localmente. Escenario fijo 1920×1080, sin servicios externos.
 - Se conserva la demo original en sus archivos sin montarla; no se modifica el motor ni `examples/`.
 - El guion Markdown alimenta directamente las notas del presentador para evitar duplicar la narración.
-- `docs/media/2.2.png` es la imagen solicitada; se conserva su proporción y se incluye en el bundle.
-- Logos de 9.2: SVG de theSVG guardados en `deck/assets/`, sin peticiones remotas. Fuentes: `https://thesvg.org/icons/opencode/default.svg`, `https://thesvg.org/icons/claude-code/default.svg` y `https://thesvg.org/icons/codex/dark.svg`. Se mantiene el contenido y los dos beats del cierre.
+- `docs/media/2.2.png` es la imagen solicitada; se conserva el archivo original y su proporción, con un recorte visual de la zona superior para eliminar espacio vacío. Se incluye en el bundle.
+- Logos de 9.2: SVG de theSVG guardados en `deck/assets/`, sin peticiones remotas. Fuentes: `https://thesvg.org/icons/opencode/default.svg`, `https://thesvg.org/icons/claude-code/default.svg` y `https://thesvg.org/icons/codex/dark.svg`. El cierre conserva sus dos beats y agrega un tercero de transición para las herramientas.
 - 2.1: a pedido del usuario, se reemplaza el TODO de foto por los iconos de ChatGPT, Claude, Gemini, v0, Lovable y Replit en una grilla. SVG locales de theSVG, sin peticiones remotas: `https://thesvg.org/icons/openai-chatgpt/default.svg`, `https://thesvg.org/icons/claude/default.svg`, `https://thesvg.org/icons/gemini/default.svg`, `https://thesvg.org/icons/v0/dark.svg`, `https://thesvg.org/icons/lovable/default.svg` y `https://thesvg.org/icons/replit/default.svg`. Marcas de sus respectivos titulares; se mantienen el texto y los beats.
 - Autores y título del workshop proporcionados para la portada. Fecha y QR no fueron proporcionados: no se muestran datos ni enlaces inventados.
 - Tiempos de salto de 0,1 s y 0,35 s son hipótesis ilustrativas del guion; no recomendaciones universales ni prueba de buen game feel.
 - “Evita la mayoría de bugs” y “la IA respeta siempre las reglas” no se presentan como garantías: definir ayuda a prevenir y siempre requiere comprobar.
 
 ## Verificación
+
+### Aplicación de la auditoría de layout y decisiones de presentación
+
+- Cambios aplicados en `deck/`, sin modificar el motor. Se conserva la identidad visual, la portada, los hechos del guion, los valores ilustrativos y el tono del expositor en 10.2.
+- 1.1: preguntas independientes sin flechas; la conclusión pasa del pie al cuerpo. 2.1: ejemplo conversacional dominante y marcas secundarias. 2.2: recorte de la captura original, explícitamente identificado como interfaz, no como evidencia de una acción ejecutada.
+- 2.3: pausa participativa. 2.4–3.3: selección de contexto, permisos y conclusiones visibles; preguntas agrupadas; ventana finita sin porcentajes inventados. Tokens, capacidad, latencia y costo no se presentan como conceptos equivalentes.
+- 4.1–5.2: retorno de iteración, titulares con menos competencia, parches dependientes y separación entre definición de SDD y proceso. La spec pasa de estructura general a ejemplo de vidas en el segundo beat.
+- 6.1: se preservan izquierda/VS/derecha y las reglas completas; letras A–D relacionan preguntas con respuestas. Reglas, alcance y evidencia se distinguen. 6.2: daño adicional a cero destacado como caso límite.
+- 7.1–7.7: parámetros vinculados al tuning; salto esquemático sin escala ni valores nuevos; conexión Ataque/Stun punteada como pregunta, no transición aprobada. Visión, feature y ruta técnica en niveles; separación de roles y verificación en plataforma explícitas.
+- 8.1–9.1: harness como relaciones alrededor del agente; estructura de evidencia manual sin resultados ficticios; seguridad por función; comprensión como cierre; ciclo conectado con decisión humana y retorno a spec/plan.
+- 9.2: pregunta final sin logos. Nuevo beat `#9.6` para herramientas y puente hacia la práctica; BONUS conserva sus coordenadas de escena. Las notas siguen tomando su narración del guion.
+- 10.1: estructura ilustrativa de GDD y una explicación por clic. 10.3: una frase dominante por clic, advertencia no clínica/no lineal visible e infografía completa disponible por enlace al asset local original. No se elimina ni modifica la imagen fuente.
+- Los diagramas usan `NodeBox`/`Arrow` del motor. Se excluyen de la animación cosmética general para no sobrescribir la visibilidad propia de sus nodos.
+- Por pedido del usuario, **no se ejecutaron tests, build, typecheck, capturas ni verificación de navegación o layout**. Los resultados y capturas históricos siguientes no validan estos cambios. Pendiente revisión visual de todos los beats, proyección y navegación adelante/atrás/URL.
 
 ### Rediseño visual con referencia create-agent-ready
 

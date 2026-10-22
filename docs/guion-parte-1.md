@@ -7,7 +7,7 @@ Audiencia: estudiantes de videojuegos y otras áreas de desarrollo. Duración or
 
 Idea central: el agente puede acelerar el trabajo; definir la intención, establecer límites y aceptar el resultado sigue siendo responsabilidad humana.
 
-Los prompts son ejemplos didácticos, no citas externas. Los valores de vidas y salto son ilustrativos y deben acordarse para el juego real. Foto de 2.1: TODO. Imagen de 2.2: `docs/media/2.2.png`.
+Los prompts son ejemplos didácticos, no citas externas. Los valores de vidas y salto son ilustrativos y deben acordarse para el juego real. 2.1 usa logos locales de interfaces conocidas; no requiere una foto pendiente. Imagen de 2.2: `docs/media/2.2.png`.
 
 ## 1. Apertura
 
@@ -49,7 +49,7 @@ Un chat donde podés hacer preguntas y recibir respuestas.
 
 Ejemplos: «Explicame esta función». «¿Qué significa este error?». «Dame un ejemplo de movimiento».
 
-Visual: espacio amplio reservado para una foto. TODO: seleccionar imagen.
+Visual: ejemplo de pregunta y rol del usuario al aplicar la respuesta. Logos locales de interfaces conocidas como referencia secundaria, no como clasificación rígida de capacidades.
 
 **Narración:**
 
@@ -68,6 +68,8 @@ Modelo (LLM) + Instrucciones (prompts) + Herramientas (tools).
 Modelo: genera respuestas y propone acciones. Instrucciones: orientan la tarea y sus límites. Herramientas: permiten leer, editar y ejecutar.
 
 Visual: `docs/media/2.2.png`.
+
+Tratamiento visual: recorte de la conversación y el panel de contexto para quitar espacio vacío. Se aclara que muestra la interfaz y herramientas conectadas, no una acción ejecutada.
 
 **Narración:**
 
@@ -490,6 +492,8 @@ PLAN: la ruta técnica. Cómo realizar el cambio en este repositorio.
 
 GDD → Spec de una feature → Plan técnico.
 
+Visual: tres niveles conectados, desde la visión del juego hasta la ruta técnica. Ejemplo de feature: sistema de reaparición.
+
 **Narración:**
 
 El GDD, o Game Design Document, conserva la visión del juego, sus pilares y el core loop: el ciclo principal de acciones que repite el jugador.
@@ -635,6 +639,8 @@ No solamente: «¿La IA escribió código?».
 
 ¿Podemos explicar qué cambió y con qué evidencia lo aceptamos?
 
+Tratamiento visual: habilidades transferibles, pregunta final sin logos y un tercer clic separado de transición a la práctica con OpenCode, Claude Code y Codex como referencias de herramientas.
+
 **Narración:**
 
 En el workshop vamos a usar OpenCode. Existen otras herramientas y el ecosistema cambia rápido.
@@ -713,7 +719,7 @@ La definición en pantalla es el texto aportado por el expositor, no una cita te
 4. Depresión / desánimo: «Entonces, ¿dónde queda mi valor?».
 5. Aceptación: «Mi criterio sigue siendo clave; puedo construir con estas herramientas».
 
-Infografía: etapas del proceso de pérdida según E. Kübler-Ross.
+Infografía complementaria: etapas del proceso de pérdida según E. Kübler-Ross, disponible mediante un enlace al archivo local original.
 
 Es una metáfora: no son etapas obligatorias ni lineales.
 
@@ -733,4 +739,4 @@ Depresión o desánimo: preguntarnos dónde queda nuestro valor cuando cambia la
 
 Aceptación: integrar las herramientas con criterio, revisión y responsabilidad. No significa creer que nunca se equivocan.
 
-La fuente aclara que las fases no son una secuencia obligatoria ni lineal. La infografía original se conserva completa a la derecha; las explicaciones adaptadas aparecen a la izquierda, una por clic.
+La fuente aclara que las fases no son una secuencia obligatoria ni lineal. Cada clic enfoca una frase ilustrativa, sin flechas de progresión. La aclaración de la metáfora permanece visible; la infografía original completa se conserva como referencia opcional mediante un enlace al archivo local.
