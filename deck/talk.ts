@@ -21,7 +21,7 @@ export const SLIDES: Slide[][] = [
     { id: '2.3', title: 'Asistente vs. agente', layout: 'compare', steps: ['Antes: ¿qué cambia?'] },
     { id: '2.4', title: '¿Qué es el contexto?', layout: 'repository', steps: ['La información disponible', 'Acceso no significa lectura'] },
     { id: '2.5', title: 'De responder a actuar.', layout: 'compare', steps: ['Responder vs. actuar', 'Herramientas y permisos'] },
-    { id: '2.6', title: 'La diferencia, en una frase', layout: 'equation', steps: ['Asistente = chat', 'Agente = chat que acciona'] },
+    { id: '2.6', title: 'La diferencia, en una frase', layout: 'equation', steps: ['Un asistente responde', 'Un agente puede actuar'] },
   ],
   [
     { id: '3.1', title: 'El prompt no es todo el contexto', layout: 'prompt', steps: ['Lo que pedís', 'Lo que necesita saber'] },

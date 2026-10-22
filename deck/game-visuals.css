@@ -13,16 +13,20 @@
 .game-opening-rule { margin-top: 30px; border-top: 2px dashed var(--hair-strong); }
 .talk-body .game-opening p { margin-top: 20px; font-size: 27px; color: var(--ink-2); }
 .talk-layout-opening .talk-big { max-width: 1100px; font-size: 140px; }
-.talk-layout-opening.talk-step-2 .game-opening { opacity: .5; }
+.talk-layout-opening.talk-step-2 .game-opening { display: none; }
 .game-arena { position: relative; height: 290px; margin-top: 24px; border-top: 1px solid var(--hair-strong); }
 .game-life-meter { position: absolute; left: 0; top: 24px; display: grid; grid-template-columns: 120px 150px; align-items: center; }
 .game-life-meter > span { color: var(--ink-2); font: 600 24px var(--font-sans); letter-spacing: .12em; }
 .game-life-meter > strong { font: 800 120px/1 var(--font-display); font-variant-numeric: tabular-nums; }
+.game-life-value { position: relative; display: block; height: 120px; }
+.game-life-value > span { position: absolute; inset: 0; opacity: 0; }
+.game-life-value > .is-final { opacity: 1; }
 .game-hearts { grid-column: 1 / -1; display: flex; gap: 18px; margin-top: 12px; }
 .game-hearts span { display: block; font-size: 45px; color: var(--accent); opacity: .12; }
 .game-character { position: absolute; left: 640px; bottom: 34px; color: var(--ink-3); }
 .game-ground { position: absolute; bottom: 32px; left: 420px; right: 540px; height: 3px; background: var(--hair-strong); }
 .game-damage { position: absolute; left: 615px; top: 150px; font-size: 36px; color: var(--amber); opacity: 0; }
+.game-damage.is-blocked { left: 560px; }
 .game-defeat { position: absolute; left: 940px; top: 65px; border-left: 3px solid var(--accent); padding-left: 34px; }
 .game-defeat > span { display: block; color: var(--accent); font: 800 62px/1 var(--font-display); }
 .game-defeat > strong { display: block; margin-top: 18px; font: 500 34px/1.2 var(--font-sans); color: var(--ink-2); }
@@ -36,26 +40,43 @@
 .game-lives.is-compact .game-life-sequence { margin-top: 22px; padding-bottom: 24px; font-size: 46px; }
 .talk-layout-lives.talk-step-2 .talk-rows { margin-top: 32px; }
 .game-context { margin-top: 44px; }
-.game-context-slots { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-top: 28px; }
-.game-context-piece { min-height: 190px; border: 1px solid var(--hair-strong); border-top: 3px solid var(--accent); padding: 28px; }
+.game-context-slots { display: flex; flex-wrap: wrap; align-items: center; gap: 30px 54px; margin-top: 28px; padding: 54px 38px; border: 2px solid var(--accent); }
+.game-context-piece { padding: 14px 0; }
 .game-context-piece > span { display: block; margin-bottom: 28px; font: 500 48px/1 var(--font-mono); color: var(--accent); }
 .game-context-piece > strong { font: 600 36px/1.2 var(--font-display); }
 .game-context-bracket { height: 22px; border: 2px solid var(--accent); border-top: 0; margin-top: 18px; }
 .talk-body .game-context p { text-align: center; margin-top: 24px; font-size: 34px; }
 .game-context > .game-demo-label:last-child { text-align: center; font-size: 20px; }
 .game-jump-player { transform: translate(560px, 230px); }
-.game-state-token { position: absolute; left: 780px; top: 188px; width: 16px; height: 16px; background: var(--amber); border: 3px solid var(--bg); }
+.game-state-token { position: absolute; left: 740px; top: 188px; width: 16px; height: 16px; background: var(--amber); border: 3px solid var(--bg); }
 .game-state-gate { position: absolute; left: 800px; top: 170px; color: var(--amber); font: 800 44px/1 var(--font-display); }
+.game-state-gate::before { content: ''; position: absolute; left: -18px; top: -16px; height: 80px; border-left: 3px dashed var(--amber); }
 .game-cycle-station { position: absolute; color: var(--accent); font-size: 20px; }
 .talk-work-cycle .bd-node-kind { font-size: 18px; line-height: 1; margin-bottom: 10px; color: var(--ink-3); }
 .game-harness-caption { position: absolute; top: 480px; left: 0; right: 0; display: flex; justify-content: space-between; font: 600 36px/1.2 var(--font-display); }
+.talk-harness-map::before { content: ''; position: absolute; inset: -54px -24px 148px; border: 2px dashed var(--hair-strong); pointer-events: none; }
+.game-harness-label { position: absolute; top: -42px; left: 24px; color: var(--accent); font: 700 21px/1.4 var(--font-sans); letter-spacing: .1em; }
 .game-flow { position: relative; }
 .game-flow-token { position: absolute; top: -5px; width: 12px; height: 12px; background: var(--accent); transform: rotate(45deg); }
 .talk-layout-fixes .talk-fix { position: relative; border-left: 4px solid var(--amber); }
-.talk-layout-fixes .talk-fix::after { content: '+'; position: absolute; right: 16px; top: 12px; font: 24px var(--font-mono); color: var(--ink-3); }
 .talk-layout-fixes .talk-fix:nth-child(2) { transform: rotate(-2deg); }
 .talk-layout-fixes .talk-fix:nth-child(3) { transform: rotate(2deg); }
 .talk-layout-fixes .talk-fix.base::after { content: none; }
+
+/* Keep supporting information readable; hierarchy comes from scale and placement. */
+.talk-layout-opening.talk-step-2 .talk-big { font-size: 88px; }
+.talk-layout-opening.talk-step-2 .talk-opening-questions { margin-top: 32px; }
+.talk-layout-opening.talk-step-2 .talk-opening-questions { opacity: .8; }
+.talk-layout-opening.talk-step-2 .talk-takeaway { margin-top: 44px; font-size: 72px; max-width: 1500px; }
+.talk-layout-explore.talk-step-1 .talk-column:first-child,
+.talk-layout-design.talk-step-1 .talk-columns { opacity: 1; }
+.talk-layout-clues.talk-step-1 .talk-rows,
+.talk-layout-repository.talk-step-1 .talk-context-selection > div:first-child { opacity: .8; }
+.talk-layout-parameters.talk-step-1 .talk-rows { margin-bottom: 50px; }
+.talk-layout-platform.talk-step-1 .talk-body > .talk-label { margin-bottom: 30px; }
+.talk-layout-platform.talk-step-1 .talk-platform-flow { margin-top: 50px; }
+.talk-document-levels.is-example .talk-document-level h2 { font-size: 42px; }
+.talk-loop-back { border-right: 2px solid var(--hair-strong); }
 
 /* Authored motion uses WAAPI and is canceled by useDiagramMotion on navigation.
    No ambient loops, timers or CSS transitions can replay on hidden scenes. */

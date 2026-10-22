@@ -103,8 +103,8 @@ function Content({ layout, step, id }: { layout: Layout; step: number; id: strin
       {step >= 1 ? <p className="talk-takeaway">Tener acceso <span className="accent">no significa haber leído todo.</span></p> : null}
     </>;
     case 'equation': return <>
-      <div className="talk-equation">Asistente = chat.</div>
-      {step >= 1 ? <div className="talk-equation accent">Agente = chat,<br />pero que acciona.</div> : null}
+      <div className="talk-equation">Un asistente responde.</div>
+      {step >= 1 ? <div className="talk-equation accent">Un agente puede actuar.</div> : null}
     </>;
     case 'prompt': return <Columns left={<>
       <div className="talk-label">LO QUE PEDÍS</div><h2>Agregá enemigos<br />que persigan<br />al jugador.</h2>
@@ -187,10 +187,16 @@ function Content({ layout, step, id }: { layout: Layout; step: number; id: strin
         ['Vidas no negativas', 'Prueba de lógica.'], ['Una única derrota', 'Prueba de eventos o integración.'], ['Señal de derrota visible', 'Comprobación visual.'],
       ]} /> : null}
     </>;
-    case 'parameters': return <>
+    case 'parameters': return step === 0 ? <>
       <div className="talk-big">Gameplay,<br /><span className="accent">no números mágicos.</span></div>
       <div className="talk-chips">{['Velocidad', 'Gravedad', 'Cooldowns', 'Daño', 'Spawn de enemigos'].map((x) => <span key={x}>{x}</span>)}</div>
-      {step >= 1 ? <><Flow items={['Spec: qué ajustar', 'Plan: dónde centralizarlo', 'Tuning: probar y ajustar']} focus={2} /><p className="talk-small muted">Ejemplo en Unity: ScriptableObjects para facilitar el tuning.</p></> : null}
+    </> : <>
+      <Rows items={[
+        ['Intención', 'Ajustar cómo se juega, no perseguir valores dispersos.'],
+        ['Spec', 'Qué parámetros importan y cuáles quedan configurables.'],
+        ['Plan · Unity', 'Dónde centralizarlos: por ejemplo, ScriptableObjects.'],
+      ]} />
+      <Flow items={['Localizar el parámetro', 'Ajustar', 'Probar y volver a iterar']} focus={2} />
     </>;
     case 'feel': return <>
       <h2>«Que el salto se sienta responsivo».</h2>
@@ -204,12 +210,16 @@ function Content({ layout, step, id }: { layout: Layout; step: number; id: strin
       {step >= 2 ? <p className="accent" style={{ fontSize: 38 }}>Playtest → ¿logramos el game feel buscado?</p> : null}
     </>;
     case 'states': return <StateQuestions expanded={step >= 1} />;
-    case 'roles': return <><div className="talk-document-levels">{[
+    case 'roles': return <><div className={`talk-document-levels${step >= 1 ? ' is-example' : ''}`}>{(step === 0 ? [
       ['GDD', 'Game Design Document', 'Visión, pilares, core loop, mecánicas y tono.'],
       ['SPEC', 'Una feature concreta', 'Comportamiento, alcance y criterios de aceptación.'],
       ['PLAN', 'La ruta técnica', 'Cómo realizar el cambio en este repositorio.'],
-    ].map(([name, label, detail], index) => <div className="talk-document-level" key={name}><span className="talk-level-name">{name}</span><div><h2>{label}</h2><p>{detail}</p></div>{index < 2 ? <span className="talk-level-down" aria-hidden="true">↓</span> : null}</div>)}</div>
-      {step >= 1 ? <p className="talk-takeaway">De la visión a una feature: <span className="accent">sistema de reaparición.</span></p> : null}</>;
+    ] : [
+      ['GDD', 'La visión del juego', '¿Cómo encaja la reaparición en la experiencia del jugador?'],
+      ['SPEC', 'El sistema de reaparición', 'Acordar comportamiento, alcance y criterios de aceptación.'],
+      ['PLAN', 'Integrarlo en este repositorio', 'Inspeccionar el proyecto y definir la ruta técnica.'],
+    ]).map(([name, label, detail], index) => <div className="talk-document-level" key={name}><span className="talk-level-name">{name}</span><div><h2>{label}</h2><p>{detail}</p></div>{index < 2 ? <span className="talk-level-down" aria-hidden="true">↓</span> : null}</div>)}</div>
+      {step >= 1 ? <p className="talk-takeaway">La misma feature. <span className="accent">Tres tipos de decisión.</span></p> : null}</>;
     case 'design': return <><div className="talk-shared-feature">UNA MISMA FEATURE · DOS TIPOS DE DECISIÓN</div><Columns left={<>
       <div className="talk-label">GAME DESIGN</div><h2>Qué experiencia<br />buscamos.</h2>
       <p>Necesidades del jugador.<br />Reglas de gameplay.</p>
@@ -217,9 +227,16 @@ function Content({ layout, step, id }: { layout: Layout; step: number; id: strin
       <div className="talk-label">IMPLEMENTACIÓN</div><h2>Cómo construirla<br />en este proyecto.</h2>
       <p>Solución técnica.<br />Integración con el código existente.</p>
     </>} />{step >= 1 ? <p className="talk-takeaway">Una comodidad técnica <span className="accent">no es, por sí sola, una decisión de diseño.</span></p> : null}</>;
-    case 'platform': return <>
+    case 'platform': return step === 0 ? <>
       <h2>¿Dónde tiene que funcionar?</h2><div className="talk-chips">{['Input táctil', 'Resolución', 'Orientación', 'Presupuesto de rendimiento', 'Tamaño de build'].map((x) => <span key={x}>{x}</span>)}</div>
-      {step >= 1 ? <><div className="talk-platform-flow"><Flow items={['Reglas estables del proyecto', 'Specs de cada cambio', 'Verificaciones']} focus={2} /></div><p className="talk-takeaway">Comprobarlo <span className="accent">en la plataforma de destino.</span></p></> : null}
+    </> : <>
+      <div className="talk-label">DEL DISEÑO A LA COMPROBACIÓN</div>
+      <Rows items={[
+        ['Input táctil', 'Una interacción de teclado puede no funcionar en pantalla táctil.'],
+        ['Rendimiento', 'Que funcione en nuestra computadora no alcanza.'],
+      ]} />
+      <div className="talk-platform-flow"><Flow items={['Reglas del proyecto', 'Spec del cambio', 'Probar en destino']} focus={2} /></div>
+      <p className="talk-takeaway">Comprobarlo <span className="accent">en la plataforma de destino.</span></p>
     </>;
     case 'harness': return <>
       {step === 0 ? <><div className="talk-label">HARNESS</div><div className="talk-big">El agente no trabaja<br /><span className="accent">en el vacío.</span></div><p className="talk-harness-definition">Reglas, instrucciones, herramientas y verificaciones<br />que encuadran su trabajo.</p></> : <HarnessMap />}

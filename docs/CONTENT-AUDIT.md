@@ -32,6 +32,18 @@ Fuente conceptual: `01-marco-conceptual.md`. Guion aprobado y ampliado: `guion-p
 
 ## Verificación
 
+### Segunda auditoría · causalidad, jerarquía y movimiento
+
+- Se mantienen identidad visual, número de beats, URLs, logos y todos los contenidos del BONUS. Se conserva el tono de 10.2 pedido por el expositor; la metáfora y su referencia permanecen como material opcional, sin recortar sus frases ni inventar otra fuente.
+- 6.2 sustituye el contador continuo por valores discretos. Impactos, corazones, descuento y derrota comparten los mismos hitos temporales; el daño posterior termina antes de la barrera. La representación sigue rotulada como simulación didáctica, no evidencia de un juego implementado.
+- Las animaciones de diagramas recuerdan qué elementos ya mostraron: avanzar para agregar una conclusión no reproduce el salto ni las filas previas. Se conserva el estado final estático para carga directa, retroceso, capturas y movimiento reducido; las animaciones pendientes se cancelan al navegar.
+- 7.3 muestra la barrera de decisión desde el comienzo y detiene el marcador antes de ella. 8.1 identifica al agente como nodo central y al harness como el conjunto delimitado. 9.1 conecta el retorno tanto con spec como con plan.
+- 7.2 aclara en pantalla que el movimiento está ralentizado, sin escala espacial ni temporal. No se alteran las hipótesis de 0,1 s y 0,35 s.
+- 3.3 usa un único contenedor compartido, sin compartimentos iguales que sugieran cuotas. 7.1 separa intención, parámetros configurables y ruta técnica. 7.5 desarrolla reaparición en los tres niveles mediante preguntas y decisiones, sin agregar reglas al juego. 7.7 traslada al escenario los casos de input táctil y rendimiento de la narración existente.
+- 2.6 reemplaza la equivalencia rígida con chat por «Un asistente responde / Un agente puede actuar», en línea con la narración. Se actualiza el guion para mantener las notas coherentes. 2.2 conserva únicamente la captura real disponible, explícitamente como interfaz: no se inventa una demostración de acción ejecutada.
+- Apertura: el último paso retira el esquema lateral y da mayor escala a la conclusión. Comparaciones y pistas previas conservan legibilidad. Se eliminan signos «+» decorativos de los parches y se refuerza el retorno visual de los flujos.
+- **Por pedido del usuario, no se ejecutaron tests, build, typecheck, capturas ni verificaciones automáticas.** Solo revisión estática. Pendiente validar las composiciones y la sincronización en navegador; los resultados históricos siguientes no validan esta versión.
+
 ### Gráficos animados y gamificación visual
 
 - Se incorpora un lenguaje esquemático de videojuego sin puntos, recompensas, barras cuantitativas inventadas ni servicios externos. Los personajes son formas geométricas originales, no assets atribuidos a un juego real.

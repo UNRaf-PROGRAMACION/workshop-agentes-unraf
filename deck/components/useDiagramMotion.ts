@@ -4,13 +4,21 @@ import { flags, reducedMotion, useScene } from 'beatdeck';
 /** Animate toward the authored final frame; never use animation as story state. */
 export function useDiagramMotion() {
   const root = useRef<HTMLDivElement>(null);
+  const seen = useRef(new WeakMap<Element, string>());
   const { here, entry, dir } = useScene();
   const reduced = useSyncExternalStore(reducedMotion.subscribe, reducedMotion.get);
 
   useLayoutEffect(() => {
-    if (!here || dir !== 'forward' || reduced || flags.capture || !root.current) return;
+    if (!here || !root.current) {
+      seen.current = new WeakMap();
+      return;
+    }
     const animations: Animation[] = [];
     root.current.querySelectorAll<HTMLElement | SVGElement>('[data-motion]').forEach((element) => {
+      const signature = `${element.dataset.motion}|${element.dataset.distance ?? ''}|${element.textContent}`;
+      const changed = seen.current.get(element) !== signature;
+      seen.current.set(element, signature);
+      if (!changed || dir !== 'forward' || reduced || flags.capture) return;
       const delay = Number(element.dataset.delay ?? 0);
       let frames: Keyframe[];
       let duration = 700;
@@ -21,9 +29,19 @@ export function useDiagramMotion() {
         case 'arrive':
           frames = [{ opacity: 0, transform: 'translateY(18px) scale(.92)' }, { opacity: 1, transform: 'none' }];
           break;
+        case 'life-value': {
+          const value = Number(element.dataset.value);
+          frames = [
+            { opacity: value === 3 ? 1 : 0, offset: 0, easing: 'steps(1, end)' },
+            ...LIFE_IMPACTS.map((time, index) => ({ opacity: value === 2 - index ? 1 : 0, offset: time / LIFE_DURATION, easing: 'steps(1, end)' })),
+            { opacity: value === 0 ? 1 : 0, offset: 1 },
+          ];
+          duration = LIFE_DURATION;
+          break;
+        }
         case 'heart':
-          frames = [{ opacity: 1, transform: 'scale(1)' }, { opacity: 1, transform: 'scale(1.2)', offset: .6 }, { opacity: .12, transform: 'scale(1)' }];
-          duration = 300;
+          frames = [{ opacity: 1, offset: 0, easing: 'steps(1, end)' }, { opacity: .12, offset: Number(element.dataset.impact) / LIFE_DURATION }, { opacity: .12, offset: 1 }];
+          duration = LIFE_DURATION;
           break;
         case 'defeat':
           frames = [{ opacity: 0, transform: 'translateY(12px)' }, { opacity: 1, transform: 'none' }];
@@ -36,7 +54,7 @@ export function useDiagramMotion() {
             { opacity: 1, transform: 'translateX(0)', offset: .8 },
             { opacity: 0, transform: 'translateX(0)', offset: 1 },
           ];
-          duration = 520;
+          duration = 500;
           break;
         case 'jump':
           frames = [{ transform: 'translate(220px, 230px)', offset: 0 }, { transform: 'translate(300px, 230px)', offset: .18 }];
@@ -62,10 +80,15 @@ export function useDiagramMotion() {
           break;
         default: return;
       }
-      animations.push(element.animate(frames, { duration, delay, easing: element.dataset.motion === 'jump' ? 'linear' : 'cubic-bezier(.22,1,.36,1)', fill: 'backwards' }));
+      const linear = ['jump', 'damage', 'heart', 'life-value'].includes(element.dataset.motion ?? '');
+      animations.push(element.animate(frames, { duration, delay, easing: linear ? 'linear' : 'cubic-bezier(.22,1,.36,1)', fill: 'backwards' }));
     });
     return () => animations.forEach((animation) => animation.cancel());
   }, [here, entry, dir, reduced]);
 
   return root;
 }
+
+// Impact occurs at 80% of each 500 ms flight. All feedback shares these boundaries.
+export const LIFE_IMPACTS = [400, 1100, 1800] as const;
+const LIFE_DURATION = 2100;

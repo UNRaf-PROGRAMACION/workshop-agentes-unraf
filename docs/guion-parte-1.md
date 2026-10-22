@@ -133,17 +133,17 @@ Puede modificar el proyecto y ejecutar comandos. Por eso los permisos importan.
 
 Que una herramienta permita eliminar archivos no significa que el agente tenga autorización para borrar cualquier cosa.
 
-### 2.6 — Chat que acciona
+### 2.6 — Responder y actuar
 
 **En pantalla:**
 
-ASISTENTE = CHAT
+Un asistente responde.
 
-AGENTE = CHAT, PERO QUE ACCIONA
+Un agente puede actuar.
 
 **Narración:**
 
-Esta es la simplificación que nos vamos a llevar.
+Esta es la diferencia de capacidad que nos vamos a llevar, no una clasificación rígida de productos.
 
 El asistente responde. El agente, además, puede actuar mediante herramientas.
 
@@ -493,6 +493,12 @@ PLAN: la ruta técnica. Cómo realizar el cambio en este repositorio.
 GDD → Spec de una feature → Plan técnico.
 
 Visual: tres niveles conectados, desde la visión del juego hasta la ruta técnica. Ejemplo de feature: sistema de reaparición.
+
+Ejemplo desarrollado, sin reglas de gameplay inventadas:
+
+- GDD: ¿cómo encaja la reaparición en la experiencia del jugador?
+- SPEC: acordar comportamiento, alcance y criterios de aceptación del sistema de reaparición.
+- PLAN: inspeccionar el proyecto y definir cómo integrarlo en este repositorio.
 
 **Narración:**
 

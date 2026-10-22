@@ -14,7 +14,7 @@ export function StateQuestions({ expanded }: { expanded: boolean }) {
     <Arrow from={attack} to={stun} on tone="ghost" label="¿El daño interrumpe?" ly={-24} />
     <NodeBox rect={stun} on tone="ghost" kind="Stun · aturdimiento" value="¿Transición permitida?" />
     <span className="game-state-token" data-motion="state" aria-hidden="true" />
-    <span className="game-state-gate" data-motion="arrive" data-delay="1200" aria-hidden="true">?</span>
+    <span className="game-state-gate" aria-hidden="true">?</span>
     <p className="talk-state-gloss">Idle: reposo. La conexión es una pregunta, no una regla acordada.</p>
     {expanded ? <div className="talk-state-decisions">
       <div><span className="talk-label">PRIORIDADES</span><p>¿Qué input tiene prioridad<br />si llegan dos juntos?</p></div>
@@ -52,6 +52,9 @@ export function WorkCycle({ step }: { step: number }) {
       <Arrow from={{ x: 1140, y: 450 }} to={{ x: 1620, y: 450 }} on head={false} tone="ghost" />
       <Arrow from={{ x: 1620, y: 450 }} to={{ x: 1620, y: 55 }} on head={false} tone="ghost" />
       <Arrow from={{ x: 1620, y: 55 }} to={{ x: 1560, y: 55 }} on tone="ghost" />
+      <Arrow from={{ x: 1620, y: 55 }} to={{ x: 1620, y: -28 }} on head={false} tone="ghost" />
+      <Arrow from={{ x: 1620, y: -28 }} to={{ x: 780, y: -28 }} on head={false} tone="ghost" />
+      <Arrow from={{ x: 780, y: -28 }} to={{ x: 780, y: 0 }} on tone="ghost" />
       <p className="talk-cycle-return">Si falla la evidencia o aparece información nueva:<br /><span className="accent">volver a la spec o al plan.</span></p>
     </> : null}
   </div>;
@@ -71,7 +74,8 @@ export function HarnessMap() {
       <Arrow from={name === 'Pruebas y comandos' ? agent : rect} to={name === 'Pruebas y comandos' ? rect : agent} on tone={name === 'Pruebas y comandos' ? 'hot' : 'ghost'} />
       <NodeBox rect={rect} on kind={name} value={detail} />
     </Fragment>)}
-    <NodeBox rect={agent} on tone="hot" kind="Harness" value="Trabajo del agente" />
+    <NodeBox rect={agent} on tone="hot" kind="Agente" value="Trabajo sobre la tarea" />
+    <div className="game-harness-label">HARNESS · EL ENTORNO COMPLETO</div>
     <div className="game-harness-caption" data-motion="arrive" data-delay="800"><span>Orientar el trabajo.</span><span className="accent">Comprobar el resultado.</span></div>
   </div>;
 }
@@ -90,6 +94,6 @@ export function JumpSketch() {
       <text x="450" y="50" fill="var(--accent)" fontSize="25" fontFamily="var(--font-sans)">Ápice · 0,35 s</text>
       <g className="game-jump-player" data-motion="jump" aria-hidden="true"><path d="M-10 -28H10V-10H16V0H-16V-10H-10Z" fill="var(--ink)" /><path d="M2 -22H7V-17H2Z" fill="var(--bg)" /></g>
     </svg>
-    <figcaption>Del borde al salto · del despegue al ápice.<br />Esquema sin escala; valores ilustrativos para probar.</figcaption>
+    <figcaption>Animación ralentizada, sin escala espacial ni temporal.<br />Valores ilustrativos: comprobarlos y evaluar jugando.</figcaption>
   </figure></div>;
 }
