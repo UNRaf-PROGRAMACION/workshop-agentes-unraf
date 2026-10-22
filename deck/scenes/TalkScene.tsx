@@ -15,6 +15,7 @@ import replitLogo from '../assets/replit.svg';
 import { locateSlide, SECTION_TITLES, type Layout } from '../talk';
 import { BonusContent } from './BonusContent';
 import { AsciiBackground } from '../components/AsciiBackground';
+import { useTalkMotion } from '../components/useTalkMotion';
 
 const ASSISTANTS = [
   { name: 'ChatGPT', logo: chatgptLogo, monochrome: true },
@@ -265,8 +266,9 @@ function Foot({ layout, step, id }: { layout: Layout; step: number; id: string }
 
 function TalkSceneBody({ index }: { index: number }) {
   const { here, b } = useScene();
+  const motionRef = useTalkMotion();
   if (index === 0 && b <= 0) return null;
-  if (index === 0 && b === 1) return <div className="talk-page talk-cover" style={{ visibility: here ? 'visible' : 'hidden' }}>
+  if (index === 0 && b === 1) return <div ref={motionRef} className="talk-page talk-cover" style={{ visibility: here ? 'visible' : 'hidden' }}>
     <AsciiBackground active={here && b === 1} />
     <div className="talk-cover-content">
       <div className="talk-kicker">Workshop</div>
@@ -279,9 +281,9 @@ function TalkSceneBody({ index }: { index: number }) {
   const { slide, step } = locateSlide(index, Math.max(0, b - (index === 0 ? 2 : 0)));
   // Every scene layer remains mounted. Each slide is a pure function of scene + beat.
   const foot = Foot({ layout: slide.layout, id: slide.id, step });
-  return <div className={`talk-page talk-layout-${slide.layout}`} style={{ visibility: here ? 'visible' : 'hidden' }}>
-    <header className="talk-heading"><div className="talk-kicker">{SECTION_TITLES[index]}</div><h1>{slide.title}</h1></header>
-    <main className="talk-body"><Content layout={slide.layout} id={slide.id} step={step} /></main>
+  return <div ref={motionRef} className={`talk-page talk-layout-${slide.layout}`} style={{ visibility: here ? 'visible' : 'hidden' }}>
+    <header key={`heading-${slide.id}`} className="talk-heading"><div className="talk-kicker">{SECTION_TITLES[index]}</div><h1>{slide.title}</h1></header>
+    <main key={slide.id} className="talk-body"><Content layout={slide.layout} id={slide.id} step={step} /></main>
     {foot ? <footer className="talk-foot">{foot}</footer> : null}
   </div>;
 }

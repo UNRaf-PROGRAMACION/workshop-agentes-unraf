@@ -140,3 +140,51 @@
 .talk-acceptance-list span { display: block; font-size: 27px; line-height: 1.3; color: var(--ink-2); }
 .talk-grief-image { display: block; width: 400px; height: 536px; object-fit: contain; }
 .talk-reference:focus-visible { outline: 2px solid var(--accent); outline-offset: 6px; }
+
+/* Editorial hierarchy: quiet framing, emphatic ideas, content-led diagrams. */
+.talk-heading h1 { font-size: 86px; max-width: 1560px; }
+.talk-kicker { font-size: 19px; letter-spacing: .2em; }
+.talk-kicker::before { width: 52px; }
+.talk-foot { color: var(--ink-2); font-size: 25px; border-top-color: var(--hair-strong); }
+.talk-label { letter-spacing: .16em; }
+.talk-column { border-top-width: 2px; }
+.talk-column:last-child { border-top-color: var(--accent); }
+.talk-row > span:first-child { color: var(--ink); }
+.talk-row { border-bottom-color: var(--hair-strong); }
+.talk-flow { gap: 20px; align-items: stretch; }
+.talk-flow-node { position: relative; padding: 30px 6px 20px 0; border-top-color: var(--ink-3); font-size: 36px; }
+.talk-flow-node:last-child { border-top-width: 3px; }
+.talk-flow-arrow { align-self: center; color: var(--accent); font-size: 28px; }
+.talk-assistant { gap: 24px; padding: 20px 0; border-top: 1px solid var(--hair); }
+.talk-assistant img { width: 88px; height: 88px; }
+.talk-agent-image { border-color: var(--hair-strong); }
+.talk-formula { font-size: 55px; }
+.talk-plus { margin: 18px 0; }
+.talk-repo { padding: 30px; border-left-width: 3px; }
+.talk-window { border-left: 3px solid var(--accent); padding: 30px; }
+.talk-window-items span { font-size: 32px; }
+.talk-document { padding: 30px 34px; background: var(--surface); border-color: var(--hair-strong); border-left-color: var(--accent); }
+.talk-document p { font-size: 36px; }
+.talk-vs { color: var(--accent); font-family: var(--font-mono); }
+.talk-fix { text-align: center; padding: 26px 42px; border-color: var(--hair-strong); }
+.talk-fix:nth-child(2) { border-color: var(--ink-3); }
+.talk-fix:nth-child(3) { color: var(--amber); border-color: var(--amber); }
+.talk-fix.base { padding-block: 30px; }
+.talk-lives { font-size: 70px; padding-block: 40px; border-top-color: var(--hair-strong); }
+.talk-lives > span:not(.arrow) { font-variant-numeric: tabular-nums; }
+.talk-lives > .accent { border-bottom: 3px solid var(--accent); padding-bottom: 10px; }
+.talk-number { font-size: 132px; font-variant-numeric: tabular-nums; border-top-color: var(--amber); }
+.talk-number small { color: var(--ink-2); font-size: 29px; }
+.talk-chips span { border-bottom-color: var(--hair-strong); padding-bottom: 16px; }
+.talk-layout-states .talk-chips { gap: 28px; margin-block: 34px; }
+.talk-layout-states .talk-chips span { border-top: 2px solid var(--hair-strong); border-bottom: none; padding: 26px 26px 20px 0; }
+.talk-layout-states .talk-chips span:last-child { color: var(--amber); border-top-color: var(--amber); }
+.talk-layout-equation .talk-equation { font-size: 106px; }
+.talk-layout-equation .talk-equation + .talk-equation { padding-left: 38px; border-left: 4px solid var(--accent); }
+.talk-layout-mind .talk-mind-statement { font-size: 172px; }
+.talk-layout-sdd .talk-sdd-intro { border-bottom: 1px solid var(--hair-strong); padding-bottom: 30px; margin-bottom: 30px; }
+.talk-layout-sdd .talk-sdd-flow { margin-top: 36px; }
+.talk-acceptance-list li:last-child::marker { color: var(--amber); }
+.talk-acceptance-list li:last-child strong { color: var(--accent); }
+.talk-cover-rule { width: 120px; background: var(--accent); }
+.talk-tools { border-left-color: var(--accent); }
