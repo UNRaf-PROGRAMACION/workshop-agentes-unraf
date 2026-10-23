@@ -1,4 +1,5 @@
 import source from '../docs/linea.md?raw';
+import { config } from './deck.config';
 
 export const HISTORY_ERAS = ['Los comienzos', 'Reglas y expertos', 'Aprender y jugar', 'Transformer', 'Copilotos y chat', 'Agentes'];
 
@@ -29,7 +30,7 @@ const context: Record<string, string[]> = {
 
 export const HISTORY = milestones.map(([year, title, summary, era, sourceYear, kind]) => {
   const entry = entries.find((item) => item[1].startsWith(`${sourceYear} —`));
-  const copilotNote = year === '2021' ? 'GitHub presenta la vista previa técnica de Copilot el 29 de junio de 2021, desarrollado con OpenAI y basado en Codex. Sugiere líneas y funciones a partir del código del editor: un gran hito de IA aplicada a programación, no todavía un agente autónomo. No confundir esta presentación inicial con su disponibilidad general en 2022. Fuente: https://github.blog/news-insights/product-news/introducing-github-copilot-ai-pair-programmer/' : undefined;
+  const copilotNote = year === '2021' ? `GitHub presenta la vista previa técnica de Copilot el 29 de junio de 2021, desarrollado con OpenAI y basado en Codex. Sugiere líneas y funciones a partir del código del editor: un gran hito de IA aplicada a programación, no todavía un agente autónomo. No confundir esta presentación inicial con su disponibilidad general en 2022. Fuente: ${config.references.copilot}` : undefined;
   const extra = (context[year] ?? []).map((date) => entries.find((item) => item[1].startsWith(`${date} —`))?.[0].trim()).filter(Boolean).join('\n\n');
   return {
     year, title, summary, era, kind,
