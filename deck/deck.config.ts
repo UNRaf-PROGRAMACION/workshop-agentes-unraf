@@ -7,7 +7,7 @@ export const config = {
   subtitle: 'Parte 1 · De pedir código a dirigir un cambio',
   author: 'Ing. Nicolás Nocete y Tec. Agustín Galván',
   /** Destination of the QR on the closing screen. "TODO" = no QR (the presenter view warns). Never guess it. */
-  qrUrl: 'TODO',
+  qrUrl: 'https://unraf-programacion.github.io/create-agent-ready/',
   /** Shown under the QR. */
   qrLabel: '',
   scaffold: '',

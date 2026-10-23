@@ -933,3 +933,13 @@ Fuente de la infografía original: Psicopedia · https://psicopedia.org/7691/
 **Narración:**
 
 Mostrar la imagen original completa como referencia aparte, después de las cinco frases sobre adopción de IA. Distinguir el contenido de la fuente de las adaptaciones de la charla. No presentar las etapas como obligatorias, lineales ni como diagnóstico de la adopción de IA.
+
+### 10.6 — Portada de cierre
+
+**En pantalla:**
+
+Misma portada: Workshop · Programación Agéntica, autores y logo UNRaf, con el mismo fondo ASCII y estilo. Se agrega un QR en la esquina inferior derecha que apunta a https://unraf-programacion.github.io/create-agent-ready/ y, debajo del logo, los correos agustin.galvan@unraf.edu.ar y nicolas.nocete@unraf.edu.ar como enlaces de contacto.
+
+**Narración:**
+
+Última diapositiva de la presentación, después del BONUS. Dejar visible para que el público escanee el QR y acceda a create-agent-ready o tome los correos de contacto. El código también funciona como enlace al hacer clic. La portada inicial no muestra los correos ni el QR.

@@ -20,5 +20,5 @@ export default defineDeck({
   Chrome: null,
   isBlack: ({ scene, beat }) => scene === 0 && beat === 0,
   fonts: ['400 36px "Inter Variable"', '700 80px "Roboto Condensed Variable"', '800 100px "Roboto Condensed Variable"', '400 32px "JetBrains Mono Variable"'],
-  // No QR until the speaker supplies a real destination.
+  qrUrl: config.qrUrl,
 });

@@ -1,4 +1,17 @@
 /* Fixed 1920×1080 editorial stage. Layout variants follow the content, not a slide template. */
+.talk-cover-final .talk-cover-content { top: 150px; }
+.talk-cover-final .talk-kicker { margin-bottom: 32px; }
+.talk-cover-final .talk-cover-content p { margin-top: 36px; }
+.talk-cover-final .talk-cover-rule { margin-top: 48px; }
+.talk-closing-details { position: absolute; left: 180px; top: 610px; width: 1560px; display: grid; grid-template-columns: 1100px 300px; gap: 160px; align-items: center; }
+.talk-closing-contact { display: flex; flex-direction: column; align-items: center; }
+.talk-cover .talk-closing-contact img { width: 1000px; height: auto; margin: 0; }
+.talk-closing-emails { display: flex; justify-content: center; gap: 40px; margin-top: 38px; font: 400 25px/1.4 var(--font-sans); }
+.talk-closing-emails a { color: var(--ink-2); text-decoration: none; }
+.talk-closing-emails a:hover { color: var(--accent); }
+.talk-closing-emails a:focus-visible { outline: 2px solid var(--accent); outline-offset: 6px; }
+.talk-closing-qr { display: block; width: 300px; height: 300px; }
+.talk-closing-qr:focus-visible { outline: 2px solid var(--accent); outline-offset: 8px; }
 .talk-layout-bonus-learning .talk-heading h1 { font-size: 70px; }
 .talk-learning-prompts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 50px; }
 .talk-learning-prompt { border-top: 2px solid var(--accent); padding-top: 26px; }

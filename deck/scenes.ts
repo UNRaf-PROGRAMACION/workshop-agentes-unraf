@@ -4,7 +4,7 @@ import { config } from './deck.config';
 import { HISTORY } from './history';
 
 // Self-contained illustrations settle without advancing the speaker's position.
-const ANIMATED_SLIDES = new Set(['1.1', '2.5', '3.3', '4.1', '4.5', '5.1', '6.1', '6.2', '7.1', '7.2', '7.3', '7.4', '7.7', '8.1', '9.1']);
+const ANIMATED_SLIDES = new Set(['1.1', '2.5', '3.3', '4.1', '4.5', '5.1', '6.1', '6.2', '7.1', '7.2', '7.3', '7.4', '7.7', '8.1', '9.1', '10.6']);
 
 export const SCENES: SceneDef[] = SLIDES.map((slides, scene) => ({
   id: String(scene + 1).padStart(2, '0'),

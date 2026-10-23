@@ -1,5 +1,5 @@
 import { Fragment, type ReactNode } from 'react';
-import { Scene, useScene } from 'beatdeck';
+import { QR, Scene, useScene } from 'beatdeck';
 import agentImage from '../../docs/media/2.2.png';
 import unrafLogo from '../../docs/media/logounraf.png';
 import { config } from '../deck.config';
@@ -56,6 +56,7 @@ function Rows({ items }: { items: [string, string][] }) {
 
 function Content({ layout, step, id }: { layout: Layout; step: number; id: string }) {
   switch (layout) {
+    case 'final-cover': return null;
     case 'ai-history': return <HistoryContent step={step} />;
     case 'ai-definition':
     case 'ai-panorama':
@@ -320,20 +321,31 @@ function Foot({ layout, step, id }: { layout: Layout; step: number; id: string }
 function TalkSceneBody({ index }: { index: number }) {
   const { here, b } = useScene();
   const motionRef = useTalkMotion();
+  const { slide, step } = locateSlide(index, Math.max(0, b - (index === 0 ? 2 : 0)));
+  const isFinalCover = slide.layout === 'final-cover';
   if (index === 0 && b <= 0) return <div className="talk-page talk-standby" style={{ visibility: here ? 'visible' : 'hidden' }}>
     <AsciiBackground active={here && b === 0} />
   </div>;
-  if (index === 0 && b === 1) return <div ref={motionRef} className="talk-page talk-cover" style={{ visibility: here ? 'visible' : 'hidden' }}>
-    <AsciiBackground active={here && b === 1} />
+  if ((index === 0 && b === 1) || isFinalCover) return <div ref={motionRef} data-slide={isFinalCover ? slide.id : undefined} className={`talk-page talk-cover${isFinalCover ? ' talk-cover-final' : ''}`} style={{ visibility: here ? 'visible' : 'hidden' }}>
+    <AsciiBackground active={here} />
     <div className="talk-cover-content">
       <div className="talk-kicker">Workshop</div>
       <h1>Programación <span>Agéntica</span></h1>
       <p>{config.author}</p>
       <div className="talk-cover-rule" aria-hidden="true" />
-      <img src={unrafLogo} width={1200} height={188} alt="UNRaf · Licenciatura en Producción de Videojuegos y Entretenimiento Digital" />
+      {!isFinalCover ? <img src={unrafLogo} width={1200} height={188} alt="UNRaf · Licenciatura en Producción de Videojuegos y Entretenimiento Digital" /> : null}
     </div>
+    {isFinalCover ? <div className="talk-closing-details">
+      <div className="talk-closing-contact">
+        <img src={unrafLogo} width={1200} height={188} alt="UNRaf · Licenciatura en Producción de Videojuegos y Entretenimiento Digital" />
+        <div className="talk-closing-emails">
+          <a href="mailto:nicolas.nocete@unraf.edu.ar" onClick={(event) => event.stopPropagation()}>nicolas.nocete@unraf.edu.ar</a>
+          <a href="mailto:agustin.galvan@unraf.edu.ar" onClick={(event) => event.stopPropagation()}>agustin.galvan@unraf.edu.ar</a>
+        </div>
+      </div>
+      <a className="talk-closing-qr" href={config.qrUrl} target="_blank" rel="noopener noreferrer" aria-label="Abrir create-agent-ready" onClick={(event) => event.stopPropagation()}><QR url={config.qrUrl} size={252} plate={24} style={{ boxSizing: 'content-box' }} /></a>
+    </div> : null}
   </div>;
-  const { slide, step } = locateSlide(index, Math.max(0, b - (index === 0 ? 2 : 0)));
   // Every scene layer remains mounted. Each slide is a pure function of scene + beat.
   const foot = Foot({ layout: slide.layout, id: slide.id, step });
    return <div ref={motionRef} data-slide={slide.id} className={`talk-page talk-layout-${slide.layout} talk-step-${step}`} style={{ visibility: here ? 'visible' : 'hidden' }}>

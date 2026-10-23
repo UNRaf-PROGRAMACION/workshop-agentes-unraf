@@ -5,7 +5,7 @@ export type Layout = 'ai-definition' | 'ai-panorama' | 'ai-map' | 'ai-history' |
   'prompt' | 'clues' | 'window' | 'flow' | 'mind' | 'explore' | 'broken' | 'fixes' |
   'sdd' | 'spec' | 'life-compare' | 'lives' | 'parameters' | 'feel' | 'states' |
   'roles' | 'design' | 'platform' | 'harness' | 'evidence' | 'safety' | 'cycle' | 'closing' |
-  'bonus-tips' | 'bonus-learning' | 'bonus-ego' | 'bonus-acceptance' | 'bonus-reference';
+  'bonus-tips' | 'bonus-learning' | 'bonus-ego' | 'bonus-acceptance' | 'bonus-reference' | 'final-cover';
 
 interface Slide {
   id: string;
@@ -74,6 +74,7 @@ export const SLIDES: Slide[][] = [
     { id: '10.2', title: 'Soltá tu fucking ego de programador', layout: 'bonus-ego', steps: ['¿Saben lo que es?', 'Las objeciones al LLM', 'Nuestro valor no está en escribir código'] },
     { id: '10.3', title: 'Adoptar IA: la metáfora del duelo.', layout: 'bonus-acceptance', steps: ['Negación', 'Ira', 'Negociación', 'Depresión / desánimo', 'Aceptación'] },
     { id: '10.4', title: 'La referencia de la metáfora.', layout: 'bonus-reference', steps: ['Infografía original'] },
+    { id: '10.6', title: 'Programación Agéntica', layout: 'final-cover', steps: ['Portada de cierre · QR'] },
   ],
 ];
 
