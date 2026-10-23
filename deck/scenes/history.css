@@ -45,5 +45,33 @@
 .history-world.has-motion .history-line-progress { transition: width 420ms cubic-bezier(.22, 1, .36, 1); }
 .history-world.has-motion .history-detail { animation: history-arrive 300ms ease-out both; }
 @keyframes history-arrive { from { opacity: 0; transform: translateX(14px); } to { opacity: 1; transform: translateX(0); } }
+/* Finite explanatory sequences. Base styles are always the complete, static drawing. */
+.history-turing-packet { opacity: 0; pointer-events: none; }
+.has-motion .history-neuron-input { animation: history-draw 650ms 200ms ease-out backwards; }
+.has-motion .history-neuron-threshold { animation: history-threshold 650ms 700ms ease-in-out backwards; }
+.has-motion .history-neuron-axon { animation: history-draw 450ms 1050ms ease-out backwards; }
+.has-motion .history-neuron-output { animation: history-reveal 350ms 1400ms ease-out backwards; }
+.has-motion .history-turing-routes { animation: history-draw 700ms 200ms ease-out backwards; }
+.has-motion .history-turing-packet-left { animation: history-message-left 800ms 300ms ease-in-out backwards; }
+.has-motion .history-turing-packet-right { animation: history-message-right 800ms 500ms ease-in-out backwards; }
+.has-motion .history-turing-question { animation: history-reveal 350ms 1250ms ease-out backwards; }
+.has-motion .history-turing-result { animation: history-reveal 250ms 1550ms ease-out backwards; }
+.has-motion .history-chess-piece { animation: history-chess-move 800ms 200ms cubic-bezier(.22, 1, .36, 1) backwards; }
+.has-motion .history-vision-box { transform-box: fill-box; transform-origin: center; animation: history-detect 500ms ease-out backwards; }
+.has-motion .history-vision-box-first { animation-delay: 400ms; }
+.has-motion .history-vision-box-second { animation-delay: 850ms; }
+.has-motion .history-attention-link { animation: history-draw 500ms ease-out backwards; }
+.has-motion .history-attention-focus { animation: history-threshold 600ms 1000ms ease-in-out backwards; }
+.has-motion .history-code-symbol { animation: history-reveal 400ms 250ms ease-out backwards; }
+.has-motion .history-code-line { animation: history-draw 450ms ease-out backwards; }
+.has-motion .history-code-line-first { animation-delay: 650ms; }
+.has-motion .history-code-line-second { animation-delay: 1050ms; }
+@keyframes history-draw { from { stroke-dasharray: 1; stroke-dashoffset: 1; opacity: 0; } to { stroke-dasharray: 1; stroke-dashoffset: 0; } }
+@keyframes history-reveal { from { opacity: 0; } to { opacity: 1; } }
+@keyframes history-threshold { 0%, 100% { filter: none; } 50% { filter: drop-shadow(0 0 8px currentColor); fill-opacity: .5; } }
+@keyframes history-message-left { 0% { opacity: 0; transform: translate(0, 0); } 15% { opacity: 1; } 80% { opacity: 1; } 100% { opacity: 0; transform: translate(205px, 65px); } }
+@keyframes history-message-right { 0% { opacity: 0; transform: translate(0, 0); } 15% { opacity: 1; } 80% { opacity: 1; } 100% { opacity: 0; transform: translate(-235px, 65px); } }
+@keyframes history-chess-move { from { opacity: 0; transform: translate(-12px, -10px); } to { opacity: 1; transform: translate(0, 0); } }
+@keyframes history-detect { from { opacity: 0; transform: scale(1.15); } to { opacity: 1; transform: scale(1); } }
 .capture .history-world *, .reduced-motion .history-world * { animation: none !important; transition: none !important; }
 @media (prefers-reduced-motion: reduce) { .history-world * { animation: none !important; transition: none !important; } }

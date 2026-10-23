@@ -16,13 +16,19 @@ export const SCENES: SceneDef[] = SLIDES.map((slides, scene) => ({
     ] : []),
     ...slides.flatMap((slide) => {
       const { screen, narration } = slideSource(slide.id);
-      return slide.steps.map((name, step) => ({
-        name: `${slide.id} · ${name}`,
-        auto: ANIMATED_SLIDES.has(slide.id),
-        ref: slide.layout === 'ai-history' ? 'docs/linea.md · evolución de la IA' : `docs/guion-parte-1.md · ${slide.id}`,
-        source: slide.layout === 'ai-history' ? HISTORY[step]?.source ?? screen : screen,
-        note: `Paso ${step + 1}/${slide.steps.length}: ${name}.${ANIMATED_SLIDES.has(slide.id) ? '\nIlustración animada breve, sin avance automático. Esperar a que termine antes de continuar. No es una grabación ni evidencia de una implementación.' : ''}\n\n${slide.layout === 'ai-history' ? HISTORY[step]?.note ?? narration : narration}`,
-      }));
+      return slide.steps.map((name, step) => {
+        const history = slide.layout === 'ai-history' ? HISTORY[step] : undefined;
+        const animated = ANIMATED_SLIDES.has(slide.id) || Boolean(history && (
+          history.year === '1943' || history.year === '1950' || (history.kind && history.kind !== 'winter')
+        ));
+        return {
+          name: `${slide.id} · ${name}`,
+          auto: animated,
+          ref: slide.layout === 'ai-history' ? 'docs/linea.md · evolución de la IA' : `docs/guion-parte-1.md · ${slide.id}`,
+          source: slide.layout === 'ai-history' ? HISTORY[step]?.source ?? screen : screen,
+          note: `Paso ${step + 1}/${slide.steps.length}: ${name}.${animated ? '\nIlustración animada breve, sin avance automático. Esperar a que termine antes de continuar. No es una grabación ni evidencia de una implementación.' : ''}\n\n${slide.layout === 'ai-history' ? HISTORY[step]?.note ?? narration : narration}`,
+        };
+      });
     }),
   ],
 }));

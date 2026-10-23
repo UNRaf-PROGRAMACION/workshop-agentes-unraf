@@ -114,6 +114,8 @@ En 1950, dibujo esquemático inspirado en la referencia del expositor: máquina 
 
 En 1943, dibujo original de una neurona artificial: varias señales llegan a un nodo que pregunta «¿Supera el umbral?» y produce una salida «0 / 1». Síntesis: Recibe señales → evalúa un umbral → se activa o no. Se nombran McCulloch y Pitts. Es una simplificación conceptual, no el diagrama completo del modelo de 1943 ni una red moderna entrenándose.
 
+Animaciones explicativas breves, sin clics extra: en 1943 se trazan las entradas, se ilumina el umbral y aparece la salida; en Turing viajan dos mensajes y aparece la pregunta del interlocutor; la pieza de Deep Blue realiza una entrada corta; AlexNet revela sus recuadros; Transformer y BERT trazan conexiones y destacan un token; Copilot revela el símbolo y líneas de código. Duran aproximadamente uno a dos segundos y se ejecutan una vez por entrada hacia adelante, sin bucles ni avance automático. Retroceso, carga directa, captura y movimiento reducido muestran la ilustración completa. Son esquemas didácticos, no ejecuciones de modelos reales.
+
 En 1956 se aclara qué es Dartmouth: un encuentro de investigadores celebrado en Dartmouth College, una institución universitaria de Estados Unidos, que consolidó la inteligencia artificial como campo de estudio.
 
 El invierno enfría la línea con azul tenue y trazo discontinuo. Deep Blue lleva una pieza de ajedrez; AlexNet, un esquema de reconocimiento de imágenes, no una predicción real; Transformer, un icono de tokens conectados con un foco de atención destacado, no un diagrama completo de la arquitectura. El último hito dice: De recibir respuestas a delegar tareas, con supervisión humana.
