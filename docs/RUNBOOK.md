@@ -43,6 +43,7 @@ El tema vive en `themes/agent-ready.css` y las composiciones en `deck/deck.css`.
 - Pulsar reproducir en los controles del video. Tiene audio y dura aproximadamente 1 minuto; comprobar el volumen antes de presentar.
 - El MP4 y la portada están incluidos localmente: no hace falta abrir Instagram ni tener conexión. El enlace del crédito es opcional y sí requiere internet.
 - PageDown / PageUp siguen navegando aunque el video tenga foco. Salir del beat detiene la reproducción; volver muestra la portada, listo para reproducir desde el inicio.
+- El siguiente beat (`#4.12`) muestra el meme Vibe-Coding / Vibe-Debugging con la pregunta «¿Se sienten identificados?». Otro avance abre SDD.
 
 ## Mapa rápido
 

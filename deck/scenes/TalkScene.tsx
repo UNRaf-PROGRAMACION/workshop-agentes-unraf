@@ -2,6 +2,7 @@ import { Fragment, type ReactNode } from 'react';
 import { flags, QR, Scene, useScene } from 'beatdeck';
 import agentImage from '../../docs/media/2.2.png';
 import unrafLogo from '../../docs/media/logounraf.png';
+import vibeDebuggingMeme from '../../docs/media/vibe-debugging.jpeg';
 import { config } from '../deck.config';
 import opencodeLogo from '../assets/opencode.svg';
 import claudeCodeLogo from '../assets/claude-code.svg';
@@ -71,6 +72,7 @@ function FixesReel() {
 function Content({ layout, step, id }: { layout: Layout; step: number; id: string }) {
   switch (layout) {
     case 'final-cover': return null;
+    case 'vibe-debugging': return <img className="talk-vibe-debugging" src={vibeDebuggingMeme} width={700} height={658} alt="Meme Vibe-Coding versus Vibe-Debugging: de una expresión sonriente a una apariencia agotada." />;
     case 'ai-history': return <HistoryContent step={step} />;
     case 'ai-definition':
     case 'ai-panorama':

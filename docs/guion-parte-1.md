@@ -426,6 +426,18 @@ El problema no es solamente la cantidad de código. Es que ya no tenemos una ref
 
 Para controlar mejor ese proceso, proponemos hacer explícito el cambio antes de implementarlo.
 
+### 4.6 — ¿Se sienten identificados?
+
+**En pantalla:**
+
+¿Se sienten identificados?
+
+Meme original: Vibe-Coding / Vibe-Debugging (`docs/media/vibe-debugging.jpeg`).
+
+**Narración:**
+
+Preguntar al público si se siente identificado y dejar un momento para las reacciones antes de continuar con SDD.
+
 ## 5. SDD: hacer explícito el cambio
 
 ### 5.1 — ¿Qué es SDD?

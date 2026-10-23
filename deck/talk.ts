@@ -2,7 +2,7 @@ import script from '../docs/guion-parte-1.md?raw';
 import { HISTORY_STEPS } from './history';
 
 export type Layout = 'ai-definition' | 'ai-panorama' | 'ai-map' | 'ai-history' | 'opening' | 'assistant' | 'agent' | 'compare' | 'repository' | 'equation' |
-  'prompt' | 'clues' | 'window' | 'flow' | 'mind' | 'explore' | 'broken' | 'fixes' |
+  'prompt' | 'clues' | 'window' | 'flow' | 'mind' | 'explore' | 'broken' | 'fixes' | 'vibe-debugging' |
   'sdd' | 'spec' | 'life-compare' | 'lives' | 'parameters' | 'feel' | 'states' |
   'roles' | 'design' | 'platform' | 'harness' | 'evidence' | 'safety' | 'cycle' | 'closing' |
   'bonus-tips' | 'bonus-learning' | 'bonus-ego' | 'bonus-acceptance' | 'bonus-reference' | 'final-cover';
@@ -41,6 +41,7 @@ export const SLIDES: Slide[][] = [
     { id: '4.3', title: 'Rápido para explorar', layout: 'explore', steps: ['Dónde ayuda', 'Cuando el proyecto crece'] },
     { id: '4.4', title: '¿Les pasó?', layout: 'broken', steps: ['Síntomas conocidos', 'Arregla una cosa y rompe otra'] },
     { id: '4.5', title: 'Un fix sobre otro fix', layout: 'fixes', steps: ['Fix', 'Otro fix', '¿Qué queríamos hacer?', 'Reel: otro fix'] },
+    { id: '4.6', title: '¿Se sienten identificados?', layout: 'vibe-debugging', steps: ['Vibe coding vs. vibe debugging'] },
   ],
   [
     { id: '5.1', title: 'Definir el cambio. Después, construir.', layout: 'sdd', steps: ['Qué es SDD', 'De la intención a la evidencia'] },
