@@ -810,6 +810,46 @@ Podés tener un Game Design Document en Markdown o en un formato editable, y ped
 
 En el mismo GDD, o en un anexo referenciado desde él, indicá qué assets usar, dónde están y qué función cumplen. Así el agente puede pasar a implementar lo acordado sin adivinar las referencias. Eso no reemplaza revisar el resultado ni amplía sus permisos.
 
+### 10.5 — 3 prompts para aprender cualquier tema con IA
+
+**En pantalla:**
+
+1. Entender — First Principles:
+
+“Explicame [tema] desde sus principios fundamentales.”
+
+2. Priorizar — Regla 80/20:
+
+“¿Cuál es el 20% de [tema] que necesito comprender para aprender el 80%?”
+
+3. Validar — Evaluar lo aprendido:
+
+“Haceme preguntas sobre [tema] para identificar qué conceptos todavía no entendí.”
+
+Entender → Priorizar → Validar.
+
+**Narración:**
+
+TIP: Cómo aprender cualquier tema con IA.
+
+Cuando quieran aprender algo nuevo, les recomiendo utilizar dos técnicas muy simples y un paso adicional para validar lo aprendido.
+
+1. First Principles Thinking: pensar desde los primeros principios. En lugar de memorizar cómo funciona algo, intenten entender por qué existe y qué problema resuelve. La idea es desarmar un concepto hasta sus fundamentos más básicos y, desde ahí, construir el conocimiento paso a paso.
+
+Prompt ampliado: «Explicame [TEMA] desde sus primeros principios, como si no supiera absolutamente nada. Quiero entender por qué existe, qué problema resuelve y cómo funciona desde cero».
+
+2. Principio de Pareto: regla del 80/20. La idea es identificar ese 20% de conceptos fundamentales que te permiten comprender aproximadamente el 80% de un tema. No significa que siempre exista una proporción exacta, sino que no todo lo que estudiamos tiene la misma importancia. Es una heurística para priorizar, no una garantía matemática de aprendizaje.
+
+Prompt ampliado: «¿Cuál es el 20% de [TEMA] que necesito aprender para comprender el 80% de sus conceptos y aplicaciones más importantes?».
+
+3. Bonus: validar lo aprendido. Una vez que entendieron los fundamentos, pídanle a la IA que compruebe cuánto comprendieron.
+
+Prompt ampliado: «Haceme preguntas sobre [TEMA] para detectar qué conceptos todavía no entendí. Evaluá mis respuestas y explicame dónde me equivoco».
+
+La fórmula para aprender: Entender → Priorizar → Validar.
+
+La clave no es aprender todo de memoria, sino comprender lo fundamental, identificar qué importa y comprobar que realmente lo entendimos.
+
 ### 10.2 — Soltá tu fucking ego de programador
 
 **En pantalla:**

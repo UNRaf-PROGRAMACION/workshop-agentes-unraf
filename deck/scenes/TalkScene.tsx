@@ -61,6 +61,7 @@ function Content({ layout, step, id }: { layout: Layout; step: number; id: strin
     case 'ai-panorama':
     case 'ai-map': return <IntroContent layout={layout} step={step} />;
     case 'bonus-tips':
+    case 'bonus-learning':
     case 'bonus-ego':
     case 'bonus-reference':
     case 'bonus-acceptance': return <BonusContent layout={layout} step={step} />;

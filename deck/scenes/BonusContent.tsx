@@ -1,6 +1,6 @@
 import griefImage from '../assets/duelo-kubler-ross.jpg';
 
-export type BonusLayout = 'bonus-tips' | 'bonus-ego' | 'bonus-acceptance' | 'bonus-reference';
+export type BonusLayout = 'bonus-tips' | 'bonus-learning' | 'bonus-ego' | 'bonus-acceptance' | 'bonus-reference';
 
 const TIPS = [
   ['¿Dónde guardo el diseño?', 'En un GDD vivo. Recomendamos Markdown o un formato editable.'],
@@ -16,8 +16,22 @@ const ACCEPTANCE = [
   ['Aceptación', '«Mi criterio sigue siendo clave; puedo construir con estas herramientas».'],
 ];
 
+const LEARNING_PROMPTS = [
+  ['Entender', 'First Principles', 'Explicame [tema] desde sus principios fundamentales.'],
+  ['Priorizar', 'Regla 80/20', '¿Cuál es el 20% de [tema] que necesito comprender para aprender el 80%?'],
+  ['Validar', 'Evaluar lo aprendido', 'Haceme preguntas sobre [tema] para identificar qué conceptos todavía no entendí.'],
+];
+
 export function BonusContent({ layout, step }: { layout: BonusLayout; step: number }) {
   switch (layout) {
+    case 'bonus-learning': return <>
+      <div className="talk-learning-prompts">{LEARNING_PROMPTS.map(([title, method, prompt], index) => <section className="talk-learning-prompt" key={title}>
+        <div className="talk-label">0{index + 1} · {method}</div>
+        <h2>{title}</h2>
+        <blockquote data-exact>“{prompt}”</blockquote>
+      </section>)}</div>
+      <div className="talk-learning-formula">Entender <span>→</span> Priorizar <span>→</span> <strong>Validar.</strong></div>
+    </>;
     case 'bonus-reference': return <div className="talk-infographic-layout">
       <img className="talk-infographic-original" src={griefImage} width={896} height={1200} alt="Infografía original de Psicopedia: etapas del proceso de pérdida según E. Kübler-Ross; negación, ira, negociación, depresión y aceptación." />
       <div className="talk-infographic-note"><div className="talk-label">REFERENCIA COMPLEMENTARIA · PSICOPEDIA</div><h2>Una metáfora.<br /><span className="accent">No un recorrido obligatorio.</span></h2><p>Las etapas no son obligatorias ni lineales.</p><p className="muted">La imagen trata sobre el proceso de pérdida.<br />Las frases sobre adopción de IA son<br />adaptaciones ilustrativas de esta charla,<br />no citas de la infografía ni un diagnóstico.</p></div>

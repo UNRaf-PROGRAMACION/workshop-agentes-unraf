@@ -1,4 +1,13 @@
 /* Fixed 1920×1080 editorial stage. Layout variants follow the content, not a slide template. */
+.talk-layout-bonus-learning .talk-heading h1 { font-size: 70px; }
+.talk-learning-prompts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 50px; }
+.talk-learning-prompt { border-top: 2px solid var(--accent); padding-top: 26px; }
+.talk-learning-prompt .talk-label { font-size: 20px; margin-bottom: 20px; }
+.talk-body .talk-learning-prompt h2 { font-size: 58px; margin-bottom: 26px; }
+.talk-learning-prompt blockquote { margin: 0; color: var(--ink-2); font: 400 31px/1.45 var(--font-sans); }
+.talk-learning-formula { position: absolute; left: 0; top: 460px; width: 1640px; padding-top: 30px; border-top: 1px solid var(--hair-strong); font: 600 64px/1.2 var(--font-display); }
+.talk-learning-formula span { color: var(--ink-3); margin: 0 20px; }
+.talk-learning-formula strong { color: var(--accent); font-weight: 700; }
 .talk-layout-ai-panorama .talk-body, .talk-layout-ai-map .talk-body { top: 270px; height: 675px; }
 .talk-ai-layout { display: grid; grid-template-columns: 900px 650px; gap: 90px; height: 675px; }
 .talk-ai-image { position: relative; width: 900px; height: 675px; }
