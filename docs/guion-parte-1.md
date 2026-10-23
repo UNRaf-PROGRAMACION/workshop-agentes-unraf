@@ -76,7 +76,7 @@ Sistemas expertos, aprendizaje automático, redes neuronales, agentes… No son 
 
 Al siguiente clic: Hoy enfocamos una parte del panorama. Agentes que nos ayudan a desarrollar.
 
-Pasemos a un pedido concreto para nuestro videojuego.
+Antes de pasar al pedido concreto, recorramos cómo llegamos hasta acá.
 
 Mapa orientativo: combina campos, técnicas y aplicaciones que se relacionan entre sí.
 
@@ -90,7 +90,47 @@ Tomemos esta imagen como un mapa orientativo para visualizar esa diversidad, no 
 
 En este workshop vamos a enfocarnos en una parte de ese panorama: los agentes que nos ayudan a desarrollar. No los agentes que juegan dentro de nuestro videojuego, sino las herramientas con las que trabajamos para construirlo.
 
-Para aterrizarlo, pasemos a un pedido concreto: agregar un sistema de vidas.
+Antes de aterrizarlo en un pedido concreto, recorramos la historia que nos trajo hasta estas herramientas.
+
+### 1.5 — La IA no nació con ChatGPT
+
+**En pantalla:**
+
+Línea histórica simplificada basada en `docs/linea.md`: 1943–Actualidad.
+
+Seis etapas siempre visibles: Los comienzos; Reglas y expertos; Aprender y jugar; Transformer; Copilotos y chat; Agentes.
+
+Doce pasos: 1943 (neurona artificial), 1950 (Turing), 1956 (Dartmouth), 1966 (ELIZA), 1970–1980 (primer invierno), 1997 (Deep Blue), 2012 (AlexNet), 2017 (Transformer), 2018 (BERT), 2021 (GitHub Copilot), 2022 (ChatGPT) y Actualidad (agentes).
+
+BERT: el contexto importa. Un modelo de lenguaje que considera el contexto a ambos lados de una palabra.
+
+GitHub Copilot: IA al programar. La IA llega al editor para sugerir líneas y funciones de código. Icono esquemático de editor y código, no logo oficial.
+
+Cada clic ilumina un hito y muestra su año, titular y una frase. Sin submenús, contador ni síntesis adicional. Todos los años permanecen visibles en una línea sin escala temporal proporcional.
+
+Turing: ¿Pueden pensar las máquinas? Deep Blue: una computadora derrota al campeón mundial de ajedrez, Garry Kasparov. AlexNet: redes profundas, datos y GPUs impulsan el reconocimiento de imágenes.
+
+El invierno enfría la línea con azul tenue y trazo discontinuo. Deep Blue lleva una pieza de ajedrez; AlexNet, un esquema de reconocimiento de imágenes, no una predicción real; Transformer, un icono de tokens conectados con un foco de atención destacado, no un diagrama completo de la arquitectura. El último hito dice: De recibir respuestas a delegar tareas, con supervisión humana.
+
+Las tecnologías se superponen y coexisten. Más capacidad no elimina la necesidad de supervisión.
+
+**Narración:**
+
+La IA no nació con ChatGPT. El recorrido comienza en 1943 y pasa por modelos de neuronas, conversación basada en reglas, sistemas expertos, aprendizaje de datos, generación y uso de herramientas.
+
+Las notas de cada hito toman su explicación de `docs/linea.md`, buscando por fecha. Los hitos que ya no tienen un paso propio quedan como contexto opcional en notas. No es una historia de tecnologías que desaparecen cuando llega la siguiente: se superponen y siguen coexistiendo. Las seis etapas son una organización didáctica del recorrido, no fechas de nacimiento absolutas de estas capacidades.
+
+Deep Blue conecta la historia con los juegos; AlphaGo queda como contexto opcional en las notas de AlexNet. Ganar en un juego específico no equivale a una inteligencia general. AlexNet no fue la primera IA en analizar imágenes: fue un avance decisivo.
+
+Para 2026 se usa únicamente el cierre conceptual sobre agentes con herramientas y supervisión. No se reproducen afirmaciones sobre GPT-6 ni resultados del AI Index 2026, pendientes de fuentes verificables.
+
+Primero programábamos reglas. Después entrenamos sistemas con datos. También desarrollamos modelos capaces de generar contenido. Hoy podemos delegar tareas a sistemas que usan herramientas, pero siguen necesitando límites y supervisión humana.
+
+Antes de ChatGPT destacamos BERT en 2018 y GitHub Copilot en 2021. BERT representa el contexto bidireccional; no es un chatbot generativo. Copilot es un gran hito para la programación asistida: lleva las sugerencias de código al editor. La fecha corresponde a la vista previa técnica del 29 de junio de 2021, no a la disponibilidad general de 2022. Este Copilot inicial no equivale a un agente autónomo.
+
+Fuente complementaria de Copilot: https://github.blog/news-insights/product-news/introducing-github-copilot-ai-pair-programmer/
+
+Ahora bien: ¿qué ocurre cuando les pedimos algo para nuestro juego? Pasemos a un pedido concreto: agregar un sistema de vidas.
 
 ### 1.1 — Agregá un sistema de vidas
 

@@ -1,6 +1,7 @@
 import script from '../docs/guion-parte-1.md?raw';
+import { HISTORY_STEPS } from './history';
 
-export type Layout = 'ai-definition' | 'ai-panorama' | 'ai-map' | 'opening' | 'assistant' | 'agent' | 'compare' | 'repository' | 'equation' |
+export type Layout = 'ai-definition' | 'ai-panorama' | 'ai-map' | 'ai-history' | 'opening' | 'assistant' | 'agent' | 'compare' | 'repository' | 'equation' |
   'prompt' | 'clues' | 'window' | 'flow' | 'mind' | 'explore' | 'broken' | 'fixes' |
   'sdd' | 'spec' | 'life-compare' | 'lives' | 'parameters' | 'feel' | 'states' |
   'roles' | 'design' | 'platform' | 'harness' | 'evidence' | 'safety' | 'cycle' | 'closing' |
@@ -18,6 +19,7 @@ export const SLIDES: Slide[][] = [
     { id: '1.2', title: 'Primero: ¿qué entendemos por IA?', layout: 'ai-definition', steps: ['La pregunta al público', 'Una definición compartida'] },
     { id: '1.3', title: 'La IA ya está en los videojuegos.', layout: 'ai-panorama', steps: ['El panorama de IA', 'Aprender a jugar', 'Conversar con personajes', 'Reconocer comportamientos', 'Gaming controlado por pensamiento'] },
     { id: '1.4', title: 'Detrás, hay todo un abanico.', layout: 'ai-map', steps: ['Distintos enfoques', 'Nuestro foco en el workshop'] },
+    { id: '1.5', title: 'La IA no nació con ChatGPT.', layout: 'ai-history', steps: HISTORY_STEPS },
     { id: '1.1', title: 'Un pedido. Muchas decisiones.', layout: 'opening', steps: ['El pedido', 'Las decisiones pendientes', 'Definir antes de pedir'] },
   ],
   [

@@ -6,6 +6,7 @@ Fuente conceptual: `01-marco-conceptual.md`. Guion aprobado y ampliado: `guion-p
 | --- | --- | --- |
 | Pedido de portada del workshop | 1 · antes del guion | “Workshop: Programación Agéntica”, Nicolás Nocete y Agustín Galván; logo PNG original de `docs/media/logounraf.png` debajo, centrado y sin deformación. Se conserva la espera inicial y todo el contenido posterior. |
 | Introducción a IA solicitada + `Panorama de Inteligencia Artificial.png` + `Mapa de Inteligencias Computacionales.png` | 1 · después de portada, antes de vidas | Tres diapositivas, nueve beats: pregunta y definición; panorama con cuatro destacados conectados a videojuegos, incluido control por pensamiento como uso experimental; abanico de enfoques y foco en agentes de desarrollo. Ambas imágenes originales completas, locales, sin recorte ni deformación. |
+| `docs/linea.md` · historia simplificada + pedido de BERT y Copilot | 1 · después del mapa, antes de vidas | Doce hitos: 1943, 1950, 1956, 1966, 1970–1980, 1997, 2012, 2017, 2018 (BERT), 2021 (GitHub Copilot), 2022 y Actualidad. Seis etapas siempre visibles; resto del detalle en notas, sin contador, submenús ni síntesis adicional. |
 | Propósito, alcance, agente de desarrollo | 1–2 | Apertura con vidas; distinción asistente/agente y gameplay en notas. |
 | Conceptos esenciales | 2–3, 5, 8 | Modelo, herramientas, prompt, contexto, tokens, spec, evidencia, harness y skills introducidos cuando hacen falta. Glosario completo permanece en la guía. |
 | Vibe coding y comparación | 4, 6 | Exploración, riesgos y comparación antes/después. Sin tasas de éxito inventadas. |
@@ -20,7 +21,9 @@ Fuente conceptual: `01-marco-conceptual.md`. Guion aprobado y ampliado: `guion-p
 
 ## Decisiones de presentación
 
-- La introducción nueva usa los identificadores de contenido 1.2–1.4 antes de 1.1 para conservar los IDs existentes. Agrega nueve beats a la escena 1: la introducción ocupa `#1.3`–`#1.11`; el ejemplo de vidas pasa a `#1.12`–`#1.14`. El cuarto destacado del panorama se alcanza desde `#1.8` con un clic, en `#1.9`. No cambia la numeración de las demás escenas.
+- La introducción nueva usa los identificadores de contenido 1.2–1.5 antes de 1.1 para conservar los IDs existentes. Las tres diapositivas iniciales ocupan `#1.3`–`#1.11`; la historia simplificada ocupa `#1.12`–`#1.23`; el ejemplo de vidas pasa a `#1.24`–`#1.26`. El cuarto destacado del panorama sigue en `#1.9`. No cambia la numeración de las demás escenas.
+- La historia se organiza en seis etapas didácticas, sin equivalencias rígidas ni escala temporal proporcional. Un paso por hito, todos los años y etapas siempre visibles; se eliminan submenús, contador y cierre extra. El marcador se desplaza suavemente, sin avance automático; retroceso, carga directa, captura y movimiento reducido muestran el estado final.
+- Se conserva `docs/linea.md` como fuente original. Sus menciones a GPT-6 y resultados del AI Index 2026 no se proyectan ni se incluyen en notas: faltan fuentes verificables. La pantalla de 2026 expresa solamente la síntesis de agentes, herramientas y supervisión aportada por el documento.
 - Las infografías fueron aportadas por el usuario; autoría y licencia no informadas. Se conservan como fuentes locales originales sin atribuciones inventadas. Se aclara su carácter orientativo porque mezclan campos, técnicas y aplicaciones. Los ejemplos de videojuegos son ilustrativos, no evidencia de implementaciones concretas ni correspondencias exclusivas.
 - Nueve escenas correspondientes a los nueve bloques originales del guion y una décima escena BONUS. Cada subsección tiene uno o más beats por clic. BONUS se alcanza continuando después del cierre, desde el overview o por URL `#10.1`; los atajos numéricos directos cubren solo las primeras nueve escenas.
 - Tema `agent-ready` sobre la base neutral: azul noche, menta y ámbar de la referencia `../create-agent-ready`; Inter y Roboto Condensed empaquetadas localmente. Escenario fijo 1920×1080, sin servicios externos.
@@ -34,6 +37,12 @@ Fuente conceptual: `01-marco-conceptual.md`. Guion aprobado y ampliado: `guion-p
 - “Evita la mayoría de bugs” y “la IA respeta siempre las reglas” no se presentan como garantías: definir ayuda a prevenir y siempre requiere comprobar.
 
 ## Verificación
+
+### Línea histórica interactiva
+
+- Se simplifican los 22 beats originales a diez hitos y se agregan BERT (2018) y GitHub Copilot (2021) por pedido del usuario: doce pasos en total, sin modificar el motor. Copilot se destaca con un icono esquemático de editor y código; su fecha corresponde a la vista previa técnica, confirmada en el anuncio oficial de GitHub del 29 de junio de 2021, enlazado en el guion y las notas. Se actualizan guion, notas y auditoría. Los hitos retirados de pantalla quedan en notas opcionales; la fuente original se conserva intacta.
+- Turing conserva su pregunta protagonista. Deep Blue destaca la victoria contra el campeón mundial Garry Kasparov con un símbolo esquemático de ajedrez. AlexNet lleva un esquema de imagen con recuadros, no una inferencia real, y la nota aclara que no fue la primera IA en analizar imágenes. El primer invierno usa azul frío, menor brillo y línea discontinua.
+- Se mantiene el pedido de no ejecutar tests, build, typecheck, capturas ni verificaciones automáticas. Navegación, layout y movimiento quedan pendientes de revisión en navegador; los resultados históricos no validan estos cambios.
 
 ### Introducción a inteligencia artificial
 

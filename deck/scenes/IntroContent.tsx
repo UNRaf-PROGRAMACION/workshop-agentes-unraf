@@ -45,7 +45,7 @@ export function IntroContent({ layout, step }: { layout: 'ai-definition' | 'ai-p
     <div className="talk-ai-image"><img src={mapImage} width={1448} height={1086} alt="Mapa de inteligencias computacionales: aprendizaje de máquina, sistemas expertos, inteligencia computacional, interfaces inteligentes e inteligencia artificial distribuida, dentro de las ciencias de la computación." /></div>
     <aside className="talk-ai-map-copy">
       <div className="talk-label">CIENCIAS DE LA COMPUTACIÓN</div>
-      {step === 0 ? <><h2>Muchos enfoques.<br /><span className="accent">No una sola receta.</span></h2><p>Sistemas expertos, aprendizaje automático, redes neuronales, agentes…</p><p className="muted">No son lo mismo ni son categorías aisladas.</p></> : <><h2>Hoy enfocamos<br />una parte<br /><span className="accent">del panorama.</span></h2><p>Agentes que nos ayudan a desarrollar.</p><p className="muted">Pasemos a un pedido concreto para nuestro videojuego.</p></>}
+      {step === 0 ? <><h2>Muchos enfoques.<br /><span className="accent">No una sola receta.</span></h2><p>Sistemas expertos, aprendizaje automático, redes neuronales, agentes…</p><p className="muted">No son lo mismo ni son categorías aisladas.</p></> : <><h2>Hoy enfocamos<br />una parte<br /><span className="accent">del panorama.</span></h2><p>Agentes que nos ayudan a desarrollar.</p><p className="muted">Antes del pedido concreto: ¿cómo llegamos hasta acá?</p></>}
     </aside>
   </div>;
 }

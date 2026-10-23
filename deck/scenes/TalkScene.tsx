@@ -15,6 +15,7 @@ import replitLogo from '../assets/replit.svg';
 import { locateSlide, SECTION_TITLES, type Layout } from '../talk';
 import { BonusContent } from './BonusContent';
 import { IntroContent } from './IntroContent';
+import { HistoryContent } from './HistoryContent';
 import { AsciiBackground } from '../components/AsciiBackground';
 import { useTalkMotion } from '../components/useTalkMotion';
 import { HarnessMap, JumpSketch, StateQuestions, WorkCycle } from '../components/TalkDiagrams';
@@ -55,6 +56,7 @@ function Rows({ items }: { items: [string, string][] }) {
 
 function Content({ layout, step, id }: { layout: Layout; step: number; id: string }) {
   switch (layout) {
+    case 'ai-history': return <HistoryContent step={step} />;
     case 'ai-definition':
     case 'ai-panorama':
     case 'ai-map': return <IntroContent layout={layout} step={step} />;
@@ -281,6 +283,7 @@ function Content({ layout, step, id }: { layout: Layout; step: number; id: strin
 }
 
 function Foot({ layout, step, id }: { layout: Layout; step: number; id: string }): ReactNode {
+  if (layout === 'ai-history') return 'Las tecnologías se superponen y coexisten. Más capacidad no elimina la necesidad de supervisión.';
   if (layout === 'ai-definition' && step >= 1) return 'La IA no es solamente un chatbot.';
   if (layout === 'ai-panorama') return 'Ejemplos posibles en videojuegos; no todos los juegos usan estas técnicas.';
   if (layout === 'ai-map') return 'Mapa orientativo: combina campos, técnicas y aplicaciones que se relacionan entre sí.';
