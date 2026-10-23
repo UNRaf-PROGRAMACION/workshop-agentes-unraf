@@ -14,6 +14,7 @@ import lovableLogo from '../assets/lovable.svg';
 import replitLogo from '../assets/replit.svg';
 import { locateSlide, SECTION_TITLES, type Layout } from '../talk';
 import { BonusContent } from './BonusContent';
+import { IntroContent } from './IntroContent';
 import { AsciiBackground } from '../components/AsciiBackground';
 import { useTalkMotion } from '../components/useTalkMotion';
 import { HarnessMap, JumpSketch, StateQuestions, WorkCycle } from '../components/TalkDiagrams';
@@ -54,6 +55,9 @@ function Rows({ items }: { items: [string, string][] }) {
 
 function Content({ layout, step, id }: { layout: Layout; step: number; id: string }) {
   switch (layout) {
+    case 'ai-definition':
+    case 'ai-panorama':
+    case 'ai-map': return <IntroContent layout={layout} step={step} />;
     case 'bonus-tips':
     case 'bonus-ego':
     case 'bonus-reference':
@@ -277,6 +281,9 @@ function Content({ layout, step, id }: { layout: Layout; step: number; id: strin
 }
 
 function Foot({ layout, step, id }: { layout: Layout; step: number; id: string }): ReactNode {
+  if (layout === 'ai-definition' && step >= 1) return 'La IA no es solamente un chatbot.';
+  if (layout === 'ai-panorama') return 'Ejemplos posibles en videojuegos; no todos los juegos usan estas técnicas.';
+  if (layout === 'ai-map') return 'Mapa orientativo: combina campos, técnicas y aplicaciones que se relacionan entre sí.';
   if (layout === 'bonus-tips') return 'El GDD conserva las decisiones; las specs concretan cada cambio.';
   if (layout === 'bonus-ego') return <a className="talk-reference" href={config.references.programmerEgo} target="_blank" rel="noopener noreferrer" onClick={(event) => event.stopPropagation()}>Lectura recomendada: «El ego del programador» · LinkedIn ↗</a>;
   if (layout === 'bonus-acceptance') return <a className="talk-reference" href={config.references.grief} target="_blank" rel="noopener noreferrer" onClick={(event) => event.stopPropagation()}>Referencia de la metáfora: Psicopedia · psicopedia.org/7691/ ↗</a>;

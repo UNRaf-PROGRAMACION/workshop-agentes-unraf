@@ -1,4 +1,30 @@
 /* Fixed 1920×1080 editorial stage. Layout variants follow the content, not a slide template. */
+.talk-layout-ai-panorama .talk-body, .talk-layout-ai-map .talk-body { top: 270px; height: 675px; }
+.talk-ai-layout { display: grid; grid-template-columns: 900px 650px; gap: 90px; height: 675px; }
+.talk-ai-image { position: relative; width: 900px; height: 675px; }
+.talk-ai-image img { display: block; width: 900px; height: 675px; object-fit: contain; }
+.talk-ai-links { position: absolute; inset: 0; width: 900px; height: 675px; pointer-events: none; }
+.talk-ai-links g { fill: none; stroke: #08635e; stroke-width: 3; opacity: .5; }
+.talk-ai-links g.is-focus { opacity: 1; stroke-width: 5; }
+.talk-ai-links .talk-ai-dot { fill: #08635e; stroke: white; stroke-width: 2; }
+.talk-ai-applications { position: relative; padding-top: 4px; }
+.talk-ai-applications > .talk-label { margin-bottom: 18px; }
+.talk-ai-invitation { padding-top: 100px; }
+.talk-ai-application { display: grid; grid-template-columns: 44px 1fr; gap: 18px; height: 185px; padding-top: 22px; box-sizing: border-box; border-top: 1px solid var(--hair-strong); color: var(--ink-3); }
+.talk-ai-application.is-focus { color: var(--ink); border-color: var(--accent); }
+.talk-ai-number { font: 600 26px var(--font-mono); }
+.talk-ai-application.is-focus .talk-ai-number { color: var(--accent); }
+.talk-body .talk-ai-application h2 { font-size: 38px; margin-bottom: 12px; }
+.talk-body .talk-ai-application p { font-size: 28px; line-height: 1.3; margin: 0; }
+.talk-layout-ai-panorama.talk-step-4 .talk-ai-application { height: 145px; padding-top: 16px; }
+.talk-layout-ai-panorama.talk-step-4 .talk-ai-application h2 { font-size: 32px; margin-bottom: 8px; }
+.talk-layout-ai-panorama.talk-step-4 .talk-ai-application p { font-size: 25px; }
+.talk-ai-map-copy { padding-top: 50px; }
+.talk-ai-map-copy h2 { margin-bottom: 42px; }
+.talk-ai-question { padding-top: 18px; }
+.talk-ai-question .talk-big { font-size: 120px; margin-bottom: 65px; }
+.talk-ai-definition > p { max-width: 1300px; margin-bottom: 45px; }
+.talk-ai-capabilities { font: 700 80px/1.17 var(--font-display); letter-spacing: -.025em; }
 .talk-page { position: absolute; inset: 0; color: var(--ink); }
 .talk-heading { position: absolute; left: 140px; top: 94px; width: 1640px; }
 .talk-kicker { display: flex; align-items: center; gap: 18px; color: var(--accent); font: 700 20px var(--font-sans); letter-spacing: .18em; text-transform: uppercase; margin-bottom: 24px; }

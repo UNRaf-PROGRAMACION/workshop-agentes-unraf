@@ -11,6 +11,87 @@ Los prompts son ejemplos didácticos, no citas externas. Los valores de vidas y 
 
 ## 1. Apertura
 
+### 1.2 — Primero: ¿qué entendemos por inteligencia artificial?
+
+**En pantalla:**
+
+Pregunta inicial: Cuando decimos IA… ¿en qué piensan?
+
+Arranquemos por lo que ya conocemos.
+
+Al siguiente clic: Un campo de la computación que desarrolla sistemas capaces de realizar tareas como reconocer patrones, interpretar lenguaje, aprender o tomar decisiones.
+
+La IA no es solamente un chatbot.
+
+**Narración:**
+
+Primero que nada: ¿qué entendemos por inteligencia artificial? Cuando escuchan IA, ¿qué se les viene a la cabeza?
+
+Escuchar dos o tres respuestas antes de avanzar a la definición.
+
+Podemos pensarla como un campo de la computación que desarrolla sistemas capaces de realizar tareas como reconocer patrones, interpretar lenguaje, aprender o tomar decisiones. No significa que todos los sistemas hagan todo eso, ni que necesariamente aprendan: también existen enfoques basados en reglas.
+
+Cuando hablamos de IA, no hablamos solamente de un chatbot. Veamos un panorama más amplio.
+
+### 1.3 — La IA ya está en los videojuegos
+
+**En pantalla:**
+
+Imagen completa: `docs/Panorama de Inteligencia Artificial.png`.
+
+Del panorama al videojuego. Mucho más que un chat. ¿Dónde aparece en los juegos?
+
+Destacados por clic, vinculados con áreas de la imagen:
+
+- Aprendizaje automático → agentes que aprenden a jugar.
+- Lenguaje natural · chatbots → conversaciones con personajes.
+- Reconocimiento de patrones → análisis de comportamientos de jugadores.
+- Gaming controlado por pensamiento → interfaces cerebro-computadora · uso experimental.
+
+Ejemplos posibles en videojuegos; no todos los juegos usan estas técnicas.
+
+**Narración:**
+
+Si miramos este panorama, vemos distintas técnicas y aplicaciones de inteligencia artificial. Algunas se relacionan directamente con videojuegos.
+
+Primer destacado: con aprendizaje automático podemos entrenar agentes para que aprendan a jugar. No es lo mismo que escribir manualmente todas las reglas de un enemigo.
+
+Segundo destacado: el procesamiento del lenguaje natural y los chatbots pueden habilitar conversaciones con personajes. No todos los diálogos de un juego usan estas técnicas; también existen diálogos escritos y sistemas de reglas.
+
+Tercer destacado: reconocer patrones puede ayudarnos a analizar cómo juegan las personas, por ejemplo para investigar comportamientos durante un playtest. Estos ejemplos pueden combinar varias técnicas: no son correspondencias exclusivas.
+
+Cuarto destacado: gaming controlado por pensamiento. Las interfaces cerebro-computadora pueden interpretar señales cerebrales para generar entradas de control. Es un campo experimental, no una función habitual de los videojuegos ni lectura libre de pensamientos.
+
+La infografía es un panorama orientativo, no una clasificación exhaustiva ni evidencia de que todas sus aplicaciones estén maduras.
+
+### 1.4 — Detrás, hay todo un abanico
+
+**En pantalla:**
+
+Imagen completa: `docs/Mapa de Inteligencias Computacionales.png`.
+
+Ciencias de la computación. Muchos enfoques. No una sola receta.
+
+Sistemas expertos, aprendizaje automático, redes neuronales, agentes… No son lo mismo ni son categorías aisladas.
+
+Al siguiente clic: Hoy enfocamos una parte del panorama. Agentes que nos ayudan a desarrollar.
+
+Pasemos a un pedido concreto para nuestro videojuego.
+
+Mapa orientativo: combina campos, técnicas y aplicaciones que se relacionan entre sí.
+
+**Narración:**
+
+Pero esta diversidad no aparece de la nada. Dentro de las ciencias de la computación hay un gran, gran abanico de enfoques para abordar estos problemas.
+
+Podemos encontrar sistemas expertos, aprendizaje automático, redes neuronales, interfaces inteligentes y agentes, entre otros. No son todos lo mismo, ni son categorías aisladas o necesariamente equivalentes. Las redes neuronales, por ejemplo, son una familia de modelos utilizados en aprendizaje automático.
+
+Tomemos esta imagen como un mapa orientativo para visualizar esa diversidad, no como una taxonomía rigurosa.
+
+En este workshop vamos a enfocarnos en una parte de ese panorama: los agentes que nos ayudan a desarrollar. No los agentes que juegan dentro de nuestro videojuego, sino las herramientas con las que trabajamos para construirlo.
+
+Para aterrizarlo, pasemos a un pedido concreto: agregar un sistema de vidas.
+
 ### 1.1 — Agregá un sistema de vidas
 
 **En pantalla:**

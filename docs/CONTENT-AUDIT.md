@@ -5,6 +5,7 @@ Fuente conceptual: `01-marco-conceptual.md`. Guion aprobado y ampliado: `guion-p
 | Fuente / sección | Escena | Tratamiento |
 | --- | --- | --- |
 | Pedido de portada del workshop | 1 · antes del guion | “Workshop: Programación Agéntica”, Nicolás Nocete y Agustín Galván; logo PNG original de `docs/media/logounraf.png` debajo, centrado y sin deformación. Se conserva la espera inicial y todo el contenido posterior. |
+| Introducción a IA solicitada + `Panorama de Inteligencia Artificial.png` + `Mapa de Inteligencias Computacionales.png` | 1 · después de portada, antes de vidas | Tres diapositivas, nueve beats: pregunta y definición; panorama con cuatro destacados conectados a videojuegos, incluido control por pensamiento como uso experimental; abanico de enfoques y foco en agentes de desarrollo. Ambas imágenes originales completas, locales, sin recorte ni deformación. |
 | Propósito, alcance, agente de desarrollo | 1–2 | Apertura con vidas; distinción asistente/agente y gameplay en notas. |
 | Conceptos esenciales | 2–3, 5, 8 | Modelo, herramientas, prompt, contexto, tokens, spec, evidencia, harness y skills introducidos cuando hacen falta. Glosario completo permanece en la guía. |
 | Vibe coding y comparación | 4, 6 | Exploración, riesgos y comparación antes/después. Sin tasas de éxito inventadas. |
@@ -19,6 +20,8 @@ Fuente conceptual: `01-marco-conceptual.md`. Guion aprobado y ampliado: `guion-p
 
 ## Decisiones de presentación
 
+- La introducción nueva usa los identificadores de contenido 1.2–1.4 antes de 1.1 para conservar los IDs existentes. Agrega nueve beats a la escena 1: la introducción ocupa `#1.3`–`#1.11`; el ejemplo de vidas pasa a `#1.12`–`#1.14`. El cuarto destacado del panorama se alcanza desde `#1.8` con un clic, en `#1.9`. No cambia la numeración de las demás escenas.
+- Las infografías fueron aportadas por el usuario; autoría y licencia no informadas. Se conservan como fuentes locales originales sin atribuciones inventadas. Se aclara su carácter orientativo porque mezclan campos, técnicas y aplicaciones. Los ejemplos de videojuegos son ilustrativos, no evidencia de implementaciones concretas ni correspondencias exclusivas.
 - Nueve escenas correspondientes a los nueve bloques originales del guion y una décima escena BONUS. Cada subsección tiene uno o más beats por clic. BONUS se alcanza continuando después del cierre, desde el overview o por URL `#10.1`; los atajos numéricos directos cubren solo las primeras nueve escenas.
 - Tema `agent-ready` sobre la base neutral: azul noche, menta y ámbar de la referencia `../create-agent-ready`; Inter y Roboto Condensed empaquetadas localmente. Escenario fijo 1920×1080, sin servicios externos.
 - Se conserva la demo original en sus archivos sin montarla; no se modifica el motor ni `examples/`.
@@ -31,6 +34,12 @@ Fuente conceptual: `01-marco-conceptual.md`. Guion aprobado y ampliado: `guion-p
 - “Evita la mayoría de bugs” y “la IA respeta siempre las reglas” no se presentan como garantías: definir ayuda a prevenir y siempre requiere comprobar.
 
 ## Verificación
+
+### Introducción a inteligencia artificial
+
+- Se incorporan las dos imágenes locales y nueve beats de avance manual después de la portada. Los destacados se derivan del beat, sin temporizadores, reproducción automática ni cambios en el motor. El cuarto destacado marca el icono de gaming controlado por pensamiento y compacta la lista para mantener los cuatro ejemplos visibles.
+- Se actualizan guion, notas del presentador y auditoría. Se conserva el ejemplo de vidas y todo el contenido posterior.
+- Por pedido del usuario, no se ejecutaron tests, build, typecheck, capturas ni verificaciones automáticas. La composición y navegación de la introducción quedan pendientes de validación visual.
 
 ### Segunda auditoría · causalidad, jerarquía y movimiento
 
