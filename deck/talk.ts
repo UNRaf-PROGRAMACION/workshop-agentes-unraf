@@ -40,7 +40,7 @@ export const SLIDES: Slide[][] = [
     { id: '4.2', title: 'Definir antes de implementar', layout: 'mind', steps: ['Controlar mejor el cambio', 'La IA no lee tu mente'] },
     { id: '4.3', title: 'Rápido para explorar', layout: 'explore', steps: ['Dónde ayuda', 'Cuando el proyecto crece'] },
     { id: '4.4', title: '¿Les pasó?', layout: 'broken', steps: ['Síntomas conocidos', 'Arregla una cosa y rompe otra'] },
-    { id: '4.5', title: 'Un fix sobre otro fix', layout: 'fixes', steps: ['Fix', 'Otro fix', '¿Qué queríamos hacer?'] },
+    { id: '4.5', title: 'Un fix sobre otro fix', layout: 'fixes', steps: ['Fix', 'Otro fix', '¿Qué queríamos hacer?', 'Reel: otro fix'] },
   ],
   [
     { id: '5.1', title: 'Definir el cambio. Después, construir.', layout: 'sdd', steps: ['Qué es SDD', 'De la intención a la evidencia'] },

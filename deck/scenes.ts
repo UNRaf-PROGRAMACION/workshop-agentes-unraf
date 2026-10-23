@@ -26,7 +26,7 @@ export const SCENES: SceneDef[] = SLIDES.map((slides, scene) => ({
           auto: animated,
           ref: slide.layout === 'ai-history' ? 'docs/linea.md · evolución de la IA' : `docs/guion-parte-1.md · ${slide.id}`,
           source: slide.layout === 'ai-history' ? HISTORY[step]?.source ?? screen : screen,
-          note: `Paso ${step + 1}/${slide.steps.length}: ${name}.${animated ? '\nIlustración animada breve, sin avance automático. Esperar a que termine antes de continuar. No es una grabación ni evidencia de una implementación.' : ''}\n\n${slide.layout === 'ai-history' ? HISTORY[step]?.note ?? narration : narration}`,
+          note: `Paso ${step + 1}/${slide.steps.length}: ${name}.${slide.id === '4.5' && step === 3 ? '\nReel local con audio: pulsar reproducir en los controles. Sin reproducción ni avance automáticos. Sketch humorístico, no explicación técnica literal. Fuente: ' + config.references.fixesReel : animated ? '\nIlustración animada breve, sin avance automático. Esperar a que termine antes de continuar. No es una grabación ni evidencia de una implementación.' : ''}\n\n${slide.layout === 'ai-history' ? HISTORY[step]?.note ?? narration : narration}`,
         };
       });
     }),

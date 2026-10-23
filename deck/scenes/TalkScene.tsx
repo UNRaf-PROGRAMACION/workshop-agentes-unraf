@@ -1,5 +1,5 @@
 import { Fragment, type ReactNode } from 'react';
-import { QR, Scene, useScene } from 'beatdeck';
+import { flags, QR, Scene, useScene } from 'beatdeck';
 import agentImage from '../../docs/media/2.2.png';
 import unrafLogo from '../../docs/media/logounraf.png';
 import { config } from '../deck.config';
@@ -9,6 +9,8 @@ import codexLogo from '../assets/codex.svg';
 import chatgptLogo from '../assets/chatgpt.svg';
 import claudeLogo from '../assets/claude.svg';
 import geminiLogo from '../assets/gemini.svg';
+import fixesReel from '../assets/otro-fix-reel.mp4';
+import fixesPoster from '../assets/otro-fix-reel.jpg';
 import v0Logo from '../assets/v0.svg';
 import lovableLogo from '../assets/lovable.svg';
 import replitLogo from '../assets/replit.svg';
@@ -52,6 +54,18 @@ function Rows({ items }: { items: [string, string][] }) {
   return <div className="talk-rows">{items.map(([label, value]) => <div className="talk-row" key={label}>
     <span>{label}</span><span className="muted">{value}</span>
   </div>)}</div>;
+}
+
+function FixesReel() {
+  const { here } = useScene();
+  if (flags.capture) return <img className="talk-fixes-reel" src={fixesPoster} alt="Portada del reel: POV: Me Vs. ChatGPT" />;
+  // Unmount on exit so audio cannot continue behind another scene.
+  return here ? <video className="talk-fixes-reel" src={fixesReel} poster={fixesPoster}
+    controls playsInline preload="metadata" aria-label="Reel de humor sobre instrucciones a la IA"
+    onPointerDown={(event) => event.stopPropagation()} onClick={(event) => event.stopPropagation()}
+    onKeyDown={(event) => {
+      if ([' ', 'ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', 'Home', 'End'].includes(event.key)) event.stopPropagation();
+    }} /> : null;
 }
 
 function Content({ layout, step, id }: { layout: Layout; step: number; id: string }) {
@@ -151,7 +165,7 @@ function Content({ layout, step, id }: { layout: Layout; step: number; id: strin
     case 'broken': return step === 0 ? <List items={['El personaje se mueve raro.', 'El nivel pierde consistencia.', 'Los enemigos no hacen lo esperado.']} /> : <>
       <div className="talk-big">Pedís un arreglo.<br /><span className="accent">Arregla una cosa<br />y rompe otra.</span></div>
     </>;
-    case 'fixes': return <GamePanel className="talk-stack">
+    case 'fixes': return step === 3 ? <FixesReel /> : <GamePanel className="talk-stack">
       <div className="talk-fix" style={{ width: 320 }} data-motion={step === 0 ? 'arrive' : undefined}>FIX</div>
       {step >= 1 ? <div className="talk-fix" style={{ width: 590 }} data-motion={step === 1 ? 'arrive' : undefined}>OTRO FIX</div> : null}
       {step >= 2 ? <><div className="talk-fix" style={{ width: 820 }} data-motion="arrive">OTRO FIX MÁS</div><div className="talk-fix base" data-motion="arrive" data-delay="500">¿QUÉ QUERÍAMOS HACER?</div></> : null}
@@ -299,7 +313,8 @@ function Foot({ layout, step, id }: { layout: Layout; step: number; id: string }
    if (layout === 'window' && step >= 1) return 'No depender de un chat interminable: conservar lo acordado en el proyecto.';
   if (layout === 'mind' && step >= 1) return 'Lo que no definís queda abierto a interpretación.';
   if (layout === 'explore' && step >= 1) return 'Son riesgos, no resultados inevitables. La revisión y el alcance importan.';
-  if (layout === 'fixes' && step >= 2) return 'Más prompts no reemplazan una definición compartida.';
+   if (layout === 'fixes' && step === 3) return <a className="talk-reference" href={config.references.fixesReel} target="_blank" rel="noopener noreferrer" onClick={(event) => event.stopPropagation()}>Reel · @theglitchnews · Créditos del sketch: @nathandoan ↗</a>;
+   if (layout === 'fixes' && step >= 2) return 'Más prompts no reemplazan una definición compartida.';
   if (layout === 'sdd') return 'No reemplaza diseño, pruebas, revisión ni seguridad. Ayuda a conectarlos.';
   if (layout === 'spec') return step >= 1 ? 'Valores ilustrativos. Supuestos y preguntas abiertas: visibles, no escondidos.' : 'Un contrato revisable para un cambio pequeño.';
   if (layout === 'life-compare') return 'Valores ilustrativos para este ejemplo; deben acordarse para el juego real.';

@@ -37,6 +37,13 @@ El tema vive en `themes/agent-ready.css` y las composiciones en `deck/deck.css`.
 - Recargar, abrir por URL, retroceder o usar `?reduced=1` muestra el estado final sin repetir la secuencia. `?capture=1` también desactiva estas animaciones.
 - Esta incorporación no se validó con tests, build ni capturas, por indicación del usuario. Las capturas históricas no representan el estado actual.
 
+### Reel de «Un fix sobre otro fix»
+
+- Después de los tres pasos originales, un clic más muestra el reel en `#4.11`.
+- Pulsar reproducir en los controles del video. Tiene audio y dura aproximadamente 1 minuto; comprobar el volumen antes de presentar.
+- El MP4 y la portada están incluidos localmente: no hace falta abrir Instagram ni tener conexión. El enlace del crédito es opcional y sí requiere internet.
+- PageDown / PageUp siguen navegando aunque el video tenga foco. Salir del beat detiene la reproducción; volver muestra la portada, listo para reproducir desde el inicio.
+
 ## Mapa rápido
 
 30 slides, nueve secciones y 64 estados de navegación, incluida la espera inicial.

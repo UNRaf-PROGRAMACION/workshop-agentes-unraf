@@ -99,6 +99,8 @@
 .talk-window { border: 1px solid var(--hair-strong); background: var(--surface); padding: 32px; margin-top: 34px; }
 .talk-window-items { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; }
 .talk-window-items span { font: 600 34px/1.2 var(--font-display); border-top: 1px solid var(--hair-strong); padding-top: 24px; }
+.talk-layout-fixes.talk-step-3 .talk-body { top: 270px; height: 670px; }
+.talk-fixes-reel { display: block; width: 377px; height: 670px; margin: 0 auto; object-fit: contain; pointer-events: auto; }
 .talk-stack { display: flex; flex-direction: column; align-items: center; gap: 18px; padding-top: 12px; }
 .talk-fix { padding: 22px 42px; border: 1px solid var(--hair); font: 30px/1.2 var(--font-mono); background: var(--surface); }
 .talk-fix.base { width: 1040px; text-align: center; color: var(--amber); border-color: rgba(255,190,92,.4); }
