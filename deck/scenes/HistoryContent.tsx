@@ -1,6 +1,8 @@
 import { flags, useScene } from 'beatdeck';
 import { HISTORY, HISTORY_ERAS } from '../history';
 import './history.css';
+import { TuringSketch } from './TuringSketch';
+import { NeuronSketch } from './NeuronSketch';
 
 function HistoryMark({ kind }: { kind: 'chess' | 'vision' | 'transformer' | 'code' }) {
   return <svg className="history-mark" viewBox="0 0 180 140" aria-hidden="true">
@@ -30,15 +32,17 @@ export function HistoryContent({ step }: { step: number }) {
   const { dir } = useScene();
   const current = HISTORY[Math.min(step, HISTORY.length - 1)];
 
-  return <div className={`history-world${dir === 'forward' && !flags.capture ? ' has-motion' : ''}${current.kind === 'winter' ? ' is-winter' : ''}`}>
+  return <div className={`history-world${dir === 'forward' && !flags.capture ? ' has-motion' : ''}${current.kind === 'winter' ? ' is-winter' : ''}${current.year === '1950' ? ' is-turing' : ''}${current.year === '1943' ? ' is-neuron' : ''}`}>
     <ol className="history-eras" aria-label="Etapas de la evolución de la IA">
       {HISTORY_ERAS.map((era, index) => <li key={era} className={index === current.era ? 'is-current' : index < current.era ? 'is-past' : ''} aria-current={index === current.era ? 'step' : undefined}>{era}</li>)}
     </ol>
     <div className="history-detail" key={step}>
       <div className="history-date"><span className={`history-year${current.year.length > 4 ? ' is-range' : ''}`}>{current.year}</span>
+        {current.year === '1950' ? <p className="history-turing-intro">Alan Turing propone<br />el juego de imitación.</p> : null}
+        {current.year === '1943' ? <p className="history-neuron-intro">McCulloch y Pitts.<br />Una neurona expresada<br />como modelo matemático.</p> : null}
         {current.kind === 'chess' || current.kind === 'vision' || current.kind === 'transformer' || current.kind === 'code' ? <HistoryMark kind={current.kind} /> : null}
       </div>
-      <div className="history-copy"><h2>{current.title}</h2><p>{current.summary}</p></div>
+      <div className="history-copy"><h2>{current.title}</h2>{current.year === '1943' ? <><NeuronSketch /><p className="history-neuron-result">Recibe señales → evalúa un umbral → se activa o no.</p></> : current.year === '1950' ? <><TuringSketch /><p className="history-turing-result">Si no logra distinguirlos, la máquina supera la prueba.</p></> : <p>{current.summary}</p>}</div>
     </div>
     <div className="history-line" aria-hidden="true">
       <div className="history-line-base" />

@@ -110,6 +110,12 @@ Cada clic ilumina un hito y muestra su año, titular y una frase. Sin submenús,
 
 Turing: ¿Pueden pensar las máquinas? Deep Blue: una computadora derrota al campeón mundial de ajedrez, Garry Kasparov. AlexNet: redes profundas, datos y GPUs impulsan el reconocimiento de imágenes.
 
+En 1950, dibujo esquemático inspirado en la referencia del expositor: máquina y persona detrás de una barrera; mensajes de texto hacia un interlocutor sentado que pregunta «¿Quién es la máquina?». Si no logra distinguirlos, la máquina supera la prueba. Es el escenario propuesto por Turing, no la representación de un experimento realizado ni una demostración de conciencia.
+
+En 1943, dibujo original de una neurona artificial: varias señales llegan a un nodo que pregunta «¿Supera el umbral?» y produce una salida «0 / 1». Síntesis: Recibe señales → evalúa un umbral → se activa o no. Se nombran McCulloch y Pitts. Es una simplificación conceptual, no el diagrama completo del modelo de 1943 ni una red moderna entrenándose.
+
+En 1956 se aclara qué es Dartmouth: un encuentro de investigadores celebrado en Dartmouth College, una institución universitaria de Estados Unidos, que consolidó la inteligencia artificial como campo de estudio.
+
 El invierno enfría la línea con azul tenue y trazo discontinuo. Deep Blue lleva una pieza de ajedrez; AlexNet, un esquema de reconocimiento de imágenes, no una predicción real; Transformer, un icono de tokens conectados con un foco de atención destacado, no un diagrama completo de la arquitectura. El último hito dice: De recibir respuestas a delegar tareas, con supervisión humana.
 
 Las tecnologías se superponen y coexisten. Más capacidad no elimina la necesidad de supervisión.

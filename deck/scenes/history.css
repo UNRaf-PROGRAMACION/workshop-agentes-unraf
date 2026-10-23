@@ -12,6 +12,22 @@
 .history-mark { width: 160px; height: 125px; margin-top: 24px; color: var(--history-ink); }
 .talk-body .history-copy h2 { font-size: 76px; line-height: 1.06; margin-bottom: 32px; max-width: 1030px; }
 .talk-body .history-copy p { font-size: 36px; line-height: 1.4; max-width: 980px; color: var(--ink-2); }
+.is-turing .history-detail { top: 95px; }
+.talk-body .is-turing .history-copy h2 { font-size: 54px; margin-bottom: 18px; }
+.talk-body .history-turing-intro { font-size: 28px; line-height: 1.4; color: var(--ink-2); margin-top: 28px; }
+.history-turing-sketch { display: block; width: 1000px; height: 300px; color: var(--history-ink); overflow: visible; }
+.history-turing-sketch text { font: 600 24px var(--font-display); }
+.history-turing-sketch .history-turing-barrier { font-size: 21px; letter-spacing: .08em; }
+.history-turing-sketch .history-turing-observer { font-size: 22px; }
+.talk-body .history-copy .history-turing-result { font-size: 24px; margin: 16px 0 0; }
+.is-neuron .history-detail { top: 95px; }
+.talk-body .is-neuron .history-copy h2 { font-size: 54px; margin-bottom: 18px; }
+.talk-body .history-neuron-intro { font-size: 28px; line-height: 1.4; color: var(--ink-2); margin-top: 28px; }
+.history-neuron-sketch { display: block; width: 1000px; height: 300px; color: var(--history-ink); }
+.history-neuron-labels { font: 600 23px var(--font-display); }
+.history-neuron-question { font: 600 30px var(--font-display); }
+.history-neuron-output { font: 700 48px var(--font-display); }
+.talk-body .history-copy .history-neuron-result { font-size: 25px; margin: 16px 0 0; }
 .history-line { position: absolute; top: 540px; left: 80px; width: 1480px; height: 100px; }
 .history-line-base, .history-line-progress { position: absolute; top: 0; left: 0; height: 2px; }
 .history-line-base { width: 100%; background: var(--hair-strong); }
